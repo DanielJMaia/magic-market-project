@@ -5,14 +5,14 @@ class Card(models.Model):
     """
     This is going to be a single card being sold
     """
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-    edition = models.TextField()
-    condition = models.TextField()
-    created_date = models.DateTimeField(auto_now_add=True)
-    views = models.IntegerField(default=0)
-    tag = models.CharField(max_length=30, blank=True, null=True)
+    card_title = models.CharField(max_length=200)
+    card_description = models.TextField()
+    card_edition = models.TextField()
+    card_condition = models.TextField()
+    listing_created_date = models.DateTimeField(auto_now_add=True)
+    listing_published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    listing_views = models.IntegerField(default=0)
     image = models.ImageField(upload_to="img", blank=True, null=True)
-
+    
     def __unicode__(self):
         return self.title
