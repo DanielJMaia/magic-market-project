@@ -10,3 +10,27 @@ def get_cards(request):
     """
     cards = Card.objects.filter(listing_published_date__lte=timezone.now())
     return render(request, "cards.html", {'cards': cards})
+
+def get_card_details(request, pk):
+    """
+    Returns a single card object and renders
+    it on the cardinformation.html template
+    """
+    card = get_object_or_404(Card, pk=pk)
+    card.views += 1
+    card.save()
+    return render(request, "cardinformation.html", {'card': card})
+
+def create_or_edit_card(request, pk=None):
+    """
+    This allows us to create or edit a post
+    """
+    card = get_object_or_404(Card, pk=pk) if pk else None
+    if request.method == "POST":
+        card = CardDescForm(request.POST, request.FILES, instance=card)
+        if form.is_valid():
+            card = form.save()
+            return redirect(card_detail, card.pk)
+    else:
+        card = CardDescForm(instance=card)
+    return render(request, 'addcards.html', {'form': form})
