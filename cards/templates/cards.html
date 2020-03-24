@@ -3,5 +3,6 @@
     {% for card in cards %}
         <p>{{ card.card_title }}</p>
         <p>{{ card.card_description|truncatewords:30 }}</p>
+        <br>
     {% endfor %}
 {% endblock %}
