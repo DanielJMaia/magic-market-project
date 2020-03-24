@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>{{ card.card_title }}</h3>
+<p>{{ post.card_description }}</p>
+<p><span class="boldtext">Listing Published date:</span> {{ card.listing_published_date }} </p>
+<p><span class="boldtext">Edition:</span> {{ card.card_edition }}</p>
+<p><span class="boldtext">Condition:</span> {{ card.card_condition }}</p>
+<a href="{% url 'get_cards' %}" class="btn btn-default">View Other Listings</a>
+<a href="{% url 'edit_card' card.id %}" class="btn btn-default">Edit Listing</a>
+{% endblock %}

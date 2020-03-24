@@ -1,4 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-This is the home page
+<h1>This is the home page</h1>
+<h2>Popular Listings (Sorted by views)</h2>
+ {% for card in cards %}
+        <p>{{ card.card_title }}</p>
+        <p>{{ card.card_description|truncatewords:30 }}</p>
+        <p><a href="{% url 'card_detail' card.id %}"  class="btn btn-default">Read more</a></p>
+        <br>
+    {% endfor %}
 {% endblock %}

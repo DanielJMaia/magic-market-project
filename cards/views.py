@@ -4,7 +4,8 @@ from .models import Card
 from .forms import CardDescForm
 
 def home_page(request):
-    return render(request, 'home.html')
+    cards = Card.objects.order_by('-listing_views')
+    return render(request, 'home.html', {'cards': cards})
 
 def get_cards(request):
     """
@@ -20,7 +21,7 @@ def get_card_details(request, pk):
     it on the cardinformation.html template
     """
     card = get_object_or_404(Card, pk=pk)
-    """card.views += 1"""
+    card.listing_views += 1
     card.save()
     return render(request, "cardinformation.html", {'card': card})
 
