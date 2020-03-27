@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>This is the login page</h1>
- <form method="POST">
-        {{ login_form }}
+<form method="POST">
+    {% csrf_token %}
+    {{ login_form }}
+    <button type="submit">Login</button>
 </form>
+{% if messages %}
+    <div>
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    </div>
+{% endif %}
 {% endblock %}
