@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.utils import timezone
+from django.contrib import auth, messages
 from .models import Card
 from .forms import CardDescForm
 

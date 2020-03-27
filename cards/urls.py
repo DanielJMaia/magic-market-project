@@ -6,5 +6,5 @@ urlpatterns = [
     url(r'^cards/$', get_cards, name='get_cards'),
     url(r'^(?P<pk>\d+)/$', get_card_details, name='card_detail'),
     url(r'^new/$', create_or_edit_card, name="new_card"),
-    url(r'^(?P<pk>\d+)/edit/$', create_or_edit_card, name="edit_card")
+    url(r'^(?P<pk>\d+)/edit/$', create_or_edit_card, name="edit_card"),
 ]
