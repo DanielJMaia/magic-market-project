@@ -31,7 +31,11 @@
 					<a class="nav-link" href="{% url 'new_card' %}">Add a new listing</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{% url 'view_cart' %}">View Cart</a>
+					<a class="nav-link" href="{% url 'view_cart' %}">View Cart
+						{% if cards_count > 0 %}
+						<label>{{ cards.count }}</label>
+                    {% endif %}
+                    </a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -44,14 +48,21 @@
 					<a class="nav-link" href="{% url 'register' %}">Register</a>
 				</li>
 				{% endif %}
-
 			</ul>
 		</div>
 	</nav>
+    <!--Search Bar-->
+    <div class="display">
+        <form action="{% url 'search' %}" method="GET">
+            <input type="text" name="q">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <!--Search Bar End-->
 	<!--Card information-->
 	{% block content %}
 	{% endblock %}
-	<!--Card information-->
+	<!--Card information End-->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
 	</script>
