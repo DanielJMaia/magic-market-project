@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+
+<div class="row row-flex">
+	{% for item in cart_items %}
+	<div class="caption">
+		<h3>{{ item.card.name }}</h3>
+		<p class="card-description">{{ item.card.description }}</p>
+		<p>{{ item.card.price }}</p>
+		<p>
+			<form class="form-inline" method="POST" action="{% url 'adjust_cart' item.id %}">
+				{% csrf_token %}
+				<div class="form-group">
+					<div class="input-group-addon">Qty</div>
+					<div class="input-group-addon">{{ item.quantity }}</div>
+				</div>
+				<button type="submit">Amend</button>
+			</form>
+		</p>
+	</div>
+	{% endfor %}
+</div>
+<div class="row">
+    <p>Total</p>
+    <p>£{{ total }}</p>
+    <a href="/" class="btn btn-success" role="button">Checkout</a>
+</div>
+{% endblock %}

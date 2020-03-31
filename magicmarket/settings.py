@@ -25,7 +25,7 @@ SECRET_KEY = '9y(f4ewq8@+mte_&&xacis-^1(rq6#dd6dc_v-09j*k$3pi2)!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME')]
+ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME'), '8000-a4163a0e-8e4e-49e4-8aca-e7a98fe1051c.ws-eu01.gitpod.io']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_forms_bootstrap',
     'cards',
     'accounts',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'cart.contexts.cart_contents'
             ],
         },
     },

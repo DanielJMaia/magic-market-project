@@ -9,6 +9,7 @@ class Card(models.Model):
     card_description = models.TextField()
     card_edition = models.TextField()
     card_condition = models.TextField()
+    card_price = models.DecimalField(max_digits=7, decimal_places=2, default='0')
     listing_created_date = models.DateTimeField(auto_now_add=True)
     listing_published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     listing_views = models.IntegerField(default=0)
