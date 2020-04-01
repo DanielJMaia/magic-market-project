@@ -60,6 +60,7 @@ def register(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have been successfully registered")
+                return render(request, 'user_profile.html', {"profile": user})
             else:
                 messages.error(request, "Unable to register your account at this time")
     else:
