@@ -1,18 +1,69 @@
 {% extends "base.html" %}
+{% load static from staticfiles %}
 {% block content %}
 
-{% if messages %}
-<div>
-	{% for message in messages %}
-	<h1>{{message}}</h1>
-	{% endfor %}
+<!--This displays any messages such as "you have been logged out" etc.-->
+<div class="row">
+	{% if messages %}
+	<div>
+		{% for message in messages %}
+		<h1>{{message}}</h1>
+		{% endfor %}
+	</div>
 </div>
 {% endif %}
-<h3>This is the home page</h3>
-<h4>Popular Listings (Sorted by views)</h4>
-{% for card in cards %}
-<p>{{ card.card_title }}</p>
-<p><a href="{% url 'card_detail' card.id %}" class="btn btn-default">Read more</a></p>
-<br>
-    {% endfor %}
+<!--End messages section-->
+
+<!--Website Header-->
+<div class="row">
+	<div class="px-3 py-3 pt-md-4 pb-md-6 mx-auto text-center">
+		<h3 class="display-4">This is the home page</h3>
+		<p class="lead">This is filler text below the home page. Lorem, ipsum dolor sit amet consectetur adipisicing
+			elit.tatibus excepturi voluptas itaque? A debitis tempore libero itaque!</p>
+	</div>
+</div>
+<!---->
+<div class="row justify-content-around max-width padding-top">
+	<!--Popular cards sorted by views-->
+	<div class="col-sm-12 col-md-12 col-lg-4">
+		<h1 class="pb-3 mb-4 border-bottom">
+			Popular Listings
+		</h1>
+		{% for card in cards %}
+
+		<div class="card mb-4 shadow-sm">
+			<div class="card-header">
+				{{ card.card_title }}
+			</div>
+			<div class="card-body">
+				<p>{{ card.card_description|truncatewords:30 }}</p>
+			</div>
+			<p><a href="{% url 'card_detail' card.id %}" class="btn btn-default">Read more</a></p>
+		</div>
+		{% endfor %}
+	</div>
+	<!--End of popular cards sections-->
+
+	<!--Second section, currently also just popular cards. FILLER!!!-->
+	<div class="col-sm-12 col-md-12 col-lg-4">
+		<h1 class="pb-3 mb-4 border-bottom">
+			Popular Listings
+		</h1>
+		{% for card in cards %}
+
+		<div class="card mb-4 shadow-sm">
+			<div class="card-header">
+				{{ card.card_title }}
+			</div>
+			<div class="card-body">
+				<p>{{ card.card_description|truncatewords:30 }}</p>
+			</div>
+			<p><a href="{% url 'card_detail' card.id %}" class="btn btn-default">Read more</a></p>
+		</div>
+		{% endfor %}
+	</div>
+	<!--End of FILLER SECTION-->
+</div>
+
+
 {% endblock %}
