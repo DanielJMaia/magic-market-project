@@ -1,5 +1,6 @@
 body{
 font-family: 'Zilla Slab', serif;
+
 }
 
 .max-width{
@@ -8,4 +9,69 @@ font-family: 'Zilla Slab', serif;
 
 .padding-top{
     padding-top: 2rem;
+}
+
+.padding-bottom{
+    padding-bottom: 2rem;
+}
+
+.button-effect{
+    border-style: solid;
+    padding: 5px;
+    color: #fff;
+    background-color: #000;
+    border-radius: 8px;
+    border-color: #000;
+    text-decoration: none;
+}
+
+.button-effect:hover{
+    color: #fff;
+    background-color: #767676;
+    transition: 0.5s;
+    border-color: #767676;
+    text-decoration: none;
+}
+
+.add-to-cart-quantity{
+    max-width: 50px;
+    border-radius: 5px;
+    margin-right: 12px;
+    text-align: center;
+    border-color: #767676
+}
+
+.hidden-when-small{
+        display: none;
+    }
+
+
+
+
+/* MEDIA QUERIES */ 
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    .hidden-when-small{
+        display: flex;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
 }

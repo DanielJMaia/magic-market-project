@@ -1,12 +1,57 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
 {% block content %}
-<div class="col-sm-12 col-md-12 col-lg-6">
-	{% for card in cards %}
-	<p>{{ card.card_title }}</p>
-	<p>{{ card.card_description|truncatewords:30 }}</p>
-	<p><a href="{% url 'card_detail' card.id %}" class="btn btn-default">Read more</a></p>
-	<br>
-    {% endfor %}
+<!--Page header-->
+<div class="row">
+	<div class="text-center max-width padding-top padding-bottom">
+		<h3>All listings!</h3>
+	</div>
 </div>
-	{% endblock %}
+<!--End of page header-->
+<!--Table header-->
+<div class="row padding-bottom hidden-when-small">
+	<div class="col-sm-12 col-md-2">
+		<p><u>Name</u></p>
+	</div>
+	<div class="col-sm-12 col-md-3">
+		<p><u>Description</u></p>
+	</div>
+	<div class="col-sm-12 col-md-2">
+		<p><u>Condition</u></p>
+	</div>
+	<div class="col-sm-12 col-md-1">
+		<p><u>Price</u></p>
+	</div>
+</div>
+<!--End of table header-->
+
+<!--List of cards-->
+{% for card in cards %}
+<div class="row padding-bottom">
+	<div class="col-sm-12 col-md-2">{{ card.card_title }}</div>
+	<div class="col-sm-12 col-md-3">{{ card.card_description|truncatewords:30 }}</div>
+	<div class="col-sm-12 col-md-2">{{ card.card_condition }}</div>
+	<div class="col-sm-12 col-md-1">{{ card.card_price }}</div>
+	<div class="col-sm-12 col-md-2"><a href="{% url 'card_detail' card.id %}" class="button-effect">View Card</a></div>
+
+	{% if user.is_authenticated %}
+	<div class="col-sm-12 col-md-2">
+		<form method="post" action="{% url 'add_to_cart' card.id %}">
+			{% csrf_token %}
+			<div class="input-group">
+				<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
+				<span class="input-group-btn">
+            <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+        </span>
+			</div>
+		</form>
+	</div>
+	{% endif %}
+
+
+
+</div>
+{% endfor %}
+<!--End of list of cards-->
+
+{% endblock %}
