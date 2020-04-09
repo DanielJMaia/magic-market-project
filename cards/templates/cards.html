@@ -27,7 +27,7 @@
 
 <!--List of cards-->
 {% for card in cards %}
-<div class="row padding-bottom">
+<div class="row pb-3">
 	<div class="col-sm-12 col-md-3"><a href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></div>
 	<div class="col-sm-12 col-md-2">{{ card.card_title }}</div>
 	<div class="col-sm-12 col-md-2">{{ card.card_condition }}</div>
@@ -36,7 +36,7 @@
 	</div>
 
 	{% if user.is_authenticated %}
-	<div class="col-sm-12 col-md-2">
+	<div class="col-sm-12 col-md-2 negative-top">
 		<form method="post" action="{% url 'add_to_cart' card.id %}">
 			{% csrf_token %}
 			<div class="input-group">

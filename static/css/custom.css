@@ -3,6 +3,10 @@ font-family: 'Zilla Slab', serif;
 
 }
 
+a:hover{
+    text-decoration: none;
+}
+
 .max-width{
     width: 100%;
 }
@@ -22,11 +26,16 @@ font-family: 'Zilla Slab', serif;
 .button-effect{
     border-style: solid;
     padding: 5px;
+    margin: 20px;
     color: #fff;
     background-color: #000;
     border-radius: 8px;
     border-color: #000;
     text-decoration: none;
+}
+
+.negative-top{
+    top: -8px;
 }
 
 .button-effect:hover{
