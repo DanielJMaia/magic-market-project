@@ -29,7 +29,7 @@
 		<h1 class="pb-3 mb-4 border-bottom">
 			Popular Listings
 		</h1>
-		{% for card in cards %}
+		{% for card in cards|dictsortreversed:"listing_views" %}
 
 		<div class="card mb-4 shadow-sm">
 			<div class="card-header">
@@ -47,9 +47,9 @@
 	<!--Second section, currently also just popular cards. FILLER!!!-->
 	<div class="col-sm-12 col-md-12 col-lg-4">
 		<h1 class="pb-3 mb-4 border-bottom">
-			Popular Listings
+			Recent Listings
 		</h1>
-		{% for card in cards %}
+		{% for card in cards|dictsortreversed:"listing_created_date"%}
 
 		<div class="card mb-4 shadow-sm">
 			<div class="card-header">

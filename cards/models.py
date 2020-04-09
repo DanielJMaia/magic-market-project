@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Card(models.Model):
     """
@@ -14,6 +15,7 @@ class Card(models.Model):
     listing_published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     listing_views = models.IntegerField(default=0)
     image = models.ImageField(upload_to="img", blank=True, null=True)
-    
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default='0')
+
     def __unicode__(self):
         return self.title

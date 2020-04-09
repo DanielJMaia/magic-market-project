@@ -14,6 +14,8 @@ def get_cards(request):
     uploaded to the website by users
     """
     cards = Card.objects.filter(listing_published_date__lte=timezone.now())
+    for card in cards:
+        print(card.user)
     return render(request, "cards.html", {'cards': cards})
 
 def get_card_details(request, pk):
@@ -34,6 +36,8 @@ def create_or_edit_card(request, pk=None):
     if request.method == "POST":
         form = CardDescForm(request.POST, request.FILES, instance=card)
         if form.is_valid():
+            card = form.save(commit=False)
+            card.user = request.user
             card = form.save()
             return redirect(get_card_details, card.pk)
     else:

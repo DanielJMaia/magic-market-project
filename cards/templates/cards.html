@@ -10,11 +10,11 @@
 <!--End of page header-->
 <!--Table header-->
 <div class="row padding-bottom hidden-when-small">
-	<div class="col-sm-12 col-md-2">
-		<p><u>Name</u></p>
-	</div>
 	<div class="col-sm-12 col-md-3">
-		<p><u>Description</u></p>
+		<p><u>Vendor Name</u></p>
+	</div>
+    <div class="col-sm-12 col-md-2">
+		<p><u>Name</u></p>
 	</div>
 	<div class="col-sm-12 col-md-2">
 		<p><u>Condition</u></p>
@@ -28,11 +28,11 @@
 <!--List of cards-->
 {% for card in cards %}
 <div class="row padding-bottom">
+    <div class="col-sm-12 col-md-3"><a href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></div>
 	<div class="col-sm-12 col-md-2">{{ card.card_title }}</div>
-	<div class="col-sm-12 col-md-3">{{ card.card_description|truncatewords:30 }}</div>
 	<div class="col-sm-12 col-md-2">{{ card.card_condition }}</div>
-	<div class="col-sm-12 col-md-1">{{ card.card_price }}</div>
-	<div class="col-sm-12 col-md-2"><a href="{% url 'card_detail' card.id %}" class="button-effect">View Card</a></div>
+	<div class="col-sm-12 col-md-1">£{{ card.card_price }}</div>
+	<div class="col-sm-12 col-md-2"><a href="{% url 'card_detail' card.id %}" class="button-effect">View Listing</a></div>
 
 	{% if user.is_authenticated %}
 	<div class="col-sm-12 col-md-2">

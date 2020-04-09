@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h3>{{ card.card_title }}</h3>
+<p><a href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></p>
 <p>{{ card.card_description|truncatewords:30 }}</p>
 <p><span class="boldtext">Edition:</span> {{ card.card_edition }}</p>
 <p><span class="boldtext">Condition:</span> {{ card.card_condition }}</p>

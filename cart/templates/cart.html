@@ -12,7 +12,7 @@
 			<form class="form-inline" method="POST" action="{% url 'adjust_cart' item.id %}">
 				{% csrf_token %}
 				<div class="form-group">
-					<div class="input-group-addon">Qty</div>
+					<div class="input-group-addon">Amount:</div>
 					<div class="input-group-addon">{{ item.quantity }}</div>
 				</div>
 				<button type="submit">Amend</button>
@@ -22,7 +22,7 @@
 	{% endfor %}
 </div>
 <div class="row">
-    <p>Total</p>
+    <p>Total:</p>
     <p>£{{ total }}</p>
     <a href="{% url 'checkout' %}" class="btn btn-success" role="button">Checkout</a>
 </div>

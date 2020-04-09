@@ -15,6 +15,10 @@ font-family: 'Zilla Slab', serif;
     padding-bottom: 2rem;
 }
 
+.center{
+    text-align: center;
+}
+
 .button-effect{
     border-style: solid;
     padding: 5px;
