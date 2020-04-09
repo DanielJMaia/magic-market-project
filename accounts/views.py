@@ -1,8 +1,10 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
+from django.utils import timezone
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import UserLoginForm, RegistrationForm
+from cards.models import Card
 
 
 def login(request):
@@ -72,10 +74,12 @@ def register(request):
 def view_user(request):
     """This retrieves the user from the database and redirects to their profile page"""
     user = User.objects.get(email=request.user.email)
-    return render(request, 'user_profile.html', {"profile": user})
+    cards = Card.objects.filter(user=user)
+    return render(request, 'user_profile.html', {"profile": user, "cards": cards})
 
 
 def view_profile(request, pk):
     """This allows users to view vendor profiles by retrieving the vendor id and redirecting it to their profile page"""
     profile = get_object_or_404(User, pk=pk)
-    return render(request, 'user_profile.html', {"profile": profile})
+    cards = Card.objects.filter(user=profile)
+    return render(request, 'user_profile.html', {"profile": profile, "cards": cards})

@@ -1,5 +1,51 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="row">
+	<h1 class="col-sm-12 col-md-2 padding-bottom padding-top">{{ profile.username }}</h1>
+</div>
 
-<h1 class="padding-top padding-bottom center">{{ profile.username }}</h1>
+<!--Table header-->
+<div class="row padding-bottom hidden-when-small">
+	<div class="col-sm-12 col-md-2">
+		<p><u>Card Name</u></p>
+	</div>
+	<div class="col-sm-12 col-md-2">
+		<p><u>Condition</u></p>
+	</div>
+	<div class="col-sm-12 col-md-1">
+		<p><u>Price</u></p>
+	</div>
+</div>
+<!--End of table header-->
+
+
+<!--List of cards for the specific vendor-->
+{% for card in cards %}
+<div class="row padding-bottom">
+	<div class="col-sm-12 col-md-2">{{ card.card_title }}</div>
+	<div class="col-sm-12 col-md-2">{{ card.card_condition }}</div>
+	<div class="col-sm-12 col-md-1">£{{ card.card_price }}</div>
+	<div class="col-sm-12 col-md-2"><a href="{% url 'card_detail' card.id %}" class="button-effect">View Listing</a>
+	</div>
+
+	{% if user.is_authenticated %}
+	<div class="col-sm-12 col-md-2">
+		<form method="post" action="{% url 'add_to_cart' card.id %}">
+			{% csrf_token %}
+			<div class="input-group">
+				<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
+				<span class="input-group-btn">
+            <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+        </span>
+			</div>
+		</form>
+	</div>
+	{% endif %}
+
+
+
+</div>
+{% endfor %}
+<!--End of list of cards-->
+
 {% endblock %}
