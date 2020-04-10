@@ -29,41 +29,54 @@
 		<h1 class="pb-3 mb-4 border-bottom">
 			Popular Listings
 		</h1>
+
 		{% for card in cards|dictsortreversed:"listing_views" %}
 
+		<!--This is a test id to try to trigger the display image function in custom.js-->
+		<button class="button" id="show-image">Show Image</button>
+		<button class="button" id="hide-image">Hide Image</button>
+		<!---->
 		<div class="card mb-4 shadow-sm">
+
 			<div class="card-header">
 				{{ card.card_title }}
 			</div>
 			<div class="card-body">
 				<p>{{ card.card_description|truncatewords:30 }}</p>
+
+				{% if card.image %}
+				<img class="card-image" id="card-image-test" src="/media/{{ card.image }}">
+                {% endif %}
+
 			</div>
-			<p><a href="{% url 'card_detail' card.id %}" class="btn btn-default">Read more</a></p>
+				<p><a href="{% url 'card_detail' card.id %}" class="btn btn-default button-effect">Read more</a></p>
+			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
-	</div>
-	<!--End of popular cards sections-->
+		<!--End of popular cards sections-->
 
-	<!--Second section, currently also just popular cards. FILLER!!!-->
-	<div class="col-sm-12 col-md-12 col-lg-4">
-		<h1 class="pb-3 mb-4 border-bottom">
-			Recent Listings
-		</h1>
-		{% for card in cards|dictsortreversed:"listing_created_date"%}
+		<!--Second section, currently also just popular cards. FILLER!!!-->
+		<div class="col-sm-12 col-md-12 col-lg-4">
+			<h1 class="pb-3 mb-4 border-bottom">
+				Recent Listings
+			</h1>
+			{% for card in cards|dictsortreversed:"listing_created_date"%}
 
-		<div class="card mb-4 shadow-sm">
-			<div class="card-header">
-				{{ card.card_title }}
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header">
+					{{ card.card_title }}
+				</div>
+				<div class="card-body">
+					<p>{{ card.card_description|truncatewords:30 }}</p>
+					{% if card.image %}
+					<img class="card-image" src="/media/{{ card.image }}">
+                    {% endif %}
+
+				</div>
+					<p><a href="{% url 'card_detail' card.id %}" class="btn btn-default button-effect">Read more</a></p>
+				</div>
+				{% endfor %}
 			</div>
-			<div class="card-body">
-				<p>{{ card.card_description|truncatewords:30 }}</p>
-			</div>
-			<p><a href="{% url 'card_detail' card.id %}" class="btn btn-default">Read more</a></p>
+			<!--End of FILLER SECTION-->
 		</div>
-		{% endfor %}
-	</div>
-	<!--End of FILLER SECTION-->
-</div>
-
-
-{% endblock %}
+		{% endblock %}
