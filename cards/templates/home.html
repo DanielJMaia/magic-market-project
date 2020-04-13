@@ -10,8 +10,8 @@
 		<h1>{{message}}</h1>
 		{% endfor %}
 	</div>
+	{% endif %}
 </div>
-{% endif %}
 <!--End messages section-->
 
 <!--Website Header-->
@@ -32,9 +32,11 @@
 
 		{% for card in cards|dictsortreversed:"listing_views" %}
 
+
+
 		<!--This is a test id to try to trigger the display image function in custom.js-->
-		<button class="button" id="show-image">Show Image</button>
-		<button class="button" id="hide-image">Hide Image</button>
+		<button class="button" id="show-image-{{ forloop.counter0 }}">Show Image</button>
+		<button class="button" id="hide-image-{{ forloop.counter0 }}">Hide Image</button>
 		<!---->
 		<div class="card mb-4 shadow-sm">
 
@@ -45,7 +47,7 @@
 				<p>{{ card.card_description|truncatewords:30 }}</p>
 
 				{% if card.image %}
-				<img class="card-image" id="card-image-test" src="/media/{{ card.image }}">
+				<img class="card-image" id="card-image-test-{{ forloop.counter0 }}" src="/media/{{ card.image }}">
                 {% endif %}
 
 			</div>
@@ -79,4 +81,8 @@
 			</div>
 			<!--End of FILLER SECTION-->
 		</div>
+		{% endblock %}
+
+		{% block end_js %}
+		<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 		{% endblock %}

@@ -3,7 +3,7 @@
 {% block content %}
 <!--Page header-->
 <div class="row">
-	<div class="text-center max-width padding-top padding-bottom">
+	<div class="text-center max-width pt-3 pb-5">
 		<h3>All listings!</h3>
 	</div>
 </div>
@@ -27,7 +27,7 @@
 
 <!--List of cards-->
 {% for card in cards %}
-<div class="row pb-3">
+<div class="row pb-4">
 	<div class="col-sm-12 col-md-3"><a href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></div>
 	<div class="col-sm-12 col-md-2">{{ card.card_title }}</div>
 	<div class="col-sm-12 col-md-2">{{ card.card_condition }}</div>
@@ -55,4 +55,9 @@
 {% endfor %}
 <!--End of list of cards-->
 
+{% endblock %}
+
+
+{% block end_js %}
+<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 {% endblock %}

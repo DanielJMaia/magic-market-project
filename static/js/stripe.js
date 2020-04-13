@@ -14,7 +14,7 @@ $(function() {
             $("#id_stripe_id").val(response.id);
 
             // Prevent the credit card details from being submitted
-            // to our server
+            // to my server
             $("#id_credit_card_number").removeAttr('name');
             $("#id_cvv").removeAttr('name');
             $("#id_expiry_month").removeAttr('name');
@@ -22,6 +22,7 @@ $(function() {
 
             form.submit();
         } else {
+            console.log("I got here!", response.error.message)
             $("#stripe-error-message").text(response.error.message);
             $("#credit-card-errors").show();
             $("#validate_card_btn").attr("disabled", false);
