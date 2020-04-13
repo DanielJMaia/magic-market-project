@@ -14,7 +14,7 @@ a:hover{
 .center{
     text-align: center;
 }
-
+/*
 .button-effect{
     border-style: solid;
     padding: 5px;
@@ -25,7 +25,7 @@ a:hover{
     border-color: #000;
     text-decoration: none;
 }
-
+*/
 .negative-top{
     top: -8px;
 }

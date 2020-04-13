@@ -32,7 +32,7 @@
 	<div class="col-sm-12 col-md-2">{{ card.card_title }}</div>
 	<div class="col-sm-12 col-md-2">{{ card.card_condition }}</div>
 	<div class="col-sm-12 col-md-1">£{{ card.card_price }}</div>
-	<div class="col-sm-12 col-md-2"><a href="{% url 'card_detail' card.id %}" class="button-effect">View Listing</a>
+	<div class="col-sm-12 col-md-2"><a href="{% url 'card_detail' card.id %}" class="btn-primary">View Listing</a>
 	</div>
 
 	{% if user.is_authenticated %}
