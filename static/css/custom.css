@@ -1,11 +1,24 @@
+/*Document classes*/
 body{
-font-family: 'Zilla Slab', serif;
+    font-family: 'Zilla Slab', serif;
+    color: #2a3439;
+}
 
+.btn-custom{
+    color: #fff;
+    background-color:#2a3439;
+    border-color:#2a3439;
+    margin-left: 20px;
 }
 
 a:hover{
     text-decoration: none;
 }
+
+
+/*End of Document classes*/
+
+/*Utility Classes*/
 
 .max-width{
     width: 100%;
@@ -14,21 +27,33 @@ a:hover{
 .center{
     text-align: center;
 }
-/*
-.button-effect{
-    border-style: solid;
-    padding: 5px;
-    margin: 0 20px 0 20px;
-    color: #fff;
-    background-color: #000;
-    border-radius: 8px;
-    border-color: #000;
-    text-decoration: none;
-}
-*/
+
 .negative-top{
     top: -8px;
 }
+
+/*End of Utility Classes*/
+
+
+
+
+
+
+
+.navbar-background{
+    background-color: #2a3439;
+    padding: 0;
+    color: #fff;
+}
+
+
+.button-effect{
+    margin: 0 20px 0 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+
 
 .button-effect:hover{
     color: #fff;
@@ -48,7 +73,7 @@ a:hover{
 
 .hidden-when-small{
         display: none;
-    }
+}
 
 .card-image{
     max-height: 270px;

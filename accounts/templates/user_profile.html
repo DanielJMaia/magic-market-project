@@ -1,74 +1,75 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="row">
-	<h1 class="col-sm-12 pb-3 pt-3 center">{{ profile.username }}</h1>
-</div>
+<div class="container">
+	<div class="row">
+		<h1 class="col-sm-12 pb-3 pt-3 center">{{ profile.username }}</h1>
+	</div>
 
 
-<!--Popular cards sorted by views-->
-<div class="col-sm-12 col-md-12 col-lg-4">
-	<h1 class="pb-3 mb-4 border-bottom">
-		{{ profile.username }}'s most popular cards!
-	</h1>
-	{% for card in cards|dictsortreversed:"listing_views" %}
+	<!--Popular cards sorted by views-->
+	<div class="col-sm-12 col-md-12 col-lg-4">
+		<h1 class="pb-3 mb-4 border-bottom">
+			{{ profile.username }}'s most popular cards!
+		</h1>
+		{% for card in cards|dictsortreversed:"listing_views" %}
 
-	<div class="card mb-4 shadow-sm">
-		<div class="card-header">
-			<i class="fas fa-image fa-lg pt-1"></i>     {{ card.card_title }}
+		<div class="card mb-4 shadow-sm">
+			<div class="card-header">
+				<i class="fas fa-image fa-lg pt-1"></i> {{ card.card_title }}
+			</div>
+			<div class="card-body">
+				<p>{{ card.card_description|truncatewords:30 }}</p>
+			</div>
+			<p><a href="{% url 'card_detail' card.id %}" class="btn btn-default">Read more</a></p>
 		</div>
-		<div class="card-body">
-			<p>{{ card.card_description|truncatewords:30 }}</p>
+		{% endfor %}
+	</div>
+	<!--End of popular cards sections-->
+
+	<h1 class="col-sm-12 padding-bottom padding-top center">All listings</h1>
+
+	<!--Table header-->
+	<div class="row pb-3 hidden-when-small">
+		<div class="col-sm-12 col-md-2">
+			<p><u>Card Name</u></p>
 		</div>
-		<p><a href="{% url 'card_detail' card.id %}" class="btn btn-default">Read more</a></p>
+		<div class="col-sm-12 col-md-2">
+			<p><u>Condition</u></p>
+		</div>
+		<div class="col-sm-12 col-md-1">
+			<p><u>Price</u></p>
+		</div>
 	</div>
-	{% endfor %}
-</div>
-<!--End of popular cards sections-->
-
-<h1 class="col-sm-12 padding-bottom padding-top center">All listings</h1>
-
-<!--Table header-->
-<div class="row pb-3 hidden-when-small">
-	<div class="col-sm-12 col-md-2">
-		<p><u>Card Name</u></p>
-	</div>
-	<div class="col-sm-12 col-md-2">
-		<p><u>Condition</u></p>
-	</div>
-	<div class="col-sm-12 col-md-1">
-		<p><u>Price</u></p>
-	</div>
-</div>
-<!--End of table header-->
+	<!--End of table header-->
 
 
-<!--List of cards for the specific vendor-->
-{% for card in cards %}
-<div class="row pb-3">
-	<div class="col-sm-12 col-md-2">{{ card.card_title }}</div>
-	<div class="col-sm-12 col-md-2">{{ card.card_condition }}</div>
-	<div class="col-sm-12 col-md-1">£{{ card.card_price }}</div>
-	<div class="col-sm-12 col-md-2"><a href="{% url 'card_detail' card.id %}" class="button-effect">View Listing</a>
-	</div>
+	<!--List of cards for the specific vendor-->
+	{% for card in cards %}
+	<div class="row pb-3">
+		<div class="col-sm-12 col-md-2">{{ card.card_title }}</div>
+		<div class="col-sm-12 col-md-2">{{ card.card_condition }}</div>
+		<div class="col-sm-12 col-md-1">£{{ card.card_price }}</div>
+		<div class="col-sm-12 col-md-2"><a href="{% url 'card_detail' card.id %}" class="button-effect">View Listing</a>
+		</div>
 
-	{% if user.is_authenticated %}
-	<div class="col-sm-12 col-md-2 negative-top">
-		<form method="post" action="{% url 'add_to_cart' card.id %}">
-			{% csrf_token %}
-			<div class="input-group">
-				<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
-				<span class="input-group-btn">
+		{% if user.is_authenticated %}
+		<div class="col-sm-12 col-md-2 negative-top">
+			<form method="post" action="{% url 'add_to_cart' card.id %}">
+				{% csrf_token %}
+				<div class="input-group">
+					<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
+					<span class="input-group-btn">
             <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
         </span>
-			</div>
-		</form>
+				</div>
+			</form>
+		</div>
+		{% endif %}
+
+
+
 	</div>
-	{% endif %}
-
-
-
+	{% endfor %}
+	<!--End of list of cards-->
 </div>
-{% endfor %}
-<!--End of list of cards-->
-
 {% endblock %}

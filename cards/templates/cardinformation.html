@@ -1,38 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="row">
-	<h3>{{ card.card_title }}</h3>
+<div class="container">
+	<div class="row">
+		<h3>{{ card.card_title }}</h3>
+	</div>
+	<div class="row">
+		<p><a href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></p>
+	</div>
+	<div class="row">
+		<p>{{ card.card_description|truncatewords:30 }}</p>
+	</div>
+	<div class="row">
+		<p><span class="boldtext">Edition:</span> {{ card.card_edition }}</p>
+	</div>
+	<div class="row">
+		<p><span class="boldtext">Condition:</span> {{ card.card_condition }}</p>
+	</div>
+	<div class="row">
+		<p><span class="boldtext">Price:</span> {{ card.card_price }}</p>
+	</div>
+	<div class="row">
+		<p><span class="boldtext">Listing Published date:</span> {{ card.listing_published_date }} </p>
+	</div>
+	<div class="row">
+		<a href="{% url 'get_cards' %}" class="button-effect">View Other Listings</a>
+		<a href="{% url 'edit_card' card.id %}" class="button-effect">Edit Listing</a>
+		{% if user.is_authenticated %}
+		<form method="post" action="{% url 'add_to_cart' card.id %}">
+			{% csrf_token %}
+			<div class="input-group">
+				<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
+				<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+			</div>
+		</form>
+	</div>
+	{% endif %}
 </div>
-<div class="row">
-	<p><a href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></p>
-</div>
-<div class="row">
-	<p>{{ card.card_description|truncatewords:30 }}</p>
-</div>
-<div class="row">
-	<p><span class="boldtext">Edition:</span> {{ card.card_edition }}</p>
-</div>
-<div class="row">
-	<p><span class="boldtext">Condition:</span> {{ card.card_condition }}</p>
-</div>
-<div class="row">
-	<p><span class="boldtext">Price:</span> {{ card.card_price }}</p>
-</div>
-<div class="row">
-	<p><span class="boldtext">Listing Published date:</span> {{ card.listing_published_date }} </p>
-</div>
-<div class="row">
-	<a href="{% url 'get_cards' %}" class="button-effect">View Other Listings</a>
-	<a href="{% url 'edit_card' card.id %}" class="button-effect">Edit Listing</a>
-{% if user.is_authenticated %}
-	<form method="post" action="{% url 'add_to_cart' card.id %}">
-		{% csrf_token %}
-		<div class="input-group">
-			<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
-			<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-		</div>
-	</form>
-</div>
-{% endif %}
 {% endblock %}
-

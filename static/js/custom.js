@@ -1,5 +1,5 @@
 var i;
-for (i = 0; i < 2; i++) {
+for (i = 0; i < "//I need this to be the max amount of items in my list"; i++) {
 
     document.getElementById("hide-image-" + i).addEventListener("click", imageToggleHide);
     document.getElementById("show-image-" + i).addEventListener("click", imageToggleShow);
