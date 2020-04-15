@@ -41,6 +41,12 @@ a:hover{
     color: #fff;
 }
 
+.card-minimalistic{
+    margin: auto;
+    text-align: center;
+    padding-top: 25px;
+    color: #2a3439;
+}
 
 .button-effect{
     margin: 0 20px 0 20px;
@@ -67,12 +73,23 @@ a:hover{
 }
 
 .hidden-when-small{
-        display: none;
+        display: hidden;
 }
 
 .card-image{
     max-height: 270px;
-    display: block;
+}
+
+.card-image-hidden{
+    max-height: 270px;
+    position: absolute;
+    display: none;
+    z-index: 1;
+    margin-top: 40px; 
+}
+.camera-icon{
+    width: 50%;
+    height: auto;
 }
 
 #show-image{

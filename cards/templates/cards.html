@@ -11,16 +11,17 @@
 	<!--End of page header-->
 	<!--Table header-->
 	<div class="row padding-bottom hidden-when-small">
-		<div class="col-sm-12 col-md-3">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-11 col-md-2">
 			<p><u>Vendor Name</u></p>
 		</div>
-		<div class="col-sm-12 col-md-2">
+		<div class="col-sm-11 col-md-2">
 			<p><u>Card Name</u></p>
 		</div>
-		<div class="col-sm-12 col-md-2">
+		<div class="col-sm-11 col-md-2">
 			<p><u>Condition</u></p>
 		</div>
-		<div class="col-sm-12 col-md-1">
+		<div class="col-sm-11 col-md-1">
 			<p><u>Price</u></p>
 		</div>
 	</div>
@@ -29,38 +30,42 @@
 	<!--List of cards-->
 	{% for card in cards %}
 	<div class="row pb-4">
-		<div class="col-sm-12 col-md-3"><a href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
+		<div class="center" onmouseenter="imageToggleShow({{ card.id }})" onmouseleave="imageToggleHide({{ card.id }})">
+			<img class="camera-icon" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
 		</div>
-		<div class="col-sm-12 col-md-2">{{ card.card_title }}</div>
-		<div class="col-sm-12 col-md-2">{{ card.card_condition }}</div>
-		<div class="col-sm-12 col-md-1">£{{ card.card_price }}</div>
-		<div class="col-sm-12 col-md-2"><a href="{% url 'card_detail' card.id %}" class="btn-primary button-effect">View
-				Listing</a>
-		</div>
+			{% if card.image %}
+			<img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
+        {% endif %}
+			<div class="col-sm-11 col-md-2"><a href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
+			</div>
+			<div class="col-sm-11 col-md-2">{{ card.card_title }}</div>
+			<div class="col-sm-11 col-md-2">{{ card.card_condition }}</div>
+			<div class="col-sm-11 col-md-1">£{{ card.card_price }}</div>
+			<div class="col-sm-11 col-md-2"><a href="{% url 'card_detail' card.id %}"
+					class="btn-primary button-effect">View
+					Listing</a>
+			</div>
 
-		{% if user.is_authenticated %}
-		<div class="col-sm-12 col-md-2 negative-top">
-			<form method="post" action="{% url 'add_to_cart' card.id %}">
-				{% csrf_token %}
-				<div class="input-group">
-					<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
-					<span class="input-group-btn">
+			{% if user.is_authenticated %}
+			<div class="col-sm-11 col-md-2 negative-top">
+				<form method="post" action="{% url 'add_to_cart' card.id %}">
+					{% csrf_token %}
+					<div class="input-group">
+						<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
+						<span class="input-group-btn">
             <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
         </span>
-				</div>
-			</form>
+					</div>
+				</form>
+			</div>
+			{% endif %}
 		</div>
-		{% endif %}
-
-
-
+		{% endfor %}
+		<!--End of list of cards-->
 	</div>
-	{% endfor %}
-	<!--End of list of cards-->
-</div>
-{% endblock %}
+	{% endblock %}
 
 
-{% block end_js %}
-<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
-{% endblock %}
+	{% block end_js %}
+	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+	{% endblock %}
