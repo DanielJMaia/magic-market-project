@@ -30,6 +30,10 @@ a:hover{
     text-align: center;
 }
 
+.center-small{
+    text-align: center;
+}
+
 .margin-center{
     margin-right: auto !important;
     margin-left: auto !important;
@@ -41,6 +45,16 @@ a:hover{
 
 .nobreak {
   white-space: nowrap;
+}
+
+.underline-link{
+    text-decoration: underline;
+    color: #2a3439;
+}
+
+.underline-link:hover{
+    text-decoration: underline;
+    color: #423b95
 }
 
 /*End of Utility Classes*/
@@ -93,11 +107,16 @@ a:hover{
         display: none;
 }
 
-.card-image{
-    max-height: 270px;
+.card-minimalistic{
+    margin: auto;
+    text-align: center;
+    padding-top: 25px;
+    color: #2a3439;
 }
 
-
+.card-image{
+    height: 30rem;
+}
 
 .card-image-hidden{
     max-height: 270px;
@@ -125,6 +144,10 @@ a:hover{
     text-align: center;
 }
 
+.custom-controls{
+    bottom: 8rem!important; 
+}
+
 /* MEDIA QUERIES */ 
 
 /* Custom, iPhone Retina */ 
@@ -149,6 +172,10 @@ a:hover{
     position: relative;
     bottom: 5px;
     display: block;
+    }
+
+    .center-small{
+        text-align: inherit;
     }
 }
 

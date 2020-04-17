@@ -3,28 +3,31 @@
 <div class="container">
 	<div class="row pt-5">
 		{% if card.image %}
-		<img class="col-sm-12 col-md-8 card-page-image" id="{{card.id}}" src="/media/{{ card.image }}">
+		<img class="card-image margin-center" id="{{card.id}}" src="/media/{{ card.image }}">
         {% endif %}
-		<div class="col-sm-12 col-md-4 p-5 center-small">
+		<div class="col-sm-12 col-md-6 p-5 center-small">
 			<h3>{{ card.card_title }}</h3>
-			<p>Vendor: <a class="underline-link" href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></p>
+			<p>Vendor: <a class="underline-link"
+					href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></p>
 			<p>{{ card.card_description}}</p>
 			<p><span class="boldtext">Edition:</span> {{ card.card_edition }}</p>
 			<p><span class="boldtext">Condition:</span> {{ card.card_condition }}</p>
-			<p><span class="boldtext">Price:</span> {{ card.card_price }}</p>
+			<p><span class="boldtext">Price: </span>£{{ card.card_price }}</p>
 			<p><span class="boldtext">Listing Published date:</span> {{ card.listing_published_date }}
 			</p>
-			<a href="{% url 'get_cards' %}" class="button-effect">View Other Listings</a>
-			<a href="{% url 'edit_card' card.id %}" class="button-effect">Edit Listing</a>
-			{% if user.is_authenticated %}
-			<form method="post" action="{% url 'add_to_cart' card.id %}">
-				{% csrf_token %}
-				<div class="input-group">
-					<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
-					<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-				</div>
-			</form>
-			{% endif %}
+			<div class="row pt-4">
+				<a href="{% url 'get_cards' %}" class="button-effect nobreak">View Other Listings</a>
+				<a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit Listing</a>
+				{% if user.is_authenticated %}
+				<form method="post" action="{% url 'add_to_cart' card.id %}">
+					{% csrf_token %}
+					<div class="input-group">
+						<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
+						<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+					</div>
+				</form>
+				{% endif %}
+			</div>
 		</div>
 	</div>
 </div>
