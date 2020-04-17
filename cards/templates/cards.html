@@ -11,17 +11,17 @@
 <!--End of page header-->
 <!--Table header-->
 	<div class="row pb-3 pt-3 hidden-when-small">
-		<div class="col-sm-1"></div>
-		<div class="col-sm-11 col-md-2">
+		<div class="col-1"></div>
+		<div class="col-2">
 			<p><u>Vendor Name</u></p>
 		</div>
-		<div class="col-sm-11 col-md-2">
+		<div class="col-2">
 			<p><u>Card Name</u></p>
 		</div>
-		<div class="col-sm-11 col-md-2">
+		<div class="col-2 hidden-when-small">
 			<p><u>Condition</u></p>
 		</div>
-		<div class="col-sm-11 col-md-1">
+		<div class="col-1 hidden-when-small">
 			<p><u>Price</u></p>
 		</div>
 	</div>
@@ -30,22 +30,22 @@
 <!--List of cards-->
 	{% for card in cards %}
 	<div class="row pb-1 pt-4 cardlist-row">
-		<div class="center col-sm-1" onmouseenter="imageToggleShow({{ card.id }})" onmouseleave="imageToggleHide({{ card.id }})">
+		<div class="center col-1" onmouseenter="imageToggleShow({{ card.id }})" onmouseleave="imageToggleHide({{ card.id }})">
 			<img class="camera-icon" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
 		</div>
 		{% if card.image %}
 			<img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
         {% endif %}
-			<div class="col-sm-11 col-md-2"><a href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
+			<div class="col-2"><a href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
 			</div>
-			<div class="col-sm-11 col-md-2">{{ card.card_title }}</div>
-			<div class="col-sm-11 col-md-2">{{ card.card_condition }}</div>
-			<div class="col-sm-11 col-md-1">£{{ card.card_price }}</div>
-			<div class="col-sm-11 col-md-2">
+			<div class="col-2">{{ card.card_title }}</div>
+			<div class="col-2 hidden-when-small">{{ card.card_condition }}</div>
+			<div class="col-1 hidden-when-small">£{{ card.card_price }}</div>
+			<div class="col-2">
                 <a href="{% url 'card_detail' card.id %}" class="button-effect nobreak">View Listing</a>
 			</div>
         {% if user.is_authenticated %}
-			<div class="col-sm-11 col-md-2 negative-top">
+			<div class="col-2 negative-top">
 				<form method="post" action="{% url 'add_to_cart' card.id %}">
 					{% csrf_token %}
 					<div class="input-group">
