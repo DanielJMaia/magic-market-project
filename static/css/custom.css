@@ -93,7 +93,8 @@ a:hover{
 }
 
 .carousel-card{
-    
+    height: auto;
+    max-width: 20rem;
 }
 
 .card-image-hidden{
