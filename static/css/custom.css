@@ -30,6 +30,11 @@ a:hover{
     text-align: center;
 }
 
+.margin-center{
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
 .negative-top{
     top: -8px;
 }
@@ -92,10 +97,7 @@ a:hover{
     max-height: 270px;
 }
 
-.carousel-card{
-    height: auto;
-    max-width: 20rem;
-}
+
 
 .card-image-hidden{
     max-height: 270px;
@@ -117,6 +119,10 @@ a:hover{
 }
 .carousel-control-prev {
   opacity: 1;
+}
+
+.carousel-caption-custom{
+    text-align: center;
 }
 
 /* MEDIA QUERIES */ 
