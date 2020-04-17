@@ -8,93 +8,60 @@
 			<h3>All listings!</h3>
 		</div>
 	</div>
-<!--End of page header-->
-<!--Table header-->
-	<div class="row pb-3 pt-3 hidden-when-small">
-		<div class="col-1"></div>
-		<div class="col-2">
-			<p><u>Vendor Name</u></p>
-		</div>
-		<div class="col-2">
-			<p><u>Card Name</u></p>
-		</div>
-		<div class="col-2 hidden-when-small">
-			<p><u>Condition</u></p>
-		</div>
-		<div class="col-1 hidden-when-small">
-			<p><u>Price</u></p>
-		</div>
-	</div>
-<!--End of table header-->
+	<!--End of page header-->
 
-<!--List of cards-->
-	{% for card in cards %}
-	<div class="row pb-1 pt-4 cardlist-row">
-		<div class="center col-1" onmouseenter="imageToggleShow({{ card.id }})" onmouseleave="imageToggleHide({{ card.id }})">
-			<img class="camera-icon" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
-		</div>
-		{% if card.image %}
-			<img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
-        {% endif %}
-			<div class="col-2"><a href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
-			</div>
-			<div class="col-2">{{ card.card_title }}</div>
-			<div class="col-2 hidden-when-small">{{ card.card_condition }}</div>
-			<div class="col-1 hidden-when-small">£{{ card.card_price }}</div>
-			<div class="col-2">
-                <a href="{% url 'card_detail' card.id %}" class="button-effect nobreak">View Listing</a>
-			</div>
-        {% if user.is_authenticated %}
-			<div class="col-2 negative-top">
-				<form method="post" action="{% url 'add_to_cart' card.id %}">
-					{% csrf_token %}
-					<div class="input-group">
-						<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
-						<span class="input-group-btn">
-                            <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-                        </span>
-					</div>
-				</form>
-			</div>
-		{% endif %}
-	</div>
-		{% endfor %}
-<!--End of list of cards-->
+		<!--Experimental Bootstrap Table-->
+		<table class="table table-hover">
+			<thead class="thead-dark pb-2 center">
+				<tr>
+					<th scope="col"></th>
+                    <th scope="col">Card</th>
+					<th scope="col">Vendor Name</th>
+					<th scope="col">Condition</th>
+					<th scope="col">Price</th>
+                    <th scope="col"></th>
+                    {% if user.is_authenticated %}
+                    <th scope="col"></th>
+                    {% endif %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for card in cards %}
+				<tr class="center">
+					<td>
+						<div onmouseenter="imageToggleShow({{ card.id }})" onmouseleave="imageToggleHide({{ card.id }})">
+							<img class="camera-icon" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
+		                </div>
+						{% if card.image %}
+							<img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
+                        {% endif %}
+                    </td>
+					<td>{{ card.card_title }}</td>
+					<td><a href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></td>
+                    <td>{{ card.card_condition }}</td>
+					<td>£{{ card.card_price }}</td>
+                    <td><a href="{% url 'card_detail' card.id %}" class="button-effect nobreak">View Listing</a></td>
+                    {% if user.is_authenticated %}
+                    <td>
+                    <div>
+				        <form method="post" action="{% url 'add_to_cart' card.id %}">
+					    {% csrf_token %}
+					        <div class="input-group">
+						        <input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
+						        <span class="input-group-btn">
+                                    <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+                                </span>
+					        </div>
+				        </form>
+			        </div>
+                    </td>
+                    {% endif %}
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
-<!--Experimental Bootstrap Table-->
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-    <th scope="col">Vendor Name</th>
-    <th scope="col">Vendor Name</th>
-    <th scope="col">Card</th>
-    <th scope="col">Condition</th>
-    <th scope="col">Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-
-<!--End of Experimental Bootstrap Table-->
+		<!--End of Experimental Bootstrap Table-->
 
 	</div>
 	{% endblock %}

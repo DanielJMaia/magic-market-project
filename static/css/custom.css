@@ -15,7 +15,9 @@ a:hover{
     text-decoration: none;
 }
 
-
+.table td{
+    vertical-align: middle;
+}
 /*End of Document classes*/
 
 /*Utility Classes*/
@@ -95,13 +97,9 @@ a:hover{
     position: absolute;
     display: none;
     z-index: 1;
-    margin-top: 40px; 
 }
 .camera-icon{
-    width: 50%;
-    height: auto;
-    position: relative;
-    bottom: 5px;
+    display: none;
 }
 
 #show-image{
@@ -125,6 +123,7 @@ a:hover{
 
 /* Extra Small Devices, Phones */ 
 @media only screen and (min-width : 480px) {
+    
 }
 
 /* Small Devices, Tablets */
@@ -132,10 +131,21 @@ a:hover{
     .hidden-when-small{
         display: flex;
     }
+
+    .camera-icon{
+    width: 65%;
+    height: auto;
+    position: relative;
+    bottom: 5px;
+    display: block;
+    }
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
+   .camera-icon{
+        width: 50%; 
+   }
     
 }
 
