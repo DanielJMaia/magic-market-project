@@ -11,10 +11,6 @@ body{
     margin-left: 20px;
 }
 
-a:hover{
-    text-decoration: none;
-}
-
 .table td{
     vertical-align: middle;
 }
@@ -30,12 +26,25 @@ a:hover{
     text-align: center;
 }
 
+.center-small{
+    text-align: center;
+}
+
 .negative-top{
     top: -8px;
 }
 
 .nobreak {
   white-space: nowrap;
+}
+
+.hidden-when-small{
+    display: none;
+}
+
+.underline-link{
+    text-decoration: underline;
+    color: #2a3439;
 }
 
 /*End of Utility Classes*/
@@ -46,6 +55,7 @@ a:hover{
     padding: 0;
     color: #fff;
 }
+
 
 .card-minimalistic{
     margin: auto;
@@ -84,10 +94,6 @@ a:hover{
     border-color: #767676
 }
 
-.hidden-when-small{
-        display: none;
-}
-
 .card-image{
     max-height: 270px;
 }
@@ -97,6 +103,13 @@ a:hover{
     position: absolute;
     display: none;
     z-index: 1;
+}
+
+.card-page-image{
+    max-width: 25rem;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
 }
 .camera-icon{
     display: none;
@@ -114,6 +127,10 @@ a:hover{
   opacity: 1;
 }
 
+.thead-dark {
+    background-color: #2a3439;
+    border-color: #2a3439;
+}
 /* MEDIA QUERIES */ 
 
 /* Custom, iPhone Retina */ 
@@ -133,11 +150,20 @@ a:hover{
     }
 
     .camera-icon{
-    width: 65%;
-    height: auto;
-    position: relative;
-    bottom: 5px;
-    display: block;
+        width: 65%;
+        height: auto;
+        position: relative;
+        bottom: 5px;
+        display: block;
+    }
+
+    .center-small{
+        text-align: inherit;
+    }
+
+    .card-page-image{
+        margin-right: 0px;
+        margin-left: 0px;
     }
 }
 
