@@ -69,55 +69,37 @@
 						</h1>
 
 						{% for card in cards|dictsortreversed:"listing_views" %}
-
-						<!--This is a test id to try to trigger the display image function in custom.js-->
-						<button class="button" onclick="imageToggleHide({{ card.id }})">Hide Image</button>
-						<button class="button" onclick="imageToggleShow({{ card.id }})">Show Image</button>
-                        <img src="{% static 'img/camera_icon.png' %}" alt="Camera Icon" onmouseover="imageToggleHide({{ card.id }})" onmouseout="imageToggleShow({{ card.id }})">
-						<!---->
-
-						<div class="card mb-4 shadow-sm">
-
-							<div class="card-header">
-								{{ card.card_title }}
+						<a href="{% url 'card_detail' card.id %}">
+							<div class="card-minimalistic">
+								<img class="card-image" src="/media/{{ card.image }}">
+								<p>{{ card.card_title }}</p>
+								<p>£{{ card.card_price }}</p>
 							</div>
-							<div class="card-body">
-								<p>{{ card.card_description|truncatewords:30 }}</p>
-
-								{% if card.image %}
-								<img class="card-image" id="{{card.id}}" src="/media/{{ card.image }}">
-                                {% endif %}
-
-			</div>
-								<p><a href="{% url 'card_detail' card.id %}" class="btn btn-custom">Read more</a></p>
-							</div>
-							{% endfor %}
-						</div>
-						<!--End of popular cards sections-->
-
-						<!--Latest listings section-->
-						<div class="col-sm-12 col-md-12 col-lg-4">
-							<h1 class="pb-3 mb-4 center">
-								Recent Listings
-							</h1>
-							{% for card in cards|dictsortreversed:"listing_created_date"%}
-							<!--testing different styles-->
-							<a href="{% url 'card_detail' card.id %}">
-								<div class="card-minimalistic">
-									<img class="card-image" src="/media/{{ card.image }}">
-									<p>{{ card.card_title }}</p>
-									<p>£{{ card.card_price }}</p>
-								</div>
-							</a>
-							<!---->
-
-							{% endfor %}
-						</div>
-						<!--End of FILLER SECTION-->
+						</a>
+						{% endfor %}
 					</div>
-				</div>
-				{% endblock %}
+					<!--End of popular cards sections-->
 
-				{% block end_js %}
-				<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
-				{% endblock %}
+					<!--Latest listings section-->
+					<div class="col-sm-12 col-md-12 col-lg-4">
+						<h1 class="pb-3 mb-4 center">
+							Recent Listings
+						</h1>
+						{% for card in cards|dictsortreversed:"listing_created_date"%}
+
+						<a href="{% url 'card_detail' card.id %}">
+							<div class="card-minimalistic">
+								<img class="card-image" src="/media/{{ card.image }}">
+								<p>{{ card.card_title }}</p>
+								<p>£{{ card.card_price }}</p>
+							</div>
+						</a>
+						{% endfor %}
+					</div>
+					<!--End of FILLER SECTION-->
+				</div>
+			</div>
+			{% endblock %}
+			{% block end_js %}
+			<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+			{% endblock %}

@@ -32,6 +32,10 @@ a:hover{
     top: -8px;
 }
 
+.nobreak {
+  white-space: nowrap;
+}
+
 /*End of Utility Classes*/
 
 
@@ -49,12 +53,18 @@ a:hover{
 }
 
 .button-effect{
-    margin: 0 20px 0 20px;
+    margin-right: 20px;
     color: #fff;
     text-decoration: none;
+    background-color:#2a3439;
+    padding: 5px;
+    border-radius: 5px;
 }
 
-
+.cardlist-row{
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+}
 
 .button-effect:hover{
     color: #fff;
@@ -73,7 +83,7 @@ a:hover{
 }
 
 .hidden-when-small{
-        display: hidden;
+        display: none;
 }
 
 .card-image{
@@ -90,6 +100,8 @@ a:hover{
 .camera-icon{
     width: 50%;
     height: auto;
+    position: relative;
+    bottom: 5px;
 }
 
 #show-image{
@@ -97,6 +109,12 @@ a:hover{
     width: auto;
 }
 
+.carousel-control-next {
+  opacity: 1;
+}
+.carousel-control-prev {
+  opacity: 1;
+}
 
 /* MEDIA QUERIES */ 
 
