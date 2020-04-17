@@ -92,6 +92,10 @@ a:hover{
     max-height: 270px;
 }
 
+.carousel-card{
+    
+}
+
 .card-image-hidden{
     max-height: 270px;
     position: absolute;
