@@ -11,6 +11,10 @@ body{
     margin-left: 20px;
 }
 
+a:hover{
+    text-decoration: none;
+}
+
 .table td{
     vertical-align: middle;
 }
@@ -26,8 +30,9 @@ body{
     text-align: center;
 }
 
-.center-small{
-    text-align: center;
+.margin-center{
+    margin-right: auto !important;
+    margin-left: auto !important;
 }
 
 .negative-top{
@@ -38,15 +43,6 @@ body{
   white-space: nowrap;
 }
 
-.hidden-when-small{
-    display: none;
-}
-
-.underline-link{
-    text-decoration: underline;
-    color: #2a3439;
-}
-
 /*End of Utility Classes*/
 
 
@@ -55,7 +51,6 @@ body{
     padding: 0;
     color: #fff;
 }
-
 
 .card-minimalistic{
     margin: auto;
@@ -94,22 +89,21 @@ body{
     border-color: #767676
 }
 
+.hidden-when-small{
+        display: none;
+}
+
 .card-image{
     max-height: 270px;
 }
+
+
 
 .card-image-hidden{
     max-height: 270px;
     position: absolute;
     display: none;
     z-index: 1;
-}
-
-.card-page-image{
-    max-width: 25rem;
-    height: auto;
-    margin-right: auto;
-    margin-left: auto;
 }
 .camera-icon{
     display: none;
@@ -127,10 +121,10 @@ body{
   opacity: 1;
 }
 
-.thead-dark {
-    background-color: #2a3439;
-    border-color: #2a3439;
+.carousel-caption-custom{
+    text-align: center;
 }
+
 /* MEDIA QUERIES */ 
 
 /* Custom, iPhone Retina */ 
@@ -150,20 +144,11 @@ body{
     }
 
     .camera-icon{
-        width: 65%;
-        height: auto;
-        position: relative;
-        bottom: 5px;
-        display: block;
-    }
-
-    .center-small{
-        text-align: inherit;
-    }
-
-    .card-page-image{
-        margin-right: 0px;
-        margin-left: 0px;
+    width: 65%;
+    height: auto;
+    position: relative;
+    bottom: 5px;
+    display: block;
     }
 }
 
