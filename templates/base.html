@@ -7,8 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Magic Market</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static 'css/custom.css' %}">
 	<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -81,11 +81,58 @@
 			</div>
 		</nav>
 	</div>
-		<!--Card information-->
-		{% block content %}
-		{% endblock %}
-		<!--Card information End-->
+	<!--Card information-->
+	{% block content %}
+	{% endblock %}
+	<!--Card information End-->
 
+	<!-- Site footer -->
+	<footer class="site-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-8 pr-4">
+					<h6>About Us</h6>
+					<p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut
+						iusto rerum hic accusantium velit consequatur, eos ipsum quis natus sapiente iure explicabo
+						adipisci pariatur alias officia numquam. Consectetur, aspernatur? </p>
+				</div>
+
+				<div class="col-xs-6 col-md-4">
+					<h6>Quick Access</h6>
+					<ul class="footer-links">
+						<li><a href="{% url 'get_cards' %}">Browse All Cards</a></li>
+						<li><a href="{% url 'new_card' %}">Submit A New Listing</a></li>
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'view_cart' %}">View Cart</a></li>
+						<li><a href="{% url 'view_user' %}">My Profile</a></li>
+						{% else %}
+						<li><a href="{% url 'login' %}">Login</a></li>
+						<li><a href="{% url 'register' %}">Register</a></li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+			<hr>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-sm-6 col-xs-12">
+					<p class="copyright-text">Copyright &copy; 2020 Daniel Johnson Maia</p>
+				</div>
+
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<ul class="social-icons">
+						<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a class="linkedin" href="https://www.linkedin.com/in/daniel-johnson-maia-0479b2174/"
+								target="_blank"><i class="fa fa-linkedin"></i></a></li>
+						<li><a class="github" href="https://github.com/DanielJMaia"
+								target="_blank"><i class="fa fa-github"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--End of site footer-->
 	{% block end_js %}
 	{% endblock %}
 
