@@ -57,6 +57,10 @@ a:hover{
     color: #423b95
 }
 
+.table-overflow{
+    overflow-x: auto;
+}
+
 /*End of Utility Classes*/
 
 
@@ -65,6 +69,21 @@ a:hover{
     padding: 0;
     color: #fff;
 }
+
+.banner-parent{
+    position: relative;
+}
+
+.banner-child{
+    position: absolute;
+    right: 4%;
+    bottom: 7%;
+    background-color: white;
+    padding: 10px 10px 5px 10px;
+    border-radius: 7px;
+    display: none;
+}
+
 
 .card-minimalistic{
     margin: auto;
@@ -196,6 +215,10 @@ a:hover{
 @media only screen and (min-width : 992px) {
    .camera-icon{
         width: 50%; 
+   }
+
+   .banner-child{
+       display: block;
    }
     
 }
