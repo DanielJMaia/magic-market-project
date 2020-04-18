@@ -2,14 +2,17 @@
 {% load static from staticfiles %}
 {% block content %}
 <div class="container">
+
 	<div class="row">
-		<h1 class="col-sm-12 pb-3 pt-3 center">{{ profile.username }}</h1>
+		<div class="text-center max-width pt-5 pb-5">
+			<h3>{{ profile.username }}</h3>
+		</div>
 	</div>
 
 	<!--Popular cards sorted by views-->
-	<div class="row">
-		<div class="col-sm-12 col-md-12 col-lg-4">
-			<h1 class="center">Popular Cards!</h1>
+	<div class="row border-bottom pb-4">
+		<div class="col-sm-12 col-lg-4">
+			<h4 class="center">Popular Cards!</h4>
 			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
 					{% for card in cards|dictsortreversed:"listing_views" %}
@@ -53,7 +56,7 @@
 	</div>
 	<!--End of popular cards sections-->
 	<div class="row">
-		<h1 class="col-sm-12 pt-3 pb-3 center">All listings</h1>
+		<h4 class="col-sm-12 pt-4 pb-4 center">All listings</h4>
 	</div>
 
 	<!--List of cards for the specific vendor-->

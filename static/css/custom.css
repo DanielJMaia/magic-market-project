@@ -61,6 +61,9 @@ a:hover{
     overflow-x: auto;
 }
 
+.hidden-when-small{
+        display: none;
+}
 /*End of Utility Classes*/
 
 
@@ -83,7 +86,10 @@ a:hover{
     border-radius: 7px;
     display: none;
 }
-
+#cover-image{
+    max-height: 950px;
+    object-fit: cover;
+}
 
 .card-minimalistic{
     margin: auto;
@@ -126,9 +132,7 @@ a:hover{
     padding-top: 20px;
 }
 
-.hidden-when-small{
-        display: none;
-}
+
 
 .card-minimalistic{
     margin: auto;
@@ -156,6 +160,9 @@ a:hover{
     width: auto;
 }
 
+/*Card Display Carousel Styling*/
+
+
 .carousel-control-next {
   opacity: 1;
 }
@@ -177,7 +184,19 @@ a:hover{
     bottom: 8rem!important; 
 }
 
+/*End of Card Display Carousel Styling*/
+
+/*Form Styling*/
+
+textarea.form-control {
+    height: 5rem;
+}
+
+/*End of Form Styling*/
+
+
 /* MEDIA QUERIES */ 
+
 
 /* Custom, iPhone Retina */ 
 @media only screen and (min-width : 320px) {
