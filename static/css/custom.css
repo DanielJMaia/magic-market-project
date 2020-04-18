@@ -103,6 +103,10 @@ a:hover{
     border-color: #767676
 }
 
+.cart-form{
+    padding-top: 20px;
+}
+
 .hidden-when-small{
         display: none;
 }
@@ -144,6 +148,12 @@ a:hover{
     text-align: center;
 }
 
+.carousel-inner .carousel-item {
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+}
+
 .custom-controls{
     bottom: 8rem!important; 
 }
@@ -176,6 +186,9 @@ a:hover{
 
     .center-small{
         text-align: inherit;
+    }
+    .cart-form{
+        padding-top: 0px;
     }
 }
 

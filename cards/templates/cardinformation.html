@@ -21,7 +21,7 @@
 				{% if user.is_authenticated %}
 				<form method="post" action="{% url 'add_to_cart' card.id %}">
 					{% csrf_token %}
-					<div class="input-group">
+					<div class="input-group cart-form">
 						<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
 						<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
 					</div>

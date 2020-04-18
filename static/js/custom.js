@@ -11,3 +11,8 @@ function imageToggleShow(the_id) {
 $('.carousel').carousel({
     interval: false
 }); 
+
+///This function changes the default boostrap transition duration
+$(document).ready(function() {
+  jQuery.fn.carousel.Constructor.TRANSITION_DURATION = 500  // 500ms
+});
