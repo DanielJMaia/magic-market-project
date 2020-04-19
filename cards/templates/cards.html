@@ -2,69 +2,72 @@
 {% load static from staticfiles %}
 {% block content %}
 <!--Page header-->
-<div class="container">
+<div class="container small-body">
 	<div class="row">
 		<div class="text-center max-width pt-5 pb-5">
 			<h3>All listings!</h3>
 		</div>
 	</div>
-<!--End of page header-->
-<!--Bootstrap Table-->
-	<table class="table table-hover">
-		<thead class="thead-dark pb-2 center">
-			<tr>
-				<th scope="col"></th>
-                <th scope="col">Card</th>
-				<th scope="col">Vendor Name</th>
-				<th scope="col">Condition</th>
-				<th scope="col">Price</th>
-                <th scope="col"></th>
-                {% if user.is_authenticated %}
-                    <th scope="col"></th>
-                {% endif %}
-			</tr>
-		</thead>
-		<tbody>
-			{% for card in cards %}
+	<!--End of page header-->
+	<!--Bootstrap Table-->
+	<div class="table-overflow">
+		<table class="table table-hover">
+			<thead class="thead-dark pb-2 center">
+				<tr>
+					<th scope="col"></th>
+					<th scope="col">Card</th>
+					<th scope="col">Vendor Name</th>
+					<th scope="col">Condition</th>
+					<th scope="col">Price</th>
+					<th scope="col"></th>
+					{% if user.is_authenticated %}
+					<th scope="col"></th>
+					{% endif %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for card in cards %}
 				<tr class="center">
 					<td>
-						<div onmouseenter="imageToggleShow({{ card.id }})" onmouseleave="imageToggleHide({{ card.id }})">
+						<div onmouseenter="imageToggleShow({{ card.id }})"
+							onmouseleave="imageToggleHide({{ card.id }})">
 							<img class="camera-icon" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
 		                </div>
-						{% if card.image %}
+							{% if card.image %}
 							<img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
                         {% endif %}
                     </td>
 					<td>{{ card.card_title }}</td>
-					<td><a class="underline-link" href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></td>
-                    <td>{{ card.card_condition }}</td>
+					<td><a class="underline-link"
+							href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></td>
+					<td>{{ card.card_condition }}</td>
 					<td>£{{ card.card_price }}</td>
-                    <td><a href="{% url 'card_detail' card.id %}" class="button-effect nobreak">View Listing</a></td>
-                    {% if user.is_authenticated %}
-                    <td>
-                    <div>
-				        <form method="post" action="{% url 'add_to_cart' card.id %}">
-					    {% csrf_token %}
-					        <div class="input-group">
-						        <input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
-						        <span class="input-group-btn">
+					<td><a href="{% url 'card_detail' card.id %}" class="button-effect nobreak">View Listing</a></td>
+					{% if user.is_authenticated %}
+					<td>
+						<div>
+							<form method="post" action="{% url 'add_to_cart' card.id %}">
+								{% csrf_token %}
+								<div class="input-group">
+									<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
+									<span class="input-group-btn">
                                     <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
                                 </span>
-					        </div>
-				        </form>
-			        </div>
-                    </td>
-                    {% endif %}
+								</div>
+							</form>
+						</div>
+					</td>
+					{% endif %}
 				</tr>
-			{% endfor %}
+				{% endfor %}
 			</tbody>
 		</table>
-
-<!--End of Bootstrap Table-->
+	</div>
+	<!--End of Bootstrap Table-->
 </div>
 {% endblock %}
 
 
 {% block end_js %}
-	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 {% endblock %}

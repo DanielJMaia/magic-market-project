@@ -66,6 +66,29 @@ a:hover{
 }
 /*End of Utility Classes*/
 
+/*Min height so that footer looks nice*/
+
+@media only screen and (max-height : 700px) {
+.small-body{
+        min-height: 5px;
+    }
+}
+
+@media only screen and (max-height : 1080px) {
+.small-body{
+        min-height: 658px;
+    }
+}
+
+@media only screen and (max-height : 1440px) {
+.small-body{
+        min-height: 760px;
+    }
+}
+
+
+/*End of min height*/
+
 
 .navbar-background{
     background-color: #2a3439;
@@ -159,6 +182,15 @@ a:hover{
     height: auto;
     width: auto;
 }
+
+/*Shopping Cart*/
+.card{
+    margin-bottom: 25px;
+    width: 90%;
+}
+
+/**/
+
 
 /*Card Display Carousel Styling*/
 
@@ -369,7 +401,10 @@ textarea.form-control {
 
 /* Extra Small Devices, Phones */ 
 @media only screen and (min-width : 480px) {
-    
+    .card{
+        margin-bottom: 25px;
+        width: 60%;
+    }
 }
 
 /* Small Devices, Tablets */
@@ -391,6 +426,11 @@ textarea.form-control {
     }
     .cart-form{
         padding-top: 0px;
+    }
+
+    .card{
+        margin-bottom: 25px;
+        width: 40%;
     }
 }
 
