@@ -23,6 +23,11 @@ a:hover{
     padding: 0;
     margin: 0;
 }
+
+.row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
 /*End of Document classes*/
 
 /*Utility Classes*/
@@ -72,6 +77,11 @@ a:hover{
 
 .hidden-when-small{
         display: none;
+}
+
+.border-thin{
+    border-style: solid;
+    border-width: thin;
 }
 /*End of Utility Classes*/
 
@@ -263,6 +273,10 @@ a:hover{
 
 .carousel-image {
     width: inherit;
+}
+
+.carousel-image-profile{
+    width: 20rem;
 }
 
 
