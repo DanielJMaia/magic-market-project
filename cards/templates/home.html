@@ -42,13 +42,13 @@
 	<!---->
 
 	<!--Popular cards sorted by views-->
-	<div class="container">
-		<div class="row justify-content-around pt-3 pb-3 border-bottom">
-			<div class="col-12 p-3">
+	<div class="container-fluid">
+		<div class="row justify-content-around pt-3 pb-3">
+			<div class="col-md-12 col-lg-6 p-3">
 				<div class="row pt-3 pb-2">
 					<h1 class="col-12 center">Popular Cards!</h1>
 				</div>
-				<div class="row justify-center pb-3">
+				<div class="row justify-center pb-5 pt-3">
 					<a class="custom-controls carousel-prev" href="#carouselExampleControls" role="button"
 						data-slide="prev">
 						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -67,7 +67,7 @@
 						<div class="carousel-item active">
 							<div class="row">
 								<div class="col-sm-12 col-md-6">
-									<img class="d-block w-100" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
+									<img class="d-block carousel-image" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                             </div>
 									<div class="col-sm-12 col-md-6 p-5 center-small">
 										<h3>{{ card.card_title }}</h3>
@@ -101,7 +101,7 @@
 							<div class="carousel-item">
 								<div class="row">
 									<div class="col-sm-12 col-md-6">
-										<img class="d-block w-100" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
+										<img class="d-block carousel-image" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                                 </div>
 										<div class="col-sm-12 col-md-6 p-5 center-small">
 											<h3>{{ card.card_title }}</h3>
@@ -115,7 +115,7 @@
 											<p><span class="boldtext">Listing Published date:</span>
 												{{ card.listing_published_date }}
 											</p>
-											<div class="row pt-4">
+											<div class="row pt-4 checkout-row">
 												<a href="{% url 'get_cards' %}" class="button-effect nobreak">View Other
 													Listings</a>
 												{% if user.is_authenticated %}
@@ -136,17 +136,17 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				
 				<!--End of popular cards sections-->
 
 				<!--Latest listings section-->
 
-				<div class="row justify-content-around pt-3 pb-3">
-					<div class="col-12 p-3">
+				
+					<div class="col-md-12 col-lg-6 p-3">
 						<div class="row pt-3 pb-2">
 							<h1 class="col-12 center">Latest Listings!</h1>
 						</div>
-						<div class="row justify-center pb-3">
+						<div class="row justify-center pb-5 pt-3">
 							<a class="custom-controls carousel-prev" href="#carouselExampleControls1" role="button"
 								data-slide="prev">
 								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -165,8 +165,8 @@
 								<div class="carousel-item active">
 									<div class="row">
 										<div class="col-sm-12 col-md-6">
-											<img class="d-block w-100" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
-                            </div>
+											<img class="d-block carousel-image" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
+                                        </div>
 											<div class="col-sm-12 col-md-6 p-5 center-small">
 												<h3>{{ card.card_title }}</h3>
 												<p>Vendor: <a class="underline-link"
@@ -201,7 +201,7 @@
 									<div class="carousel-item">
 										<div class="row">
 											<div class="col-sm-12 col-md-6">
-												<img class="d-block w-100" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
+												<img class="d-block carousel-image" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                                 </div>
 												<div class="col-sm-12 col-md-6 p-5 center-small">
 													<h3>{{ card.card_title }}</h3>

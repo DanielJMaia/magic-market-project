@@ -232,6 +232,10 @@ a:hover{
     height: 50px;
 }
 
+.carousel-image {
+    width: 20rem;
+}
+
 
 /*End of Card Display Carousel Styling*/
 
@@ -459,6 +463,10 @@ textarea.form-control {
    .banner-child{
        display: block;
    }
+
+   .carousel-image {
+    float: right;
+}
     
 }
 
