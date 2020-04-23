@@ -28,6 +28,9 @@ a:hover{
     margin-left: 0px;
     margin-right: 0px;
 }
+
+
+
 /*End of Document classes*/
 
 /*Utility Classes*/
@@ -83,6 +86,16 @@ a:hover{
     border-style: solid;
     border-width: thin;
 }
+
+.no-margin{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.no-padding{
+    padding-left: 0px;
+    padding-right: 0px;
+}
 /*End of Utility Classes*/
 
 /*Min height so that footer looks nice*/
@@ -125,7 +138,7 @@ a:hover{
     bottom: 7%;
     background-color: white;
     padding: 10px 10px 5px 10px;
-    border-radius: 7px;
+    border-radius: 4px;
     display: none;
 }
 #cover-image{
@@ -218,16 +231,7 @@ a:hover{
 /*Card Display Carousel Styling*/
 
 .cards-background{
-    background-image: url("https://www.wallpaperflare.com/static/1018/570/362/wings-dark-hair-chase-stone-magic-the-gathering-wallpaper.jpg");
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: 125%;
-}
-
-.cards-background-white{
-    background-color: #fff;
-    border-radius: 20px;
-
+    background-color: #F5F5F5;
 }
 
 .custom-controls{
@@ -272,7 +276,8 @@ a:hover{
 }
 
 .carousel-image {
-    width: inherit;
+    width: 100%;
+    height: auto;
 }
 
 .carousel-image-profile{

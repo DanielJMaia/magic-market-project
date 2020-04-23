@@ -21,7 +21,7 @@
 	</div>
 </div>
 <!--End of background image-->
-<div class="container-fluid">
+<div class="container-fluid no-padding">
 	<!--Website Header-->
 	<div class="container">
 		<div class="row border-bottom">
@@ -36,7 +36,7 @@
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto rerum hic
 					accusantium velit consequatur, eos ipsum quis natus sapiente iure explicabo adipisci
 					pariatur alias officia numquam. Consectetur, aspernatur?</p>
-                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto
+				<p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto
 					rerum hic accusantium velit consequatur, eos ipsum quis natus sapiente iure explicabo
 					adipisci pariatur alias officia numquam. Consectetur, aspernatur?
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto rerum hic
@@ -53,7 +53,7 @@
 	<!--Popular cards sorted by views-->
 	<div class="container-fluid cards-background">
 		<div class="row justify-content-center pt-5 pb-5">
-			<div class="col-md-12 col-lg-6 col-xl-5 p-3 mr-5 cards-background-white">
+			<div class="col-md-12 col-lg-6 col-xl-5 p-3">
 				<div class="row pt-3 pb-2">
 					<h1 class="col-12 center">Popular Cards</h1>
 				</div>
@@ -77,14 +77,10 @@
 							<div class="row">
 								<div class="col-sm-12 col-md-6">
 									<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
-                            </div>
-									<div class="col-sm-12 col-md-6 pr-5 pb-5 pl-5 center-small">
-										
-                                        
-                                        <h3>{{ card.card_title }}</h3>
-										
-                                        
-                                        <p>Vendor: <a class="underline-link"
+								</div>
+									<div class="col-sm-12 col-md-6 center-small">
+										<h3>{{ card.card_title }}</h3>
+										<p>Vendor: <a class="underline-link"
 												href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
 										</p>
 										<p>{{ card.card_description}}</p>
@@ -95,8 +91,6 @@
 											{{ card.listing_published_date }}
 										</p>
 										<div class="row pt-4">
-											<a href="{% url 'get_cards' %}" class="button-effect nobreak">View Other
-												Listings</a>
 											{% if user.is_authenticated %}
 											<form method="post" action="{% url 'add_to_cart' card.id %}">
 												{% csrf_token %}
@@ -116,7 +110,7 @@
 									<div class="col-sm-12 col-md-6">
 										<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                                 </div>
-										<div class="col-sm-12 col-md-6 pr-5 pb-5 pl-5 center-small">
+										<div class="col-sm-12 col-md-6 center-small">
 											<h3>{{ card.card_title }}</h3>
 											<p>Vendor: <a class="underline-link"
 													href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
@@ -129,8 +123,6 @@
 												{{ card.listing_published_date }}
 											</p>
 											<div class="row pt-4 checkout-row">
-												<a href="{% url 'get_cards' %}" class="button-effect nobreak">View Other
-													Listings</a>
 												{% if user.is_authenticated %}
 												<form method="post" action="{% url 'add_to_cart' card.id %}">
 													{% csrf_token %}
@@ -155,7 +147,7 @@
 					<!--Latest listings section-->
 
 
-					<div class="col-md-12 col-lg-6 col-xl-5 p-3 cards-background-white">
+					<div class="col-md-12 col-lg-6 col-xl-5 p-3">
 						<div class="row pt-3 pb-2">
 							<h1 class="col-12 center">Latest Listings</h1>
 						</div>
@@ -180,7 +172,7 @@
 										<div class="col-sm-12 col-md-6">
 											<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                                         </div>
-											<div class="col-sm-12 col-md-6 pr-5 pb-5 pl-5 center-small">
+											<div class="col-sm-12 col-md-6 center-small">
 												<h3>{{ card.card_title }}</h3>
 												<p>Vendor: <a class="underline-link"
 														href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
@@ -194,9 +186,6 @@
 													{{ card.listing_published_date }}
 												</p>
 												<div class="row pt-4">
-													<a href="{% url 'get_cards' %}" class="button-effect nobreak">View
-														Other
-														Listings</a>
 													{% if user.is_authenticated %}
 													<form method="post" action="{% url 'add_to_cart' card.id %}">
 														{% csrf_token %}
@@ -215,8 +204,8 @@
 										<div class="row">
 											<div class="col-sm-12 col-md-6">
 												<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
-                                </div>
-												<div class="col-sm-12 col-md-6 pr-5 pb-5 pl-5 center-small">
+                                        </div>
+												<div class="col-sm-12 col-md-6 center-small">
 													<h3>{{ card.card_title }}</h3>
 													<p>Vendor: <a class="underline-link"
 															href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
@@ -232,10 +221,6 @@
 														{{ card.listing_published_date }}
 													</p>
 													<div class="row pt-4">
-														<a href="{% url 'get_cards' %}"
-															class="button-effect nobreak">View
-															Other
-															Listings</a>
 														{% if user.is_authenticated %}
 														<form method="post" action="{% url 'add_to_cart' card.id %}">
 															{% csrf_token %}
@@ -264,7 +249,8 @@
 								<h3 class="display-4 center">Deck Help</h3>
 								<p class="lead">Not Sure where to start? Need help picking which cards are best in your
 									new deck? We're here to help!</p>
-								<p>Send us an email at <a class="underline-link" href="#">EMAIL HERE</a> and we'll be happy to help! We can
+								<p>Send us an email at <a class="underline-link" href="#">EMAIL HERE</a> and we'll be
+									happy to help! We can
 									help you with</p>
 								<ul>
 									<li>Deck Building</li>
