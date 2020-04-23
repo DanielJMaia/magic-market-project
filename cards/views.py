@@ -1,13 +1,13 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from django.contrib import auth, messages
-from django.conf.urls.static import static
 from .models import Card
 from .forms import CardDescForm
+
 
 def home_page(request):
     cards = Card.objects.order_by('-listing_views')
     return render(request, 'home.html', {'cards': cards})
+
 
 def get_cards(request):
     """
@@ -19,6 +19,18 @@ def get_cards(request):
         print(card.user)
     return render(request, "cards.html", {'cards': cards})
 
+
+def view_specific_card(request, pk):
+    """
+    This view allows the user to click on a specific card name and view all
+    listings of the same name
+    """
+    card_id = get_object_or_404(Card, pk=pk)
+    card_name = card_id.card_title
+    cards = Card.objects.filter(card_title__icontains=card_name)
+    return render(request, "cards.html", {'cards': cards})
+
+
 def get_card_details(request, pk):
     """
     Returns a single card object and renders
@@ -28,6 +40,7 @@ def get_card_details(request, pk):
     card.listing_views += 1
     card.save()
     return render(request, "cardinformation.html", {'card': card})
+
 
 def create_or_edit_card(request, pk=None):
     """

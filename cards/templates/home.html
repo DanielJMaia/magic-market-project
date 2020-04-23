@@ -79,8 +79,12 @@
 									<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                             </div>
 									<div class="col-sm-12 col-md-6 pr-5 pb-5 pl-5 center-small">
-										<h3>{{ card.card_title }}</h3>
-										<p>Vendor: <a class="underline-link"
+										
+                                        
+                                        <h3>{{ card.card_title }}</h3>
+										
+                                        
+                                        <p>Vendor: <a class="underline-link"
 												href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
 										</p>
 										<p>{{ card.card_description}}</p>
