@@ -53,7 +53,7 @@
 	<!--Popular cards sorted by views-->
 	<div class="container-fluid cards-background">
 		<div class="row justify-content-center pt-5 pb-5">
-			<div class="col-md-12 col-lg-6 col-xl-5 p-3">
+			<div class="col-md-12 col-xl-6 p-3">
 				<div class="row pt-3 pb-2">
 					<h1 class="col-12 center">Popular Cards</h1>
 				</div>
@@ -74,23 +74,28 @@
 						{% for card in cards|dictsortreversed:"listing_views" %}
 						{% if forloop.counter == 1 %}
 						<div class="carousel-item active">
-							<div class="row">
-								<div class="col-sm-12 col-md-6">
+							<div class="row justify-center">
+								<div class="col-sm-12 col-md-6 card-info pt-5">
 									<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
 								</div>
-									<div class="col-sm-12 col-md-6 center-small">
+									<div class="col-sm-12 col-md-6 p-5 center-small border-thin card-info">
 										<h3>{{ card.card_title }}</h3>
 										<p>Vendor: <a class="underline-link"
 												href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
 										</p>
-										<p>{{ card.card_description}}</p>
-										<p><span class="boldtext">Edition:</span> {{ card.card_edition }}</p>
-										<p><span class="boldtext">Condition:</span> {{ card.card_condition }}</p>
-										<p><span class="boldtext">Price: </span>£{{ card.card_price }}</p>
-										<p><span class="boldtext">Listing Published date:</span>
+										<p class="border-bottom p-1">{{ card.card_description}}</p>
+										<p class="border-bottom p-1"><span class="boldtext">Edition:</span>
+											{{ card.card_edition }}</p>
+										<p class="border-bottom p-1"><span class="boldtext">Condition:</span>
+											{{ card.card_condition }}</p>
+										<p class="border-bottom p-1">
+											<span class="boldtext">Price: </span>£{{ card.card_price }}
+										</p>
+										<p class="border-bottom p-1">
+											<span class="boldtext">Listing Published date:</span>
 											{{ card.listing_published_date }}
 										</p>
-										<div class="row pt-4">
+										<div class="row">
 											{% if user.is_authenticated %}
 											<form method="post" action="{% url 'add_to_cart' card.id %}">
 												{% csrf_token %}
@@ -106,23 +111,28 @@
 							</div>
 							{% else %}
 							<div class="carousel-item">
-								<div class="row">
-									<div class="col-sm-12 col-md-6">
+								<div class="row justify-center">
+									<div class="col-sm-12 col-md-6 card-info pt-5">
 										<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
-                                </div>
-										<div class="col-sm-12 col-md-6 center-small">
+                                    </div>
+										<div class="col-sm-12 col-md-6 p-5 center-small border-thin card-info">
 											<h3>{{ card.card_title }}</h3>
 											<p>Vendor: <a class="underline-link"
 													href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
 											</p>
-											<p>{{ card.card_description}}</p>
-											<p><span class="boldtext">Edition:</span> {{ card.card_edition }}</p>
-											<p><span class="boldtext">Condition:</span> {{ card.card_condition }}</p>
-											<p><span class="boldtext">Price: </span>£{{ card.card_price }}</p>
-											<p><span class="boldtext">Listing Published date:</span>
+											<p class="border-bottom p-1">{{ card.card_description}}</p>
+											<p class="border-bottom p-1"><span class="boldtext">Edition:</span>
+												{{ card.card_edition }}</p>
+											<p class="border-bottom p-1"><span class="boldtext">Condition:</span>
+												{{ card.card_condition }}</p>
+											<p class="border-bottom p-1">
+												<span class="boldtext">Price: </span>£{{ card.card_price }}
+											</p>
+											<p class="border-bottom p-1">
+												<span class="boldtext">Listing Published date:</span>
 												{{ card.listing_published_date }}
 											</p>
-											<div class="row pt-4 checkout-row">
+											<div class="row">
 												{% if user.is_authenticated %}
 												<form method="post" action="{% url 'add_to_cart' card.id %}">
 													{% csrf_token %}
@@ -147,7 +157,7 @@
 					<!--Latest listings section-->
 
 
-					<div class="col-md-12 col-lg-6 col-xl-5 p-3">
+					<div class="col-sm-12 col-xl-6 p-3">
 						<div class="row pt-3 pb-2">
 							<h1 class="col-12 center">Latest Listings</h1>
 						</div>
@@ -168,24 +178,28 @@
 								{% for card in cards|dictsortreversed:"listing_created_date"%}
 								{% if forloop.counter == 1 %}
 								<div class="carousel-item active">
-									<div class="row">
-										<div class="col-sm-12 col-md-6">
+									<div class="row justify-center">
+										<div class="col-sm-12 col-md-6 card-info pt-5">
 											<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                                         </div>
-											<div class="col-sm-12 col-md-6 center-small">
+											<div class="col-sm-12 col-md-6 p-5 center-small border-thin card-info">
 												<h3>{{ card.card_title }}</h3>
 												<p>Vendor: <a class="underline-link"
 														href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
 												</p>
-												<p>{{ card.card_description}}</p>
-												<p><span class="boldtext">Edition:</span> {{ card.card_edition }}</p>
-												<p><span class="boldtext">Condition:</span> {{ card.card_condition }}
+												<p class="border-bottom p-1">{{ card.card_description}}</p>
+												<p class="border-bottom p-1"><span class="boldtext">Edition:</span>
+													{{ card.card_edition }}</p>
+												<p class="border-bottom p-1"><span class="boldtext">Condition:</span>
+													{{ card.card_condition }}</p>
+												<p class="border-bottom p-1">
+													<span class="boldtext">Price: </span>£{{ card.card_price }}
 												</p>
-												<p><span class="boldtext">Price: </span>£{{ card.card_price }}</p>
-												<p><span class="boldtext">Listing Published date:</span>
+												<p class="border-bottom p-1">
+													<span class="boldtext">Listing Published date:</span>
 													{{ card.listing_published_date }}
 												</p>
-												<div class="row pt-4">
+												<div class="row">
 													{% if user.is_authenticated %}
 													<form method="post" action="{% url 'add_to_cart' card.id %}">
 														{% csrf_token %}
@@ -201,26 +215,29 @@
 									</div>
 									{% else %}
 									<div class="carousel-item">
-										<div class="row">
-											<div class="col-sm-12 col-md-6">
+										<div class="row justify-center">
+											<div class="col-sm-12 col-md-6 card-info pt-5">
 												<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                                         </div>
-												<div class="col-sm-12 col-md-6 center-small">
+												<div class="col-sm-12 col-md-6 p-5 center-small border-thin card-info">
 													<h3>{{ card.card_title }}</h3>
 													<p>Vendor: <a class="underline-link"
 															href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
 													</p>
-													<p>{{ card.card_description}}</p>
-													<p><span class="boldtext">Edition:</span> {{ card.card_edition }}
+													<p class="border-bottom p-1">{{ card.card_description}}</p>
+													<p class="border-bottom p-1"><span class="boldtext">Edition:</span>
+														{{ card.card_edition }}</p>
+													<p class="border-bottom p-1">
+														<span class="boldtext">Condition:</span>
+														{{ card.card_condition }}</p>
+													<p class="border-bottom p-1">
+														<span class="boldtext">Price: </span>£{{ card.card_price }}
 													</p>
-													<p><span class="boldtext">Condition:</span>
-														{{ card.card_condition }}
-													</p>
-													<p><span class="boldtext">Price: </span>£{{ card.card_price }}</p>
-													<p><span class="boldtext">Listing Published date:</span>
+													<p class="border-bottom p-1">
+														<span class="boldtext">Listing Published date:</span>
 														{{ card.listing_published_date }}
 													</p>
-													<div class="row pt-4">
+													<div class="row">
 														{% if user.is_authenticated %}
 														<form method="post" action="{% url 'add_to_cart' card.id %}">
 															{% csrf_token %}

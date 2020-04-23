@@ -53,8 +53,6 @@
 										{{ card.listing_published_date }}
 									</p>
 									<div class="row pt-2">
-										<a href="{% url 'get_cards' %}" class="button-effect nobreak">View Other
-											Listings</a>
 										{% if user.is_authenticated %}
 										<form method="post" action="{% url 'add_to_cart' card.id %}">
 											{% csrf_token %}
@@ -91,8 +89,6 @@
 											{{ card.listing_published_date }}
 										</p>
 										<div class="row pt-2">
-											<a href="{% url 'get_cards' %}" class="button-effect nobreak">View Other
-												Listings</a>
 											{% if user.is_authenticated %}
 											<form method="post" action="{% url 'add_to_cart' card.id %}">
 												{% csrf_token %}

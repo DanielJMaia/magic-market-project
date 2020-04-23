@@ -1,6 +1,6 @@
 /*Document classes*/
 body{
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Karla', sans-serif;
     color: #2a3439;
 }
 
@@ -80,6 +80,10 @@ a:hover{
 
 .hidden-when-small{
         display: none;
+}
+
+.card-info{
+    max-width: 20rem;
 }
 
 .border-thin{
@@ -179,7 +183,6 @@ a:hover{
 .add-to-cart-quantity{
     max-width: 50px;
     border-radius: 5px;
-    margin-right: 12px;
     text-align: center;
     border-color: #767676
 }
