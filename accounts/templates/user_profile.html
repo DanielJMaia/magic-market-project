@@ -36,7 +36,7 @@
 							<div class="col-sm-12 col-md-6">
 								<img class="d-block carousel-image-profile margin-center pb-2" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                             </div>
-								<div class="col-sm-12 col-md-6 p-5 center-small border-thin">
+								<div class="col-sm-12 col-md-6 p-5 center-small">
 									<h3>{{ card.card_title }}</h3>
 									<p>Vendor: <a class="underline-link"
 											href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
@@ -72,7 +72,7 @@
 								<div class="col-sm-12 col-md-6">
 									<img class="d-block carousel-image-profile margin-center pb-2" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                             </div>
-									<div class="col-sm-12 col-md-6 p-5 center-small border-thin">
+									<div class="col-sm-12 col-md-6 p-5 center-small">
 										<h3>{{ card.card_title }}</h3>
 										<p>Vendor: <a class="underline-link"
 												href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
