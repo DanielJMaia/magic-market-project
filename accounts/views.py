@@ -11,7 +11,6 @@ def login(request):
     """
     This returns a login page
     """
-    """login_form = UserLoginForm()"""
     if request.user.is_authenticated:
         return redirect(reverse('home_page'))
 
@@ -38,10 +37,11 @@ def logout(request):
     """
     logs out
     """
-
+    cards = Card.objects.order_by('-listing_views')
     auth.logout(request)
     messages.success(request, "You have been logged out")
-    return redirect(reverse('home_page'))
+    # return redirect(reverse('home_page'))
+    return render(request, 'home.html', {'cards': cards})
 
 
 def register(request):

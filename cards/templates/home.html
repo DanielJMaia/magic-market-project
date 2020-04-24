@@ -3,16 +3,17 @@
 {% block content %}
 
 <!--This displays any messages such as "you have been logged out" etc.-->
-<div class="row">
+<div class="row relative">
 	{% if messages %}
-	<div>
+	<div class="django-message p-2">
 		{% for message in messages %}
-		<h1>{{message}}</h1>
+		    <h4> {{message}} </h4>
 		{% endfor %}
 	</div>
 	{% endif %}
 </div>
 <!--End messages section-->
+
 <!--Main Page Background Image-->
 <div class="banner-parent">
 	<img class="w-100" id="cover-image" src="{% static 'img/ikoria_banner_img1.jpg' %}" alt="banner-image">
