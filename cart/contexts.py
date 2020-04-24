@@ -10,7 +10,7 @@ def cart_contents(request):
     cart_items = []
     total = 0
     card_count = 0
-    
+
     for id, quantity in cart.items():
         card = get_object_or_404(Card, pk=id)
         total += quantity * card.card_price

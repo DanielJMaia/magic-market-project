@@ -22,9 +22,14 @@
 						<p class="card-text">Price: £{{ item.card.card_price }}</p>
 						<p class="card-text">Vendor: {{ item.card.user.username }}</p>
 						<p>
-							<form class="form-inline" method="POST" action="{% url 'adjust_cart' item.id %}">
+							<form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
 								{% csrf_token %}
-								<button class="btn btn-dark" type="submit">Edit</button>
+								<div class="form-group">
+									<div class="input-group">
+										<input name="quantity" type="number" min="0" max="999" value="{{item.quantity}}" class="form-control">
+									</div>
+								</div>
+								<button type="submit" class="button-effect"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
 							</form>
 						</p>
 					</div>
