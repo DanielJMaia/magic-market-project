@@ -86,11 +86,6 @@ a:hover{
     max-width: 20rem;
 }
 
-.border-thin{
-    border-style: solid;
-    border-width: thin;
-}
-
 .no-margin{
     margin-left: 0px;
     margin-right: 0px;
@@ -438,10 +433,6 @@ textarea.form-control {
   font-size:14px
 }
 
-.social-icons a.twitter:hover
-{
-  background-color:#00aced
-}
 .social-icons a.linkedin:hover
 {
   background-color:#007bb6
