@@ -5,7 +5,11 @@
 <div class="container small-body">
 	<div class="row">
 		<div class="text-center max-width pt-5 pb-5">
-			<h3>All listings!</h3>
+            {% if profile %}
+                <h3>{{ profile.username }}'s Cards</h3>
+            {% else %}
+			    <h3>All listings</h3>
+            {% endif %}
 		</div>
 	</div>
 	<!--End of page header-->
