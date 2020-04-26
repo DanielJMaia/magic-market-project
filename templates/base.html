@@ -63,13 +63,16 @@
 						<a class="nav-link" href="{% url 'register' %}">Register</a>
 					</li>
 					{% endif %}
+                    <li class="nav-item">
+						<a class="nav-link" href="{% url 'search_page' %}">Advanced Search</a>
+					</li>
 				</ul>
 				<ul class="navbar-nav">
 					<li>
 						<!--Search Bar-->
 						<form action="{% url 'search' %}" method="GET">
 							<div class="input-group">
-								<input class="form-control" type="text" name="q">
+								<input class="form-control search" type="text" name="search_title">
 								<div class="input-group-append">
 									<button type="submit">Search</button>
 								</div>

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+
+
+<div class="container small-body">
+	<div class="row">
+		<div class="text-center max-width pt-5 pb-5">
+			<h3>Advanced Search</h3>
+		</div>
+	</div>
+	<div class="row">
+		<form class="col-12" action="{% url 'advanced_search' %}" method="GET">
+			<div>
+				<div class="row advanced-search">
+					<div class="col-sm-12 col-md-4">
+						<h4>Card Name</h4>
+					</div>
+					<div class="co-sm-12 col-md-8">
+						<input class="form-control" type="text" name="title" placeholder="Example: Sol Ring">
+                    </div>
+				</div>
+
+				<div class="row advanced-search">
+					<div class="col-sm-12 col-md-4">
+						<h4>Card Edition</h4>
+					</div>
+				    <div class="co-sm-12 col-md-8">
+						<input class="form-control" type="text" name="edition" placeholder="Example: 1st">
+                    </div>
+				</div>
+
+				<div class="row advanced-search">
+					<div class="col-sm-12 col-md-4">
+						<h4>Card Condition</h4>
+					</div>
+					<div class="co-sm-12 col-md-8">
+						<input class="form-control" type="text" name="condition" placeholder="Eg. NM, EX, GD, LP">
+                    </div>
+				</div>
+
+				<div class="row advanced-search ml-3">
+					<button type="submit">Search</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

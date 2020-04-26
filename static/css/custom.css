@@ -232,9 +232,20 @@ a:hover{
 
 /*End of Misc Document Classes*/
 
-/* Pagination */
+/* Search Bar Styling */
 
-/* End of Pagination */
+.search{
+    max-width: 190px;
+}
+
+.advanced-search{
+    padding: 25px 10px 25px 10px;
+}
+
+/* End of Search Bar */
+
+
+/* Pagination */
 
 .page-item.active .page-link {
     z-index: 1;
@@ -250,6 +261,8 @@ a:hover{
 .page-link:hover{
     color: #2a3439;
 }
+
+/* End of Pagination */
 
 /*Shopping Cart*/
 
