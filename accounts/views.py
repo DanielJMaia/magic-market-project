@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.utils import timezone
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -81,7 +82,18 @@ def view_user(request):
 def view_all_user_cards(request, pk):
     """This shows the all cards table, filtered to only show the user's cards"""
     profile = get_object_or_404(User, pk=pk)
-    cards = Card.objects.filter(user=profile)
+    card_list = Card.objects.filter(user=profile)
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(card_list, 20)
+    try:
+        cards = paginator.page(page)
+    except PageNotAnInteger:
+        cards = paginator.page(1)
+    except EmptyPage:
+        cards = paginator.page(paginator.num_pages)
+
     return render(request, 'cards.html', {"profile": profile, "cards": cards})
 
 
