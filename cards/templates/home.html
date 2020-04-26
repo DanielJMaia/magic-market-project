@@ -72,7 +72,7 @@
 				</div>
 				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 					<div class="carousel-inner">
-						{% for card in cards|dictsortreversed:"listing_views" %}
+						{% for card in cards|dictsortreversed:"listing_views"|slice:"5" %}
 						{% if forloop.counter == 1 %}
 						<div class="carousel-item active">
 							<div class="row justify-center">
@@ -176,7 +176,7 @@
 						</div>
 						<div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
-								{% for card in cards|dictsortreversed:"listing_created_date"%}
+								{% for card in cards|dictsortreversed:"listing_created_date"|slice:"5"%}
 								{% if forloop.counter == 1 %}
 								<div class="carousel-item active">
 									<div class="row justify-center">

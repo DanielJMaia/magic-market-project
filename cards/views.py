@@ -25,7 +25,7 @@ def get_cards(request):
 
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(card_list, 2)
+    paginator = Paginator(card_list, 20)
     try:
         cards = paginator.page(page)
     except PageNotAnInteger:

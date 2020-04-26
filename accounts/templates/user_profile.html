@@ -7,11 +7,11 @@
 			<h3>{{ profile.username }}'s Profile</h3>
 		</div>
 	</div>
-	<!--Popular cards sorted by views-->
+	<!--Most recent listings-->
 	<div class="row border-bottom pb-2">
 		<div class="col-md-12 p-3 mr-5">
 			<div class="row">
-				<h4 class="col-sm-12 pt-4 pb-4 center">Popular Cards</h4>
+				<h4 class="col-sm-12 pt-4 pb-4 center">Recent Cards</h4>
 			</div>
 			<div class="row justify-center pb-5 pt-3">
 				<a class="custom-controls carousel-prev" href="#carouselExampleControls" role="button"
@@ -27,150 +27,152 @@
 			</div>
 			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
-					{% for card in cards|dictsortreversed:"listing_views" %}
+					{% for card in cards|dictsortreversed:"listing_published_date" %}
 					{% if forloop.counter == 1 %}
 					<div class="carousel-item active">
 						<div class="row">
 							<div class="col-sm-12 col-md-6">
 								<img class="d-block carousel-image-profile margin-center pb-2" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                             </div>
-								<div class="col-sm-12 col-md-6 p-5 center-small">
-									<h3>{{ card.card_title }}</h3>
-									<p>Vendor: <a class="underline-link"
-											href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
-									</p>
-									<p class="border-bottom p-1">{{ card.card_description}}</p>
-									<p class="border-bottom p-1"><span class="boldtext">Edition:</span>
-										{{ card.card_edition }}</p>
-									<p class="border-bottom p-1"><span class="boldtext">Condition:</span>
-										{{ card.card_condition }}</p>
-									<p class="border-bottom p-1">
-										<span class="boldtext">Price: </span>£{{ card.card_price }}
-									</p>
-									<p class="border-bottom p-1"><span class="boldtext">Listing Published date:</span>
-										{{ card.listing_published_date }}
-									</p>
-									<div class="row pt-2">
-										{% if user.is_authenticated %}
-										<form method="post" action="{% url 'add_to_cart' card.id %}">
-											{% csrf_token %}
-											<div class="input-group cart-form">
-												<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
-												<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-											</div>
-										</form>
-										{% endif %}
-									</div>
-								</div>
-							</div>
-						</div>
-						{% else %}
-						<div class="carousel-item">
-							<div class="row">
-								<div class="col-sm-12 col-md-6">
-									<img class="d-block carousel-image-profile margin-center pb-2" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
-                            </div>
-									<div class="col-sm-12 col-md-6 p-5 center-small">
-										<h3>{{ card.card_title }}</h3>
-										<p>Vendor: <a class="underline-link"
-												href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
-										</p>
-										<p class="border-bottom p-1">{{ card.card_description}}</p>
-										<p class="border-bottom p-1"><span class="boldtext">Edition:</span>
-											{{ card.card_edition }}</p>
-										<p class="border-bottom p-1"><span class="boldtext">Condition:</span>
-											{{ card.card_condition }}</p>
-										<p class="border-bottom p-1">
-											<span class="boldtext">Price: </span>£{{ card.card_price }}</p>
-										<p class="border-bottom p-1">
-											<span class="boldtext">Listing Published date:</span>
-											{{ card.listing_published_date }}
-										</p>
-										<div class="row pt-2">
-											{% if user.is_authenticated %}
-											<form method="post" action="{% url 'add_to_cart' card.id %}">
-												{% csrf_token %}
-												<div class="input-group cart-form">
-													<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
-													<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-												</div>
-											</form>
-											{% endif %}
-										</div>
-									</div>
-								</div>
-							</div>
-							{% endif %}
-							{% endfor %}
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--End of popular cards sections-->
-			<div class="row">
-				<h4 class="col-sm-12 pt-4 pb-4 center">All listings</h4>
-			</div>
-
-			<!--List of cards for the specific vendor-->
-			<div class="row table-overflow">
-				<table class="table table-hover">
-					<thead class="thead-dark pb-2 center">
-						<tr>
-							<th scope="col"></th>
-							<th scope="col">Card</th>
-							<th scope="col">Vendor Name</th>
-							<th scope="col">Condition</th>
-							<th scope="col">Price</th>
-							<th scope="col"></th>
-							{% if user.is_authenticated %}
-							<th scope="col"></th>
-							{% endif %}
-						</tr>
-					</thead>
-					<tbody>
-						{% for card in cards %}
-						<tr class="center">
-							<td>
-								<div onmouseenter="imageToggleShow({{ card.id }})"
-									onmouseleave="imageToggleHide({{ card.id }})">
-									<img class="camera-icon" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
-		                </div>
-									{% if card.image %}
-									<img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
-                        {% endif %}
-                    </td>
-							<td>{{ card.card_title }}</td>
-							<td><a class="underline-link"
-									href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
-							</td>
-							<td>{{ card.card_condition }}</td>
-							<td>£{{ card.card_price }}</td>
-							<td><a href="{% url 'card_detail' card.id %}" class="button-effect nobreak">View Listing</a>
-							</td>
-							{% if user.is_authenticated %}
-							<td>
-								<div>
+							<div class="col-sm-12 col-md-6 p-5 center-small">
+								<h3>{{ card.card_title }}</h3>
+								<p>Vendor: <a class="underline-link"
+										href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
+								</p>
+								<p class="border-bottom p-1">{{ card.card_description}}</p>
+								<p class="border-bottom p-1"><span class="boldtext">Edition:</span>
+									{{ card.card_edition }}</p>
+								<p class="border-bottom p-1"><span class="boldtext">Condition:</span>
+									{{ card.card_condition }}</p>
+								<p class="border-bottom p-1">
+									<span class="boldtext">Price: </span>£{{ card.card_price }}
+								</p>
+								<p class="border-bottom p-1"><span class="boldtext">Listing Published date:</span>
+									{{ card.listing_published_date }}
+								</p>
+								<div class="row pt-2">
+									{% if user.is_authenticated %}
 									<form method="post" action="{% url 'add_to_cart' card.id %}">
 										{% csrf_token %}
-										<div class="input-group">
-											<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
-											<span class="input-group-btn">
-                                    <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-                                </span>
+										<div class="input-group cart-form">
+											<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
+											<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
 										</div>
 									</form>
+									{% endif %}
 								</div>
-							</td>
-							{% endif %}
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
+							</div>
+						</div>
+					</div>
+					{% else %}
+					<div class="carousel-item">
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<img class="d-block carousel-image-profile margin-center pb-2" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
+                            </div>
+							<div class="col-sm-12 col-md-6 p-5 center-small">
+								<h3>{{ card.card_title }}</h3>
+								<p>Vendor: <a class="underline-link"
+										href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
+								</p>
+								<p class="border-bottom p-1">{{ card.card_description}}</p>
+								<p class="border-bottom p-1"><span class="boldtext">Edition:</span>
+									{{ card.card_edition }}</p>
+								<p class="border-bottom p-1"><span class="boldtext">Condition:</span>
+									{{ card.card_condition }}</p>
+								<p class="border-bottom p-1">
+									<span class="boldtext">Price: </span>£{{ card.card_price }}</p>
+						    	<p class="border-bottom p-1">
+									<span class="boldtext">Listing Published date:</span>
+									{{ card.listing_published_date }}
+								</p>	
+                                <div class="row pt-2">
+									{% if user.is_authenticated %}
+									<form method="post" action="{% url 'add_to_cart' card.id %}">
+										{% csrf_token %}
+										<div class="input-group cart-form">
+											<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
+											<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+										</div>
+									</form>
+									{% endif %}
+								</div>
+									</div>
+						</div>
+						</div>
+						{% endif %}
+					{% endfor %}
+				</div>
 			</div>
-			<!--End of list of cards-->
 		</div>
-		{% endblock %}
+	</div>
+	<!--End of popular cards sections-->
+	<div class="row">
+		<h4 class="col-sm-12 pt-4 pb-4 center">Popular Cards</h4>
+	</div>
+    <!--List of cards for the specific vendor-->
+	<div class="row table-overflow">
+		<table class="table table-hover">
 
-		{% block end_js %}
-		<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
-		{% endblock %}
+			<thead class="thead-dark pb-2 center">
+				<tr>
+					<th scope="col"></th>
+					<th scope="col">Card</th>
+					<th scope="col">Vendor Name</th>
+					<th scope="col">Condition</th>
+					<th scope="col">Price</th>
+					<th scope="col"></th>
+					{% if user.is_authenticated %}
+					<th scope="col"></th>
+					{% endif %}
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for card in cards|slice:"5" %}
+				<tr class="center">
+					<td>
+						<div onmouseenter="imageToggleShow({{ card.id }})" onmouseleave="imageToggleHide({{ card.id }})">
+						    <img class="camera-icon" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
+		                </div>
+						{% if card.image %}
+							<img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
+                        {% endif %}
+                    </td>
+					<td>{{ card.card_title }}</td>
+					<td><a class="underline-link" href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></td>
+					<td>{{ card.card_condition }}</td>
+					<td>£{{ card.card_price }}</td>
+					<td><a href="{% url 'card_detail' card.id %}" class="button-effect nobreak">View Listing</a></td>
+					{% if user.is_authenticated %}
+					    <td>
+							<div>
+								<form method="post" action="{% url 'add_to_cart' card.id %}">
+									{% csrf_token %}
+									<div class="input-group">
+										<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
+										<span class="input-group-btn">
+                                            <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+                                        </span>
+									</div>
+								</form>
+							</div>
+						</td>
+					{% endif %}
+				</tr>
+				{% endfor %}
+			</tbody>
+
+		</table>
+	</div>
+	<!--End of list of cards-->
+    <div class="row pb-2">
+        {% for card in cards|slice:"1" %}
+            <a href="{% url 'view_all_user_cards' card.user.id %}" class="button-effect nobreak">View All</a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block end_js %}
+<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+{% endblock %}

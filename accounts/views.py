@@ -78,6 +78,13 @@ def view_user(request):
     return render(request, 'user_profile.html', {"profile": user, "cards": cards})
 
 
+def view_all_user_cards(request, pk):
+    """This shows the all cards table, filtered to only show the user's cards"""
+    profile = get_object_or_404(User, pk=pk)
+    cards = Card.objects.filter(user=profile)
+    return render(request, 'cards.html', {"profile": profile, "cards": cards})
+
+
 def view_profile(request, pk):
     """This allows users to view vendor profiles by retrieving the vendor id and redirecting it to their profile page"""
     profile = get_object_or_404(User, pk=pk)
