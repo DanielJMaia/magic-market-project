@@ -188,7 +188,6 @@ a:hover{
 }
 
 
-
 .add-to-cart-quantity{
     max-width: 50px;
     border-radius: 5px;
@@ -233,10 +232,28 @@ a:hover{
 
 /*End of Misc Document Classes*/
 
+/* Pagination */
 
+/* End of Pagination */
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #2a3439;
+    border-color: #a4a4a4;
+}
+
+.page-link{
+    color: #2a3439;
+}
+
+.page-link:hover{
+    color: #2a3439;
+}
 
 /*Shopping Cart*/
-.card{
+
+.card {
     margin-bottom: 25px;
     width: 90%;
 }

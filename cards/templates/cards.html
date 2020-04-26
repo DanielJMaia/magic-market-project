@@ -29,19 +29,15 @@
 				{% for card in cards %}
 				<tr class="center">
 					<td>
-						<div onmouseenter="imageToggleShow({{ card.id }})"
-							onmouseleave="imageToggleHide({{ card.id }})">
+						<div onmouseenter="imageToggleShow({{ card.id }})" onmouseleave="imageToggleHide({{ card.id }})">
 							<img class="camera-icon" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
 		                </div>
-							{% if card.image %}
-							    <img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
-                            {% endif %}
+						{% if card.image %}
+							<img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
+                        {% endif %}
                     </td>
-
 					<td><a class="underline-link" href="{% url 'view_specific_card' card.id %}">{{ card.card_title }}</a></td>
-
-					<td><a class="underline-link"
-							href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></td>
+					<td><a class="underline-link" href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></td>
 					<td>{{ card.card_condition }}</td>
 					<td>£{{ card.card_price }}</td>
 					<td><a href="{% url 'card_detail' card.id %}" class="button-effect nobreak">View Listing</a></td>
@@ -53,8 +49,8 @@
 								<div class="input-group">
 									<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
 									<span class="input-group-btn">
-                                    <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-                                </span>
+                                        <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+                                    </span>
 								</div>
 							</form>
 						</div>
@@ -66,9 +62,33 @@
 		</table>
 	</div>
 	<!--End of Bootstrap Table-->
+<!--Pagination-->
+
+{% if cards.has_other_pages %}
+  <ul class="pagination justify-center">
+    {% if cards.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ cards.previous_page_number }}">Previous</a></li>
+    {% else %}
+        <li class="disabled page-item"><span></span></li>
+    {% endif %}
+    {% for i in cards.paginator.page_range %}
+      {% if cards.number == i %}
+        <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if cards.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ cards.next_page_number }}">Next</a></li>
+    {% else %}
+        <li class="disabled page-item"><span></span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+<!---->
 </div>
 {% endblock %}
-
 
 {% block end_js %}
 <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
