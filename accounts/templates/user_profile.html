@@ -166,7 +166,7 @@
 		</table>
 	</div>
 	<!--End of list of cards-->
-    <div class="row pb-2">
+    <div class="row pb-4">
         {% for card in cards|slice:"1" %}
             <a href="{% url 'view_all_user_cards' card.user.id %}" class="button-effect nobreak">View All</a>
         {% endfor %}

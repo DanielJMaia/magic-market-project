@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from cards.models import Card
 
+
 def basic_search(request):
     cards = Card.objects.filter(card_title__icontains=request.GET['search_title'])
     return render(request, 'cards.html', {'cards': cards})
@@ -14,5 +15,6 @@ def advanced_search(request):
     cards = Card.objects.filter(
         card_title__icontains=request.GET['title'],
         card_edition__icontains=request.GET['edition'],
+        user__username__icontains=request.GET['vendor'],
         card_condition=request.GET['condition'])
     return render(request, 'cards.html', {'cards': cards})
