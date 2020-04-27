@@ -14,6 +14,7 @@ def search_page(request):
 
 def advanced_search(request):
     min_price = request.GET['minprice']
+    condition = request.GET['condition']
     decimal_min_price = Decimal(min_price)
 
     if decimal_min_price is None:
@@ -21,11 +22,18 @@ def advanced_search(request):
     else:
         new_price = decimal_min_price
 
-    cards = Card.objects.filter(
-        card_title__icontains=request.GET['title'],
-        card_edition__icontains=request.GET['edition'],
-        card_condition=request.GET['condition'],
-        user__username__icontains=request.GET['vendor'],
-        card_price__gte=new_price
-        )
-    return render(request, 'cards.html', {'cards': cards})
+    if condition == '1':
+        cards = Card.objects.filter(
+            card_title__icontains=request.GET['title'],
+            card_edition__icontains=request.GET['edition'],
+            user__username__icontains=request.GET['vendor'],
+            card_price__gte=new_price)
+        return render(request, 'cards.html', {'cards': cards})
+    else:
+        cards = Card.objects.filter(
+            card_title__icontains=request.GET['title'],
+            card_edition__icontains=request.GET['edition'],
+            card_condition=request.GET['condition'],
+            user__username__icontains=request.GET['vendor'],
+            card_price__gte=new_price)
+        return render(request, 'cards.html', {'cards': cards})
