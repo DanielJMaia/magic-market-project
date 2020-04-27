@@ -2,6 +2,7 @@
 {% load static from staticfiles %}
 {% block content %}
 <div class="container">
+{% if cards %}
 	<div class="row border-bottom">
 		<div class="max-width pt-5 pb-5 pl-5">
 			<h3>{{ profile.username }}'s Profile</h3>
@@ -166,11 +167,20 @@
 		</table>
 	</div>
 	<!--End of list of cards-->
-    <div class="row pb-2">
+    <div class="row pb-4">
         {% for card in cards|slice:"1" %}
             <a href="{% url 'view_all_user_cards' card.user.id %}" class="button-effect nobreak">View All</a>
         {% endfor %}
     </div>
+{% else %}
+<div class="row no-content relative">
+    <div class="text-center max-width no-listings">
+      <h1> This account has no cards</h1>
+      <p>Why not <a class="underline-link" href="{% url 'new_card' %}">add a new listing</a> or <a class="underline-link" href="{% url 'get_cards' %}">check out some other cards!</a></p>
+    </div>
+</div>
+{% endif %}
+
 </div>
 {% endblock %}
 {% block end_js %}

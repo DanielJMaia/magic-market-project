@@ -29,6 +29,9 @@ a:hover{
     margin-right: 0px;
 }
 
+.no-content{
+    min-height: 800px;
+}
 
 
 /*End of Document classes*/
@@ -230,6 +233,13 @@ a:hover{
     height: auto;
 }
 
+.no-listings{
+    position: absolute;
+    height: 200px;
+    top: 35%;
+}
+
+
 /*End of Misc Document Classes*/
 
 /* Search Bar Styling */
@@ -269,6 +279,11 @@ a:hover{
 .card {
     margin-bottom: 25px;
     width: 90%;
+}
+ 
+.address-card{
+    width: 100%!important;
+    min-height: 214px;
 }
 
 /**/
@@ -513,7 +528,7 @@ textarea.form-control {
 @media only screen and (min-width : 480px) {
     .card{
         margin-bottom: 25px;
-        width: 60%;
+        width: 80%;
     }
     .django-message{
         left: 50%;
@@ -544,7 +559,7 @@ textarea.form-control {
 
     .card{
         margin-bottom: 25px;
-        width: 40%;
+        width: 60%;
     }
 }
 

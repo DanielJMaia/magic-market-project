@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from cards.models import Card
+from decimal import Decimal, DecimalException
+
 
 
 def basic_search(request):
@@ -12,17 +14,23 @@ def search_page(request):
 
 
 def advanced_search(request):
+
     condition = request.GET['condition']
+
     if condition == '1':
         cards = Card.objects.filter(
             card_title__icontains=request.GET['title'],
             card_edition__icontains=request.GET['edition'],
-            user__username__icontains=request.GET['vendor'])
+            user__username__icontains=request.GET['vendor'],
+            card_price__gte=request.GET['minprice'],
+            card_price__lte=request.GET['maxprice'])
         return render(request, 'cards.html', {'cards': cards})
     else:
         cards = Card.objects.filter(
             card_title__icontains=request.GET['title'],
             card_edition__icontains=request.GET['edition'],
             card_condition=request.GET['condition'],
-            user__username__icontains=request.GET['vendor'])
+            user__username__icontains=request.GET['vendor'],
+            card_price__gte=request.GET['minprice'],
+            card_price__lte=request.GET['maxprice'])
         return render(request, 'cards.html', {'cards': cards})
