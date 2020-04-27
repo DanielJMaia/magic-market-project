@@ -14,5 +14,6 @@ def advanced_search(request):
     cards = Card.objects.filter(
         card_title__icontains=request.GET['title'],
         card_edition__icontains=request.GET['edition'],
-        card_condition=request.GET['condition'])
+        card_condition=request.GET['condition'],
+        user__username__icontains=request.GET['vendor'])
     return render(request, 'cards.html', {'cards': cards})
