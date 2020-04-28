@@ -26,6 +26,7 @@ $(document).ready( function () {
       "targets"  : 'no-sort',
       "orderable": false,
     }],
-    "bFilter": false
+    "bFilter": false,
+    lengthMenu: [10, 20, 50],
 });
 });

@@ -74,7 +74,3 @@ def create_or_edit_card(request, pk=None):
         form = CardDescForm(instance=card)
     return render(request, 'addcards.html', {'form': form})
 
-
-def test(request):
-    cards = Card.objects.all()
-    return render(request, 'testing.html', {'cards': cards})
