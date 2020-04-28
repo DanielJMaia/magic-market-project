@@ -103,6 +103,10 @@ a:hover{
 .relative{
     position: relative;
 }
+
+.left{
+    float: left;
+}
 /*End of Utility Classes*/
 
 /*Min height so that footer looks nice*/
@@ -170,6 +174,10 @@ table.dataTable thead th.sorting_asc,
 table.dataTable thead th.sorting_desc {
     background: none;
     padding: 15px 5px;
+}
+
+#all_cards{
+    text-align: center;
 }
 
 
@@ -253,9 +261,11 @@ table.dataTable thead th.sorting_desc {
 
 .card-image-hidden{
     max-height: 270px;
-    position: fixed;
+    position: absolute;
     display: none;
     z-index: 2;
+    top: 50px;
+    left: 0;
 }
 .camera-icon{
     display: none;
@@ -600,6 +610,13 @@ textarea.form-control {
     .card{
         margin-bottom: 25px;
         width: 60%;
+    }
+    #table-title{
+        padding-left: 3rem;
+    }
+
+    #card-title{
+        padding: 5px;
     }
 }
 

@@ -22,8 +22,8 @@
 		<table id="all_cards" class="stripe hover" style="width:100%">
 			<thead class="thead-dark">
 				<tr>
-					<th class="no-sort"></th>
-					<th>Title</th>
+
+					<th id="table-title">Title</th>
 					<th>Vendor Name</th>
 					<th>Condition</th>
 					<th>Price</th>
@@ -37,17 +37,18 @@
 				{% for card in cards %}
 				<tr class="pb-2 pt-2">
 					<td>
-						<div onmouseenter="imageToggleShow({{ card.id }})"
-							onmouseleave="imageToggleHide({{ card.id }})">
-							<img class="camera-icon" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
-		            </div>
-							{% if card.image %}
-							<img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
-                        {% endif %}
-                </td>
-					<td>
-						<a class="underline-link"
-							href="{% url 'view_specific_card' card.id %}">{{ card.card_title }}</a>
+						<div>
+							<div onmouseenter="imageToggleShow({{ card.id }})"
+								onmouseleave="imageToggleHide({{ card.id }})">
+								    <img class="camera-icon left" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
+		                    </div>
+						    <div class="relative">
+								<img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
+                           </div>
+                        </div>
+						<div class="pt-3">
+							<a class="underline-link" id="card-title" href="{% url 'view_specific_card' card.id %}">{{ card.card_title }}</a>		
+						</div>
 					</td>
 					<td>
 						<a class="underline-link"
