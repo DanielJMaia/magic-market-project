@@ -24,7 +24,7 @@
 					<th scope="col">Condition</th>
 					<th scope="col">Price</th>
 					<th scope="col"></th>
-					{% if user.is_authenticated %}
+					{% if user.is_authenticated and user != card.user %}
 					<th scope="col"></th>
 					{% endif %}
 				</tr>
@@ -45,7 +45,7 @@
 					<td>{{ card.card_condition }}</td>
 					<td>£{{ card.card_price }}</td>
 					<td><a href="{% url 'card_detail' card.id %}" class="button-effect nobreak">View Listing</a></td>
-					{% if user.is_authenticated %}
+					{% if user.is_authenticated and user != card.user %}
 					<td>
 						<div>
 							<form method="post" action="{% url 'add_to_cart' card.id %}">
@@ -59,6 +59,8 @@
 							</form>
 						</div>
 					</td>
+                    {% else %}
+                    <td></td>
 					{% endif %}
 				</tr>
 				{% endfor %}

@@ -97,7 +97,7 @@
 											{{ card.listing_published_date }}
 										</p>
 										<div class="row">
-											{% if user.is_authenticated %}
+											{% if user.is_authenticated and user.username != card.user.username %}
 											<form method="post" action="{% url 'add_to_cart' card.id %}">
 												{% csrf_token %}
 												<div class="input-group cart-form">
@@ -105,6 +105,8 @@
 													<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
 												</div>
 											</form>
+											{% elif user == card.user %}
+				                                    <a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit Listing</a>
 											{% endif %}
 										</div>
 									</div>
@@ -134,7 +136,7 @@
 												{{ card.listing_published_date }}
 											</p>
 											<div class="row">
-												{% if user.is_authenticated %}
+												{% if user.is_authenticated and user != card.user %}
 												<form method="post" action="{% url 'add_to_cart' card.id %}">
 													{% csrf_token %}
 													<div class="input-group cart-form">
@@ -142,6 +144,8 @@
 														<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
 													</div>
 												</form>
+                                                {% elif user == card.user %}
+				                                    <a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit Listing</a>
 												{% endif %}
 											</div>
 										</div>
@@ -201,7 +205,7 @@
 													{{ card.listing_published_date }}
 												</p>
 												<div class="row">
-													{% if user.is_authenticated %}
+													{% if user.is_authenticated and user.username != card.user.username %}
 													<form method="post" action="{% url 'add_to_cart' card.id %}">
 														{% csrf_token %}
 														<div class="input-group cart-form">
@@ -209,7 +213,9 @@
 															<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
 														</div>
 													</form>
-													{% endif %}
+													{% elif user == card.user %}
+				                                        <a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit Listing</a>
+												    {% endif %}
 												</div>
 											</div>
 										</div>
@@ -239,7 +245,7 @@
 														{{ card.listing_published_date }}
 													</p>
 													<div class="row">
-														{% if user.is_authenticated %}
+														{% if user.is_authenticated and user.username != card.user.username %}
 														<form method="post" action="{% url 'add_to_cart' card.id %}">
 															{% csrf_token %}
 															<div class="input-group cart-form">
@@ -247,7 +253,9 @@
 																<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
 															</div>
 														</form>
-														{% endif %}
+														{% elif user == card.user %}
+				                                            <a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit Listing</a>
+												        {% endif %}
 													</div>
 												</div>
 											</div>
