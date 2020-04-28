@@ -15,9 +15,7 @@ a:hover{
     text-decoration: none;
 }
 
-.table td{
-    vertical-align: middle;
-}
+
 
 .no-spacing{
     padding: 0;
@@ -33,6 +31,9 @@ a:hover{
     min-height: 800px;
 }
 
+.no-flex{
+    flex-wrap: nowrap;
+}
 
 /*End of Document classes*/
 
@@ -138,6 +139,42 @@ a:hover{
 
 /*End of Django Messages*/
 
+/*Datatables Styling*/
+
+.table td{
+    vertical-align: middle;
+}
+
+.thead-dark{
+    color: #fff;
+    background-color: #2a3439;
+}
+
+#all_cards_length{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#all_cards_info{
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+
+#all_cards_paginate{
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+
+table.dataTable thead th.sorting,
+table.dataTable thead th.sorting_asc,
+table.dataTable thead th.sorting_desc {
+    background: none;
+    padding: 15px 5px;
+}
+
+
+/**/
+
 /*Misc Document Classes*/
 
 .navbar-background{
@@ -218,7 +255,7 @@ a:hover{
     max-height: 270px;
     position: absolute;
     display: none;
-    z-index: 1;
+    z-index: 2;
 }
 .camera-icon{
     display: none;
@@ -545,11 +582,12 @@ textarea.form-control {
     }
 
     .camera-icon{
-    width: 65%;
+    width: 45px;
     height: auto;
     position: relative;
     bottom: 5px;
     display: block;
+    padding-top: 10px;
     }
 
     .center-small{
@@ -567,10 +605,6 @@ textarea.form-control {
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
-   .camera-icon{
-        width: 50%; 
-   }
-
    .banner-child{
        display: block;
    }
