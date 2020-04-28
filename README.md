@@ -1,6 +1,6 @@
 # Django Card Market
 <h1 align="center">
-  <a href="" target="_blank"><img src="https://imgur.com/a/SlK6Igg" alt="Home Page"/></a>
+  <a href="" target="_blank"><img src="https://i.imgur.com/KTj1qtS.png" alt="Home Page"/></a>
 </h1>
 
 ### Magic market
