@@ -92,12 +92,8 @@
 										<p class="border-bottom p-1">
 											<span class="boldtext">Price: </span>£{{ card.card_price }}
 										</p>
-										<p class="border-bottom p-1">
-											<span class="boldtext">Listing Published date:</span>
-											{{ card.listing_published_date }}
-										</p>
 										<div class="row">
-											{% if user.is_authenticated and user.username != card.user.username %}
+											{% if user.is_authenticated and user != card.user %}
 											<form method="post" action="{% url 'add_to_cart' card.id %}">
 												{% csrf_token %}
 												<div class="input-group cart-form">
@@ -130,10 +126,6 @@
 												{{ card.card_condition }}</p>
 											<p class="border-bottom p-1">
 												<span class="boldtext">Price: </span>£{{ card.card_price }}
-											</p>
-											<p class="border-bottom p-1">
-												<span class="boldtext">Listing Published date:</span>
-												{{ card.listing_published_date }}
 											</p>
 											<div class="row">
 												{% if user.is_authenticated and user != card.user %}
@@ -200,10 +192,6 @@
 												<p class="border-bottom p-1">
 													<span class="boldtext">Price: </span>£{{ card.card_price }}
 												</p>
-												<p class="border-bottom p-1">
-													<span class="boldtext">Listing Published date:</span>
-													{{ card.listing_published_date }}
-												</p>
 												<div class="row">
 													{% if user.is_authenticated and user.username != card.user.username %}
 													<form method="post" action="{% url 'add_to_cart' card.id %}">
@@ -239,10 +227,6 @@
 														{{ card.card_condition }}</p>
 													<p class="border-bottom p-1">
 														<span class="boldtext">Price: </span>£{{ card.card_price }}
-													</p>
-													<p class="border-bottom p-1">
-														<span class="boldtext">Listing Published date:</span>
-														{{ card.listing_published_date }}
 													</p>
 													<div class="row">
 														{% if user.is_authenticated and user.username != card.user.username %}
