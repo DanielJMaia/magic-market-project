@@ -1,6 +1,6 @@
 # Django Card Market
 <h1 align="center">
-  <a href="" target="_blank"><img src="https://i.imgur.com/4M00e3p.png" alt="Home Page"/></a>
+  <a href="" target="_blank"><img src="https://imgur.com/a/SlK6Igg" alt="Home Page"/></a>
 </h1>
 
 ### Magic market
@@ -8,7 +8,7 @@ This project is my submission for my Data Centric milestone project as part of m
 
 As someone with Celiac's disease it can be very challenging to adapt to the Gluten Free diet. Going out for meals becomes a lot more restrictive, and cooking at home can become extremely monotonous if you're always making the same three things. Finding recipes online becomes disheartening once you realize that nearly all of them require multiple ingredients to be replaced. Celiac Haven was created to approach that problem. It's a collection of gluten free, yet delicious, recipes that people everywhere can contribute to. The only gluten free replacements are ingredients that all celiacs already have at home!
 
-The website can be found [here](http://gf-cookbook.herokuapp.com/)
+The website can be found [here](#)
 
 ## Table of Contents
 1. [**UX**](#ux)
