@@ -138,13 +138,19 @@
 				{% for card in cards|slice:"5" %}
 				<tr class="center">
 					<td>
-						<div onmouseenter="imageToggleShow({{ card.id }})" onmouseleave="imageToggleHide({{ card.id }})">
-						    <img class="camera-icon" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
-		                </div>
-						{% if card.image %}
-							<img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
-                        {% endif %}
-                    </td>
+						<div>
+							<div onmouseenter="imageToggleShow({{ card.id }})"
+								onmouseleave="imageToggleHide({{ card.id }})">
+								    <img class="camera-icon left" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
+		                    </div>
+						    <div class="relative">
+								<img class="card-image-hidden" id="{{card.id}}" src="/media/{{ card.image }}">
+                           </div>
+                        </div>
+						<div class="pt-3">
+							<a class="underline-link" id="card-title" href="{% url 'view_specific_card' card.id %}">{{ card.card_title }}</a>		
+						</div>
+					</td>
 					<td>{{ card.card_title }}</td>
 					<td><a class="underline-link" href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></td>
 					<td>{{ card.card_condition }}</td>
@@ -172,6 +178,8 @@
 		</table>
 	</div>
 	<!--End of list of cards-->
+
+    
     <div class="row pb-4">
         {% for card in cards|slice:"1" %}
             <a href="{% url 'view_all_user_cards' card.user.id %}" class="button-effect nobreak">View All</a>

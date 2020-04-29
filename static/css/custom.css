@@ -78,10 +78,10 @@ a:hover{
     color: #423b95
 }
 
-.table-overflow{
+/*.table-overflow{
     overflow-x: auto;
 }
-
+*/
 .hidden-when-small{
         display: none;
 }
