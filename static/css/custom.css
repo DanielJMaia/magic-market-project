@@ -22,10 +22,7 @@ a:hover{
     margin: 0;
 }
 
-.row{
-    margin-left: 0px;
-    margin-right: 0px;
-}
+
 
 .no-content{
     min-height: 800px;
@@ -107,6 +104,11 @@ a:hover{
 .left{
     float: left;
 }
+
+.large-text{
+    font-size: 18px;
+}
+
 /*End of Utility Classes*/
 
 /*Min height so that footer looks nice*/
@@ -216,7 +218,6 @@ table.dataTable thead th.sorting_desc {
 }
 
 .button-effect{
-    margin-right: 20px;
     color: #fff;
     text-decoration: none;
     background-color:#2a3439;
@@ -258,6 +259,8 @@ table.dataTable thead th.sorting_desc {
 .card-image{
     height: 30rem;
 }
+
+
 
 .card-image-hidden{
     max-height: 270px;
@@ -386,7 +389,7 @@ table.dataTable thead th.sorting_desc {
 }
 
 .carousel-image {
-    width: 90%;
+    width: 80%;
     height: auto;
 }
 
@@ -626,9 +629,6 @@ textarea.form-control {
        display: block;
    }
 
-   .carousel-image {
-        float: right;
-    }
     .camera-icon{
         padding-top: 10px;
     }
