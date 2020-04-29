@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container small-body">
-	<h1>This is the registration page</h1>
-	<p>If you already have an account, please <a href="{% url 'login' %}">log in here</a></p>
 
-	<form method="POST">
-		{%csrf_token%}
-		{{ registration_form.as_p }}
-		<button type="submit">Register</button>
-	</form>
+<div class="container">
+	<div class="row">
+		<div class="text-center max-width pt-5 pb-4">
+			<h3>This is the registration page</h3>
+			<p>If you already have an account, please <a href="{% url 'login' %}">log in here</a></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 col-lg-6 pb-5 margin-center">
+			<form method="POST">
+				{%csrf_token%}
+				{{ registration_form.as_p }}
+				<button type="submit">Register</button>
+			</form>
+		</div>
+	</div>
 </div>
 {% endblock %}

@@ -1,38 +1,39 @@
 /*Document classes*/
-body{
+html, body{
+    height: 100%;
+    min-height: 100%!important;
     font-family: 'Karla', sans-serif;
     color: #2a3439;
-}
-
-.btn-custom{
-    color: #fff;
-    background-color:#2a3439;
-    border-color:#2a3439;
-    margin-left: 20px;
+    
 }
 
 a:hover{
     text-decoration: none;
 }
 
-.table td{
-    vertical-align: middle;
-}
 
 .no-spacing{
     padding: 0;
     margin: 0;
 }
 
-.row{
-    margin-left: 0px;
-    margin-right: 0px;
-}
 
 .no-content{
     min-height: 800px;
 }
 
+.no-flex{
+    flex-wrap: nowrap;
+}
+
+#container{
+    min-height: 100%;
+}
+
+#main {
+    overflow: auto;
+    padding-bottom: 310px;
+}
 
 /*End of Document classes*/
 
@@ -77,10 +78,10 @@ a:hover{
     color: #423b95
 }
 
-.table-overflow{
+/*.table-overflow{
     overflow-x: auto;
 }
-
+*/
 .hidden-when-small{
         display: none;
 }
@@ -102,30 +103,17 @@ a:hover{
 .relative{
     position: relative;
 }
+
+.left{
+    float: left;
+}
+
+.large-text{
+    font-size: 18px;
+}
+
 /*End of Utility Classes*/
 
-/*Min height so that footer looks nice*/
-
-@media only screen and (max-height : 700px) {
-.small-body{
-        min-height: 5px;
-    }
-}
-
-@media only screen and (max-height : 1080px) {
-.small-body{
-        min-height: 658px;
-    }
-}
-
-@media only screen and (max-height : 1440px) {
-.small-body{
-        min-height: 760px;
-    }
-}
-
-
-/*End of min height*/
 
 /*Django Messages*/
 
@@ -138,7 +126,48 @@ a:hover{
 
 /*End of Django Messages*/
 
+/*Datatables Styling*/
+
+.table td{
+    vertical-align: middle;
+}
+
+.thead-dark{
+    color: #fff;
+    background-color: #2a3439;
+}
+
+#all_cards_length{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#all_cards_info{
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+
+#all_cards_paginate{
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+
+table.dataTable thead th.sorting,
+table.dataTable thead th.sorting_asc,
+table.dataTable thead th.sorting_desc {
+    background: none;
+    padding: 15px 5px;
+}
+
+#all_cards{
+    text-align: center;
+}
+
+
+/**/
+
 /*Misc Document Classes*/
+
 .navbar-background{
     background-color: #2a3439;
     padding: 0;
@@ -170,7 +199,6 @@ a:hover{
 }
 
 .button-effect{
-    margin-right: 20px;
     color: #fff;
     text-decoration: none;
     background-color:#2a3439;
@@ -213,11 +241,15 @@ a:hover{
     height: 30rem;
 }
 
+
+
 .card-image-hidden{
     max-height: 270px;
     position: absolute;
     display: none;
-    z-index: 1;
+    z-index: 2;
+    top: 50px;
+    left: 0;
 }
 .camera-icon{
     display: none;
@@ -293,6 +325,7 @@ a:hover{
 
 .cards-background{
     background-color: #F5F5F5;
+    min-height: 825px;
 }
 
 .custom-controls{
@@ -337,7 +370,7 @@ a:hover{
 }
 
 .carousel-image {
-    width: 100%;
+    width: 80%;
     height: auto;
 }
 
@@ -359,78 +392,161 @@ textarea.form-control {
 /* Footer Styling */
 .site-footer
 {
-  background-color:#2a3439;
-  padding:45px 0 20px;
-  font-size:15px;
-  line-height:24px;
-  color:#737373;
+    background-color:#2a3439;
+    padding:45px 0 20px;
+    font-size:15px;
+    line-height:24px;
+    color:#737373;
+    
+}
+#footer{
+    position: relative;
+    height: 650px;
+    margin-top: -330px;
+    clear: both;
 }
 .site-footer hr
 {
-  border-top-color:#bbb;
-  opacity:0.5
+    border-top-color:#bbb;
+    opacity:0.5
 }
 .site-footer hr.small
 {
-  margin:20px 0
+    margin:20px 0
 }
 .site-footer h6
 {
-  color:#fff;
-  font-size:16px;
-  text-transform:uppercase;
-  margin-top:5px;
-  letter-spacing:2px
+    color:#fff;
+    font-size:16px;
+    text-transform:uppercase;
+    margin-top:5px;
+    letter-spacing:2px
 }
 .site-footer a
 {
-  color:#737373;
+    color:#737373;
 }
 .site-footer a:hover
 {
-  color:#3366cc;
-  text-decoration:none;
+    color:#3366cc;
+    text-decoration:none;
 }
 .footer-links
 {
-  padding-left:0;
-  list-style:none
+    padding-left:0;
+    list-style:none
 }
 .footer-links li
 {
-  display:block
+    display:block
 }
 .footer-links a
 {
-  color:#737373
+    color:#737373
 }
 .footer-links a:active,.footer-links a:focus,.footer-links a:hover
 {
- color:#737373;
-  text-decoration:underline;
+    color:#737373;
+    text-decoration:underline;
 }
 .footer-links.inline li
 {
-  display:inline-block
+    display:inline-block
 }
 .site-footer .social-icons
 {
-  text-align:right
+    text-align:right
 }
 .site-footer .social-icons a
 {
-  width:40px;
-  height:40px;
-  line-height:40px;
-  margin-left:6px;
-  margin-right:0;
-  border-radius:100%;
-  background-color:#33353d
+    width:40px;
+    height:40px;
+    line-height:40px;
+    margin-left:6px;
+    margin-right:0;
+    border-radius:100%;
+    background-color:#33353d
 }
 .copyright-text
 {
-  margin:0
+    margin:0
 }
+
+.social-icons
+{
+    padding-left:0;
+    margin-bottom:0;
+    list-style:none
+}
+.social-icons li
+{
+    display:inline-block;
+    margin-bottom:4px
+}
+.social-icons li.title
+{
+    margin-right:15px;
+    text-transform:uppercase;
+    color:#96a2b2;
+    font-weight:700;
+    font-size:13px
+}
+.social-icons a{
+    background-color:#eceeef;
+    color:#818a91;
+    font-size:16px;
+    display:inline-block;
+    line-height:44px;
+    width:44px;
+    height:44px;
+    text-align:center;
+    margin-right:8px;
+    border-radius:100%;
+    -webkit-transition:all .2s linear;
+    -o-transition:all .2s linear;
+    transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+    color:#fff;
+    background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+    line-height:34px;
+    height:34px;
+    width:34px;
+    font-size:14px
+}
+
+.social-icons a.linkedin:hover
+{
+    background-color:#007bb6
+}
+.social-icons a.github:hover
+{
+    background-color:#24292e
+}
+
+
+@media (max-width:767px)
+{
+  .site-footer
+  {
+      padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+      text-align:center
+  }
+  .social-icons li.title
+  {
+      display:block;
+      margin-right:0;
+      font-weight:600
+  }
+}
+
 @media (max-width:991px)
 {
   .site-footer [class^=col-]
@@ -438,91 +554,14 @@ textarea.form-control {
     margin-bottom:30px
   }
 }
-@media (max-width:767px)
-{
-  .site-footer
-  {
-    padding-bottom:0
-  }
-  .site-footer .copyright-text,.site-footer .social-icons
-  {
-    text-align:center
-  }
-}
-.social-icons
-{
-  padding-left:0;
-  margin-bottom:0;
-  list-style:none
-}
-.social-icons li
-{
-  display:inline-block;
-  margin-bottom:4px
-}
-.social-icons li.title
-{
-  margin-right:15px;
-  text-transform:uppercase;
-  color:#96a2b2;
-  font-weight:700;
-  font-size:13px
-}
-.social-icons a{
-  background-color:#eceeef;
-  color:#818a91;
-  font-size:16px;
-  display:inline-block;
-  line-height:44px;
-  width:44px;
-  height:44px;
-  text-align:center;
-  margin-right:8px;
-  border-radius:100%;
-  -webkit-transition:all .2s linear;
-  -o-transition:all .2s linear;
-  transition:all .2s linear
-}
-.social-icons a:active,.social-icons a:focus,.social-icons a:hover
-{
-  color:#fff;
-  background-color:#29aafe
-}
-.social-icons.size-sm a
-{
-  line-height:34px;
-  height:34px;
-  width:34px;
-  font-size:14px
-}
 
-.social-icons a.linkedin:hover
-{
-  background-color:#007bb6
-}
-.social-icons a.github:hover
-{
-  background-color:#24292e
-}
-@media (max-width:767px)
-{
-  .social-icons li.title
-  {
-    display:block;
-    margin-right:0;
-    font-weight:600
-  }
-}
+
 /* End of footer styling */
 
 
-/* MEDIA QUERIES */ 
+/* OTHER MEDIA QUERIES */ 
 
 
-/* Custom, iPhone Retina */ 
-@media only screen and (min-width : 320px) {
-
-}
 
 /* Extra Small Devices, Phones */ 
 @media only screen and (min-width : 480px) {
@@ -543,11 +582,12 @@ textarea.form-control {
     }
 
     .camera-icon{
-    width: 65%;
+    width: 45px;
     height: auto;
     position: relative;
     bottom: 5px;
     display: block;
+    padding-top: 15px;
     }
 
     .center-small{
@@ -561,21 +601,27 @@ textarea.form-control {
         margin-bottom: 25px;
         width: 60%;
     }
+    #table-title{
+        padding-left: 3rem;
+    }
+
+    #card-title{
+        padding: 0 2px;
+    }
+    #footer{
+        height: 350px;
+    }
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
-   .camera-icon{
-        width: 50%; 
-   }
-
    .banner-child{
        display: block;
    }
 
-   .carousel-image {
-    float: right;
-}
+    .camera-icon{
+        padding-top: 10px;
+    }
     
 }
 

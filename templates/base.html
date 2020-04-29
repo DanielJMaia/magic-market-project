@@ -11,6 +11,7 @@
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static 'css/custom.css' %}">
 	<link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
+	<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
 		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
 	</script>
@@ -22,75 +23,81 @@
 	</script>
 	<script src="https://kit.fontawesome.com/af915a2cd1.js" crossorigin="anonymous"></script>
 
+
 	{% block head_js %}
 	{% endblock %}
 </head>
 
 <body>
-	<div class="container-fluid navbar-background">
-		<nav class="navbar navbar-expand-lg navbar-dark">
-			<a class="navbar-brand" href="{% url 'home_page' %}">MagicMarket</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+	<div id="container">
+		<div id="main">
+			<div class="container-fluid navbar-background">
+				<nav class="navbar navbar-expand-lg navbar-dark">
+					<a class="navbar-brand" href="{% url 'home_page' %}">MagicMarket</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-			<div class="collapse navbar-collapse" id="navbarText">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'get_cards' %}">Browse</a>
-					</li>
-					{% if user.is_authenticated %}
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'view_user' %}">My Profile</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'new_card' %}">Add a new listing</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'view_cart' %}">View Cart
-							{% if cards_count > 0 %}
-							<label>{{ cards.count }}</label>
+					<div class="collapse navbar-collapse" id="navbarText">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'get_cards' %}">Browse</a>
+							</li>
+							{% if user.is_authenticated %}
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'view_user' %}">My Profile</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'new_card' %}">Add a new listing</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'view_cart' %}">View Cart
+									{% if cards_count > 0 %}
+									<label>{{ cards.count }}</label>
+									{% endif %}
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'logout' %}">Logout</a>
+							</li>
+							{% else %}
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'login' %}">Login</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'register' %}">Register</a>
+							</li>
 							{% endif %}
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'logout' %}">Logout</a>
-					</li>
-					{% else %}
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'login' %}">Login</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'register' %}">Register</a>
-					</li>
-					{% endif %}
-                    <li class="nav-item">
-						<a class="nav-link" href="{% url 'search_page' %}">Advanced Search</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav">
-					<li>
-						<!--Search Bar-->
-						<form action="{% url 'search' %}" method="GET">
-							<div class="input-group">
-								<input class="form-control search" type="text" name="search_title">
-								<div class="input-group-append">
-									<button type="submit">Search</button>
-								</div>
-							</div>
-						</form>
-						<!--Search Bar End-->
-					</li>
-				</ul>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'search_page' %}">Advanced Search</a>
+							</li>
+						</ul>
+						<ul class="navbar-nav">
+							<li>
+								<!--Search Bar-->
+								<form action="{% url 'search' %}" method="GET">
+									<div class="input-group">
+										<input class="form-control search" type="text" name="search_title">
+										<div class="input-group-append">
+											<button type="submit">Search</button>
+										</div>
+									</div>
+								</form>
+								<!--Search Bar End-->
+							</li>
+						</ul>
+					</div>
+				</nav>
 			</div>
-		</nav>
+			<!--Website Content-->
+			{% block content %}
+			{% endblock %}
+
+			<!--Website Content End-->
+		</div>
 	</div>
-	<!--Card information-->
-	{% block content %}
-	{% endblock %}
-	<!--Card information End-->
 
 	<!-- Site footer -->
-	<footer class="site-footer">
+	<footer class="site-footer" id="footer">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 col-md-8 pr-4">
@@ -103,7 +110,7 @@
 				<div class="col-xs-6 col-md-4">
 					<h6>Quick Access</h6>
 					<ul class="footer-links">
-                        <li><a href="mailto:testemail@gmail.com">Contact Us</a></li>
+						<li><a href="mailto:testemail@gmail.com">Contact Us</a></li>
 						<li><a href="{% url 'get_cards' %}">Browse All Cards</a></li>
 						<li><a href="{% url 'new_card' %}">Submit A New Listing</a></li>
 						{% if user.is_authenticated %}
