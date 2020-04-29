@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+
 class Card(models.Model):
     """
     This is going to be a single card being sold
@@ -38,5 +39,5 @@ class Card(models.Model):
     image = models.ImageField(upload_to="img", blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default='0')
 
-    def __unicode__(self):
-        return self.title
+    def __str__(self):
+        return self.card_title
