@@ -7,7 +7,7 @@
 	{% if messages %}
 	<div class="django-message p-2">
 		{% for message in messages %}
-		    <h4> {{message}} </h4>
+		<h4> {{message}} </h4>
 		{% endfor %}
 	</div>
 	{% endif %}
@@ -27,8 +27,8 @@
 	<div class="container">
 		<div class="row border-bottom">
 			<div class="px-3 py-3 pt-md-4 pb-md-6 text-center">
-				<h3 class="display-4">Magic Market Update</h3>
-				<p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto
+				<h1 class="col-12">Magic Market Update</h1>
+				<p class="col-12 large-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto
 					rerum hic accusantium velit consequatur, eos ipsum quis natus sapiente iure explicabo
 					adipisci pariatur alias officia numquam. Consectetur, aspernatur?
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto rerum hic
@@ -37,7 +37,7 @@
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto rerum hic
 					accusantium velit consequatur, eos ipsum quis natus sapiente iure explicabo adipisci
 					pariatur alias officia numquam. Consectetur, aspernatur?</p>
-				<p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto
+				<p class="col-12 large-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto
 					rerum hic accusantium velit consequatur, eos ipsum quis natus sapiente iure explicabo
 					adipisci pariatur alias officia numquam. Consectetur, aspernatur?
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto rerum hic
@@ -51,48 +51,33 @@
 	</div>
 	<!---->
 
-	<!--Popular cards sorted by views-->
-	<div class="container-fluid cards-background">
-		<div class="row justify-content-center pt-5 pb-5">
-			<div class="col-md-12 col-xl-6 p-3">
-				<div class="row pt-3 pb-2">
-					<h1 class="col-12 center">Popular Cards</h1>
-				</div>
-				<div class="row justify-center pb-5 pt-3">
-					<a class="custom-controls carousel-prev" href="#carouselExampleControls" role="button"
-						data-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="custom-controls carousel-next" href="#carouselExampleControls" role="button"
-						data-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-				</div>
-				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-					<div class="carousel-inner">
-						{% for card in cards|dictsortreversed:"listing_views"|slice:"5" %}
-						{% if forloop.counter == 1 %}
-						<div class="carousel-item active">
-							<div class="row justify-center">
-								<div class="col-sm-12 col-md-5 card-info pt-5">
-									<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
-								</div>
-									<div class="col-sm-12 col-md-6 p-5 center-small border-thin card-info">
-										<h3>{{ card.card_title }}</h3>
-										<p>Vendor: <a class="underline-link"
-												href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
-										</p>
-										<p class="border-bottom p-1">{{ card.card_description}}</p>
-										<p class="border-bottom p-1"><span class="boldtext">Edition:</span>
-											{{ card.card_edition }}</p>
-										<p class="border-bottom p-1"><span class="boldtext">Condition:</span>
-											{{ card.card_condition }}</p>
+	<!--Latest listings section-->
+			<div class="container-fluid cards-background border-bottom">
+				<div class="container">
+					<div class="row pt-3 pb-2">
+						<h1 class="col-12 center">Latest Cards</h1>
+					</div>
+					<div class="row">
+						{% for card in cards|dictsortreversed:"listing_published_date"|slice:"3" %}
+						<div class="col-sm-12 col-md-4 justify-center pt-3 pb-5">
+							<div class="row">
+								<div>
+                                    <a href="{% url 'card_detail' card.id %}">
+									    <img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Image #{{ forloop.counter }}">
+							        </a>
+                                </div>
+							</div>
+								<div class="row justify-center center pt-3">
+									<div>
 										<p class="border-bottom p-1">
 											<span class="boldtext">Price: </span>£{{ card.card_price }}
 										</p>
-										<div class="row">
+										<p class="border-bottom p-1">Vendor: <a class="underline-link"
+												href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
+										</p>
+										<p class="p-1"><span class="boldtext">Condition:</span>
+											{{ card.card_condition }}</p>
+										<div class="row justify-center">
 											{% if user.is_authenticated and user != card.user %}
 											<form method="post" action="{% url 'add_to_cart' card.id %}">
 												{% csrf_token %}
@@ -102,202 +87,114 @@
 												</div>
 											</form>
 											{% elif user == card.user %}
-				                                    <a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit Listing</a>
+											<a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit
+												Listing</a>
 											{% endif %}
 										</div>
 									</div>
 								</div>
 							</div>
-							{% else %}
-							<div class="carousel-item">
-								<div class="row justify-center">
-									<div class="col-sm-12 col-md-5 card-info pt-5">
-										<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
-                                    </div>
-										<div class="col-sm-12 col-md-6 p-5 center-small border-thin card-info">
-											<h3>{{ card.card_title }}</h3>
-											<p>Vendor: <a class="underline-link"
-													href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
-											</p>
-											<p class="border-bottom p-1">{{ card.card_description}}</p>
-											<p class="border-bottom p-1"><span class="boldtext">Edition:</span>
-												{{ card.card_edition }}</p>
-											<p class="border-bottom p-1"><span class="boldtext">Condition:</span>
-												{{ card.card_condition }}</p>
-											<p class="border-bottom p-1">
-												<span class="boldtext">Price: </span>£{{ card.card_price }}
-											</p>
-											<div class="row">
-												{% if user.is_authenticated and user != card.user %}
-												<form method="post" action="{% url 'add_to_cart' card.id %}">
-													{% csrf_token %}
-													<div class="input-group cart-form">
-														<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
-														<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-													</div>
-												</form>
-                                                {% elif user == card.user %}
-				                                    <a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit Listing</a>
-												{% endif %}
-											</div>
-										</div>
-									</div>
-								</div>
-								{% endif %}
-								{% endfor %}
-							</div>
+							{% endfor %}
 						</div>
 					</div>
-
-					<!--End of popular cards sections-->
-
-					<!--Latest listings section-->
-
-
-					<div class="col-sm-12 col-xl-6 p-3">
-						<div class="row pt-3 pb-2">
-							<h1 class="col-12 center">Latest Listings</h1>
-						</div>
-						<div class="row justify-center pb-5 pt-3">
-							<a class="custom-controls carousel-prev" href="#carouselExampleControls1" role="button"
-								data-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<span class="sr-only">Previous</span>
-							</a>
-							<a class="custom-controls carousel-next" href="#carouselExampleControls1" role="button"
-								data-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<span class="sr-only">Next</span>
-							</a>
-						</div>
-						<div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								{% for card in cards|dictsortreversed:"listing_created_date"|slice:"5"%}
-								{% if forloop.counter == 1 %}
-								<div class="carousel-item active">
-									<div class="row justify-center">
-										<div class="col-sm-12 col-md-5 card-info pt-5">
-											<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
-                                        </div>
-											<div class="col-sm-12 col-md-6 p-5 center-small border-thin card-info">
-												<h3>{{ card.card_title }}</h3>
-												<p>Vendor: <a class="underline-link"
-														href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
-												</p>
-												<p class="border-bottom p-1">{{ card.card_description}}</p>
-												<p class="border-bottom p-1"><span class="boldtext">Edition:</span>
-													{{ card.card_edition }}</p>
-												<p class="border-bottom p-1"><span class="boldtext">Condition:</span>
-													{{ card.card_condition }}</p>
-												<p class="border-bottom p-1">
-													<span class="boldtext">Price: </span>£{{ card.card_price }}
-												</p>
-												<div class="row">
-													{% if user.is_authenticated and user.username != card.user.username %}
-													<form method="post" action="{% url 'add_to_cart' card.id %}">
-														{% csrf_token %}
-														<div class="input-group cart-form">
-															<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
-															<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-														</div>
-													</form>
-													{% elif user == card.user %}
-				                                        <a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit Listing</a>
-												    {% endif %}
-												</div>
-											</div>
-										</div>
-									</div>
-									{% else %}
-									<div class="carousel-item">
-										<div class="row justify-center">
-											<div class="col-sm-12 col-md-5 card-info pt-5">
-												<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Slide #{{ forloop.counter }}">
-                                        </div>
-												<div class="col-sm-12 col-md-6 p-5 center-small border-thin card-info">
-													<h3>{{ card.card_title }}</h3>
-													<p>Vendor: <a class="underline-link"
-															href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
-													</p>
-													<p class="border-bottom p-1">{{ card.card_description}}</p>
-													<p class="border-bottom p-1"><span class="boldtext">Edition:</span>
-														{{ card.card_edition }}</p>
-													<p class="border-bottom p-1">
-														<span class="boldtext">Condition:</span>
-														{{ card.card_condition }}</p>
-													<p class="border-bottom p-1">
-														<span class="boldtext">Price: </span>£{{ card.card_price }}
-													</p>
-													<div class="row">
-														{% if user.is_authenticated and user.username != card.user.username %}
-														<form method="post" action="{% url 'add_to_cart' card.id %}">
-															{% csrf_token %}
-															<div class="input-group cart-form">
-																<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
-																<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-															</div>
-														</form>
-														{% elif user == card.user %}
-				                                            <a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit Listing</a>
-												        {% endif %}
-													</div>
-												</div>
-											</div>
-										</div>
-										{% endif %}
-										{% endfor %}
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--End of SECTION-->
-					</div>
-					<!--Deck Help Section-->
-					<div class="container">
-						<div class="row border-top">
-							<div class="px-3 py-3 pt-md-4 pb-md-6">
-								<h3 class="display-4 center">Deck Help</h3>
-								<p class="lead">Not Sure where to start? Need help picking which cards are best in your
-									new deck? We're here to help!</p>
-								<p>Send us an email at <a class="underline-link" href="#">EMAIL HERE</a> and we'll be
-									happy to help! We can
-									help you with</p>
-								<ul>
-									<li>Deck Building</li>
-									<li>Finding specific cards</li>
-									<li>Budget alternatives</li>
-									<li>Finding out which format is right for you!</li>
-									<li>Rules questions</li>
-								</ul>
-								<p>You can also check out some of other resources below. The MTG community is booming
-									and are always looking to help newcomers!</p>
-
-							</div>
-						</div>
-						<div class="row pb-5">
-							<div class="col-sm-12 col-md-4 no-spacing">
-								<a class="underline-link" target="_blank" href="#">
-									<img class="resource_image" src="{% static 'img/4x4_1.jpg' %}" alt="">
-									<h4 class="pt-2 center">Test3</h4>
-								</a>
-							</div>
-							<div class="col-sm-12 col-md-4 no-spacing">
-								<a class="underline-link" target="_blank" href="#">
-									<img class="resource_image" src="{% static 'img/4x4_2.jpg' %}" alt="">
-									<h4 class="pt-2 center">Test3</h4>
-								</a>
-							</div>
-							<div class="col-sm-12 col-md-4 no-spacing">
-								<a class="underline-link" target="_blank" href="#">
-									<img class="resource_image" src="{% static 'img/4x4_3.jpg' %}" alt="">
-									<h4 class="pt-2 center">Test3</h4>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!--End of deck help-->
 				</div>
-				{% endblock %}
-				{% block end_js %}
-				<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
-				{% endblock %}
+				<!--End of SECTION-->
+
+			<!--Latest Most Popular section-->
+			<div class="container-fluid cards-background">
+				<div class="container">
+					<div class="row pt-5">
+						<h1 class="col-12 center">Most Popular Cards</h1>
+					</div>
+					<div class="row">
+						{% for card in cards|dictsortreversed:"listing_views"|slice:"3" %}
+						<div class="col-sm-12 col-md-4 justify-center pt-3 pb-5">
+							<div class="row">
+								<div>
+                                    <a href="{% url 'card_detail' card.id %}">
+									    <img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Image #{{ forloop.counter }}">
+							        </a>
+                                </div>
+								</div>
+								<div class="row justify-center center pt-3">
+									<div>
+										<p class="border-bottom p-1">
+											<span class="boldtext">Price: </span>£{{ card.card_price }}
+										</p>
+										<p class="border-bottom p-1">Vendor: <a class="underline-link"
+												href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
+										</p>
+										<p class="p-1"><span class="boldtext">Condition:</span>
+											{{ card.card_condition }}</p>
+										<div class="row justify-center">
+											{% if user.is_authenticated and user != card.user %}
+											<form method="post" action="{% url 'add_to_cart' card.id %}">
+												{% csrf_token %}
+												<div class="input-group cart-form">
+													<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
+													<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+												</div>
+											</form>
+											{% elif user == card.user %}
+											<a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit
+												Listing</a>
+											{% endif %}
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<!--End of SECTION-->
+
+				<!--Deck Help Section-->
+				<div class="container">
+					<div class="row border-top">
+						<div class="px-3 py-3 pt-md-4 pb-md-6 margin-center">
+							<h3 class="display-4 center">Deck Help</h3>
+							<p class="lead">Not Sure where to start? Need help picking which cards are best in your
+								new deck? We're here to help!</p>
+							<p>Send us an email at <a class="underline-link" href="#">EMAIL HERE</a> and we'll be
+								happy to help! We can
+								help you with</p>
+							<ul>
+								<li>Deck Building</li>
+								<li>Finding specific cards</li>
+								<li>Budget alternatives</li>
+								<li>Finding out which format is right for you!</li>
+								<li>Rules questions</li>
+							</ul>
+							<p>You can also check out some of other resources below. The MTG community is booming
+								and are always looking to help newcomers!</p>
+
+						</div>
+					</div>
+					<div class="row pb-5">
+						<div class="col-sm-12 col-md-4 no-spacing">
+							<a class="underline-link" target="_blank" href="#">
+								<img class="resource_image" src="{% static 'img/4x4_1.jpg' %}" alt="">
+								<h4 class="pt-2 center">Test3</h4>
+							</a>
+						</div>
+						<div class="col-sm-12 col-md-4 no-spacing">
+							<a class="underline-link" target="_blank" href="#">
+								<img class="resource_image" src="{% static 'img/4x4_2.jpg' %}" alt="">
+								<h4 class="pt-2 center">Test3</h4>
+							</a>
+						</div>
+						<div class="col-sm-12 col-md-4 no-spacing">
+							<a class="underline-link" target="_blank" href="#">
+								<img class="resource_image" src="{% static 'img/4x4_3.jpg' %}" alt="">
+								<h4 class="pt-2 center">Test3</h4>
+							</a>
+						</div>
+					</div>
+				</div>
+				<!--End of deck help-->
+			</div>
+			{% endblock %}
+			{% block end_js %}
+			<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+			{% endblock %}
