@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import UserLoginForm, RegistrationForm
 from cards.models import Card
+from checkout.models import Order, OrderLineItem
 
 
 def login(request):
@@ -71,7 +72,7 @@ def register(request):
     return render(request, 'register.html', {
         "registration_form": RegistrationForm})
 
-
+@login_required
 def view_user(request):
     """This retrieves the user from the database and redirects to their profile page"""
     user = User.objects.get(email=request.user.email)
@@ -102,3 +103,10 @@ def view_profile(request, pk):
     profile = get_object_or_404(User, pk=pk)
     cards = Card.objects.filter(user=profile)
     return render(request, 'user_profile.html', {"profile": profile, "cards": cards})
+
+@login_required
+def view_history(request):
+    user = User.objects.get(email=request.user.email)
+    orders = Order.objects.filter(user=user)
+    order_line = OrderLineItem.objects.all()
+    return render(request, 'order_history.html', {"user": user, "orders": orders, "order_line": order_line})

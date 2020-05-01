@@ -1,5 +1,6 @@
 from django.db import models
 from cards.models import Card
+from django.contrib.auth.models import User
 
 
 class Order(models.Model):
@@ -12,9 +13,11 @@ class Order(models.Model):
     street_address2 = models.CharField(max_length=40, blank=True)
     county = models.CharField(max_length=40, blank=False)
     date = models.DateField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # card = models.ForeignKey(Card, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{0}-{1}-{2}".format(self.id, self.date, self.full_name)
+        return "Order ID: {0} - Date: {1}- Customer Name: {2} - Customer Username: {3}".format(self.id, self.date, self.full_name, self.user.username)
 
 
 class OrderLineItem(models.Model):
