@@ -107,6 +107,16 @@ def view_profile(request, pk):
 @login_required
 def view_history(request):
     user = User.objects.get(email=request.user.email)
-    orders = Order.objects.filter(user=user)
+    order_list = Order.objects.filter(user=user)
     order_line = OrderLineItem.objects.all()
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(order_list, 3)
+    try:
+        orders = paginator.page(page)
+    except PageNotAnInteger:
+        orders = paginator.page(1)
+    except EmptyPage:
+        orders = paginator.page(paginator.num_pages)
+
     return render(request, 'order_history.html', {"user": user, "orders": orders, "order_line": order_line})

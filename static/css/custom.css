@@ -4,8 +4,6 @@ html, body{
     min-height: 100%!important;
     font-family: 'Karla', sans-serif;
     color: #2a3439;
-    word-wrap: break-word;
-    word-break: break-word;
 }
 
 a:hover{

@@ -17,22 +17,6 @@ def get_cards(request):
     uploaded to the website by users
     """
     card_list = Card.objects.all()
-
-    """
-    for card in cards:
-        print(card.user)
-    """
-
-    page = request.GET.get('page', 1)
-
-    paginator = Paginator(card_list, 20)
-    try:
-        cards = paginator.page(page)
-    except PageNotAnInteger:
-        cards = paginator.page(1)
-    except EmptyPage:
-        cards = paginator.page(paginator.num_pages)
-
     return render(request, "cards.html", {'cards': cards})
 
 
