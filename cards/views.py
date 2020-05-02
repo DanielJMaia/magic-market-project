@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib import auth, messages
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Card
 from .forms import CardDescForm
 
@@ -16,23 +15,7 @@ def get_cards(request):
     Create a view that will return a list of cards that have been
     uploaded to the website by users
     """
-    card_list = Card.objects.all()
-
-    """
-    for card in cards:
-        print(card.user)
-    """
-
-    page = request.GET.get('page', 1)
-
-    paginator = Paginator(card_list, 20)
-    try:
-        cards = paginator.page(page)
-    except PageNotAnInteger:
-        cards = paginator.page(1)
-    except EmptyPage:
-        cards = paginator.page(paginator.num_pages)
-
+    cards = Card.objects.all()
     return render(request, "cards.html", {'cards': cards})
 
 

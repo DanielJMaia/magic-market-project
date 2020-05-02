@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="text-center max-width pt-5 pb-4">
+			<h3>{{ user.username }}'s order history</h3>
+		</div>
+	</div>
+
+	{% if orders %}
+
+	<div class="p-3 border">
+
+		{% for order in orders reversed %}
+
+		<div class="pb-5">
+			<div class="border pt-2 pr-2 pb-2 pl-3 order-info-header">
+				<div class="row pb-2">
+
+					<div class="col-sm-12 col-md-4">
+						<div class="row justify-center">
+							<span class="pr-2 pl-2">Order ID #{{order.id}}</span>
+						</div>
+					</div>
+
+					<div class="col-sm-12 col-md-4">
+						<div class="row justify-center">
+							<span class="pr-2 pl-2">Order Placed:</span>
+						</div>
+						<div class="row justify-center">
+							<span class="pr-2 pl-2 pb-4">{{ order.date }}</span>
+						</div>
+					</div>
+
+					<div class="col-sm-12 col-md-4">
+						<div class="row justify-center">
+							<span class="pr-2 pl-2">Dispatch to:</span>
+						</div>
+						<div class="row justify-center">
+							<span class="pr-2 pl-2 pb-4">{{ order.full_name }}</span>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<div class="col-sm-12 col-md-4">
+						<div class="row justify-center">
+							<span class="pr-2 pl-2">Address Line 1</span>
+						</div>
+						<div class="row justify-center">
+							<span class="pr-2 pl-2 pb-4">{{ order.street_address1 }}</span>
+						</div>
+					</div>
+
+					{% if order.street_address2 %}
+					<div class="col-sm-12 col-md-4">
+						<div class="row justify-center">
+							<span class="pr-2 pl-2">Address Line 2</span>
+						</div>
+						<div class="row justify-center">
+							<span class="pr-2 pl-2 pb-4">{{ order.street_address2 }}</span>
+						</div>
+					</div>
+					{% endif %}
+
+					<div class="col-sm-12 col-md-4">
+						<div class="row justify-center">
+							<span class="pr-2 pl-2">Town or City</span>
+						</div>
+						<div class="row justify-center">
+							<span class="pr-2 pl-2 pb-4">{{ order.town_or_city }}</span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+            
+            <div class="pt-2">
+			{% for order_l in order_line %}
+			{% if order_l.order.id == order.id %}
+			<div class="row justify-center checkout-cards">
+				<span class="pt-2 pl-4 ">{{ order_l.quantity }} x {{ order_l.card.card_title }} - £{{ order_l.card.card_price }} each</span>
+			</div>
+			{% endif %}
+			{% endfor %}
+            </div>
+		</div>
+		{% endfor %}
+	</div>
+	{% else %}
+	<div class="row">
+		<div class="text-center max-width pt-5 pb-4">
+			<h4>You have no previous orders</h4>
+		</div>
+	</div>
+	{% endif %}
+
+
+	{% if orders.has_other_pages %}
+    <nav aria-label="...">
+        <ul class="pagination justify-center pt-4">
+            {% if orders.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ orders.previous_page_number }}">&laquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">&laquo;</span>
+                </li>
+            {% endif %}
+            {% for i in orders.paginator.page_range %}
+                {% if orders.number == i %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if orders.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ orders.next_page_number }}">&raquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">&raquo;</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+	{% endif %}
+</div>
+
+{% endblock %}
