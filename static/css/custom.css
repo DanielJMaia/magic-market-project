@@ -5,112 +5,94 @@ html, body{
     font-family: 'Karla', sans-serif;
     color: #2a3439;
 }
-
 a:hover{
     text-decoration: none;
 }
-
-
 .no-spacing{
     padding: 0;
     margin: 0;
 }
-
-
 .no-content{
     min-height: 800px;
 }
-
 .no-flex{
     flex-wrap: nowrap;
 }
-
 #container{
     min-height: 100%;
 }
-
 #main {
     overflow: auto;
     padding-bottom: 310px;
 }
 
+ul{
+    list-style-type: none;
+}
 /*End of Document classes*/
+
 
 /*Utility Classes*/
 
 .max-width{
     width: 100%;
 }
-
 .center{
     text-align: center;
 }
-
 .center-small{
     text-align: center;
 }
-
 .margin-center{
     margin-right: auto !important;
     margin-left: auto !important;
 }
-
 .justify-center{
     justify-content: center;
 }
-
 .negative-top{
     top: -8px;
 }
-
 .nobreak {
   white-space: nowrap;
 }
-
 .underline-link{
     text-decoration: underline;
     color: #2a3439;
 }
-
 .underline-link:hover{
     text-decoration: underline;
-    color: #423b95
+    color: #2a3439c7;
 }
-
-/*.table-overflow{
-    overflow-x: auto;
-}
-*/
 .hidden-when-small{
         display: none;
 }
-
 .card-info{
     max-width: 20rem;
 }
-
 .no-margin{
     margin-left: 0px;
     margin-right: 0px;
 }
-
 .no-padding{
     padding-left: 0px;
     padding-right: 0px;
 }
-
 .relative{
     position: relative;
 }
-
 .left{
     float: left;
 }
-
 .large-text{
     font-size: 18px;
 }
-
+.white-text{
+    color: #fff;
+}
+.white-text:hover{
+    color: #fff;
+}
 /*End of Utility Classes*/
 
 
@@ -138,38 +120,31 @@ a:hover{
 .table td{
     vertical-align: middle;
 }
-
 .thead-dark{
     color: #fff;
     background-color: #2a3439;
 }
-
 #all_cards_length{
     padding-top: 15px;
     padding-bottom: 15px;
 }
-
 #all_cards_info{
     padding-top: 25px;
     padding-bottom: 10px;
 }
-
 #all_cards_paginate{
     padding-top: 25px;
     padding-bottom: 10px;
 }
-
 table.dataTable thead th.sorting,
 table.dataTable thead th.sorting_asc,
 table.dataTable thead th.sorting_desc {
     background: none;
     padding: 15px 5px;
 }
-
 #all_cards{
     text-align: center;
 }
-
 
 /**/
 
@@ -180,21 +155,17 @@ table.dataTable thead th.sorting_desc {
     background-color: #212529;
     padding: 0;
 }
-
 .dropdown-menu{
     background-color: #2a3439;
     border: none;
     width: 20%;
 }
-
 .dropdown-divider{
     border-top: 1px solid #42474b;
 }
-
 .dropdown-item{
     color: #ffffff87;
 }
-
 .dropdown-item:hover{
     background-color: #334047;
     color: #ffffffbf;
@@ -255,11 +226,9 @@ table.dataTable thead th.sorting_desc {
     padding: 0;
     color: #fff;
 }
-
 .banner-parent{
     position: relative;
 }
-
 .banner-child{
     position: absolute;
     right: 4%;
@@ -272,14 +241,12 @@ table.dataTable thead th.sorting_desc {
     max-height: 950px;
     object-fit: cover;
 }
-
 .card-minimalistic{
     margin: auto;
     text-align: center;
     padding-top: 25px;
     color: #2a3439;
 }
-
 .button-effect{
     color: #fff;
     text-decoration: none;
@@ -287,7 +254,6 @@ table.dataTable thead th.sorting_desc {
     padding: 7px;
     border-radius: 5px;
 }
-
 .button-effect:hover{
     color: #fff;
     background-color: #2a3439e3;
@@ -295,37 +261,39 @@ table.dataTable thead th.sorting_desc {
     border-color: #767676;
     text-decoration: none;
 }
+.btn{
+    border-radius: 0px;
+}
+.btn-secondary{
+    background-color: #27405b;
+    border-width: 0px;
+}
+.btn-secondary:hover{
+    background-color: #27405b6c;
+}
+
 .cardlist-row{
     border-bottom-style: solid;
     border-bottom-width: thin;
 }
-
-
 .add-to-cart-quantity{
     max-width: 50px;
     border-radius: 5px;
     text-align: center;
     border-color: #767676
 }
-
 .cart-form{
     padding-top: 20px;
 }
-
-
 .card-minimalistic{
     margin: auto;
     text-align: center;
     padding-top: 25px;
     color: #2a3439;
 }
-
 .card-image{
     height: 30rem;
 }
-
-
-
 .card-image-hidden{
     max-height: 270px;
     position: absolute;
@@ -342,12 +310,10 @@ table.dataTable thead th.sorting_desc {
     height: auto;
     width: auto;
 }
-
 .resource_image{
     max-width: 100%;
     height: auto;
 }
-
 .no-listings{
     position: absolute;
     height: 200px;
@@ -362,7 +328,6 @@ table.dataTable thead th.sorting_desc {
 .search{
     max-width: 190px;
 }
-
 .advanced-search{
     padding: 25px 10px 25px 10px;
 }
@@ -378,11 +343,9 @@ table.dataTable thead th.sorting_desc {
     background-color: #2a3439;
     border-color: #a4a4a4;
 }
-
 .page-link{
     color: #2a3439;
 }
-
 .page-link:hover{
     color: #2a3439;
 }
@@ -395,7 +358,6 @@ table.dataTable thead th.sorting_desc {
     margin-bottom: 25px;
     width: 90%;
 }
- 
 .address-card{
     width: 100%!important;
     min-height: 214px;
@@ -409,7 +371,6 @@ table.dataTable thead th.sorting_desc {
 .cards-background{
     background-color: #F5F5F5;
 }
-
 .custom-controls{
     background-color: #2a3439;
     height: 50px;
@@ -421,46 +382,37 @@ table.dataTable thead th.sorting_desc {
     border-radius: 5px;
     transition: 0.3s;
 }
-
 .custom-controls:hover{
     background-color: #2a3439e3;
 }
-
 .carousel-next {
     margin-left: 15px;
 }
 .carousel-prev {
   right: 7rem;
 }
-
 .carousel-caption-custom{
     text-align: center;
 }
-
 .carousel-inner .carousel-item {
   transition: -webkit-transform 0.5s ease;
   transition: transform 0.5s ease;
   transition: transform 0.5s ease, -webkit-transform 0.5s ease;
 }
-
 .carousel-control-next-icon{
     height: 50px;
 }
-
 .carousel-control-prev-icon{
     height: 50px;
 }
-
 .carousel-image {
-    width: 70%;
+    width: 60%;
     height: auto;
 }
-
 .carousel-image:hover{
     transform: translateY(-10px);
     animation: raise 0.4s;
 }
-
 @-webkit-keyframes raise {
     0% {
        -webkit-transform: translateY(0);
@@ -510,8 +462,7 @@ textarea.form-control {
 /*End of Form Styling*/
 
 /* Footer Styling */
-.site-footer
-{
+.site-footer{
     background-color:#2a3439;
     padding:45px 0 20px;
     font-size:15px;
@@ -525,60 +476,48 @@ textarea.form-control {
     margin-top: -275px;
     clear: both;
 }
-.site-footer hr
-{
+.site-footer hr{
     border-top-color:#bbb;
     opacity:0.5
 }
-.site-footer hr.small
-{
+.site-footer hr.small{
     margin:20px 0
 }
-.site-footer h6
-{
+.site-footer h6{
     color:#fff;
     font-size:16px;
     text-transform:uppercase;
     margin-top:5px;
     letter-spacing:2px
 }
-.site-footer a
-{
+.site-footer a{
     color:#737373;
 }
-.site-footer a:hover
-{
+.site-footer a:hover{
     color:#3366cc;
     text-decoration:none;
 }
-.footer-links
-{
+.footer-links{
     padding-left:0;
     list-style:none
 }
-.footer-links li
-{
+.footer-links li{
     display:block
 }
-.footer-links a
-{
+.footer-links a{
     color:#737373
 }
-.footer-links a:active,.footer-links a:focus,.footer-links a:hover
-{
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover{
     color:#737373;
     text-decoration:underline;
 }
-.footer-links.inline li
-{
+.footer-links.inline li{
     display:inline-block
 }
-.site-footer .social-icons
-{
+.site-footer .social-icons{
     text-align:right
 }
-.site-footer .social-icons a
-{
+.site-footer .social-icons a{
     width:40px;
     height:40px;
     line-height:40px;
@@ -587,24 +526,20 @@ textarea.form-control {
     border-radius:100%;
     background-color:#33353d
 }
-.copyright-text
-{
+.copyright-text{
     margin:0
 }
 
-.social-icons
-{
+.social-icons{
     padding-left:0;
     margin-bottom:0;
     list-style:none
 }
-.social-icons li
-{
+.social-icons li{
     display:inline-block;
     margin-bottom:4px
 }
-.social-icons li.title
-{
+.social-icons li.title{
     margin-right:15px;
     text-transform:uppercase;
     color:#96a2b2;
@@ -626,25 +561,21 @@ textarea.form-control {
     -o-transition:all .2s linear;
     transition:all .2s linear
 }
-.social-icons a:active,.social-icons a:focus,.social-icons a:hover
-{
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover{
     color:#fff;
     background-color:#29aafe
 }
-.social-icons.size-sm a
-{
+.social-icons.size-sm a{
     line-height:34px;
     height:34px;
     width:34px;
     font-size:14px
 }
 
-.social-icons a.linkedin:hover
-{
+.social-icons a.linkedin:hover{
     background-color:#007bb6
 }
-.social-icons a.github:hover
-{
+.social-icons a.github:hover{
     background-color:#24292e
 }
 
@@ -740,7 +671,11 @@ textarea.form-control {
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
    .banner-child{
-       display: block;
+    display: block;
+    background-color: #3d698c;
+    border-radius: 2px;
+    height: 23rem;
+    width: 35%;
    }
 
     .camera-icon{

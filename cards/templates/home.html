@@ -18,7 +18,10 @@
 <div class="banner-parent">
 	<img class="w-100" id="cover-image" src="{% static 'img/banner-img-1.jpg' %}" alt="banner-image">
 	<div class="banner-child">
-		<h1>Latest Ikoria Product Now Available!</h1>
+		<h1 class="pl-5 pt-5 pr-5">Discover thousands of MTG cards!</h1>
+        <div class="pl-5 pt-5 pr-5">
+            <button class="btn btn-secondary"><a class="white-text" href="{% url 'get_cards' %}">Start Now</a></button>
+        </div>
 	</div>
 </div>
 <!--End of background image-->
