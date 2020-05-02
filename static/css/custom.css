@@ -171,6 +171,35 @@ table.dataTable thead th.sorting_desc {
 
 /**/
 
+
+/*Navbar*/
+
+.navbar-background{
+    background-color: #212529;
+    padding: 0;
+}
+
+.dropdown-menu{
+    background-color: #2a3439;
+    border: none;
+    width: 20%;
+}
+
+.dropdown-divider{
+    border-top: 1px solid #42474b;
+}
+
+.dropdown-item{
+    color: #ffffff87;
+}
+
+.dropdown-item:hover{
+    background-color: #334047;
+    color: #ffffffbf;
+}
+
+/* End of Navbar*/
+
 /*Misc Document Classes*/
 
 .navbar-background{
