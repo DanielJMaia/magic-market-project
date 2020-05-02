@@ -30,3 +30,9 @@ $(document).ready( function () {
     lengthMenu: [10, 20, 50],
 });
 });
+
+// django message fade-out
+$(document).ready( function (){
+    console.log("page loaded")
+    $( "#message" ).fadeOut()
+});

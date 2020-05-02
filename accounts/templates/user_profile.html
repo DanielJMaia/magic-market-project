@@ -2,6 +2,17 @@
 {% load static from staticfiles %}
 {% block content %}
 <div class="container">
+<!--This displays any messages such as "you have been logged out" etc.-->
+<div class="row relative">
+	{% if messages %}
+	<div class="p-2">
+		{% for message in messages %}
+		<h4> {{message}} </h4>
+		{% endfor %}
+	</div>
+	{% endif %}
+</div>
+<!--End messages section-->
 {% if cards %}
 	<div class="row border-bottom">
 		<div class="max-width pt-5 pb-5 pl-5">

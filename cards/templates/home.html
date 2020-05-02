@@ -5,7 +5,7 @@
 <!--This displays any messages such as "you have been logged out" etc.-->
 <div class="row relative">
 	{% if messages %}
-	<div class="django-message p-2">
+	<div class="django-message p-2" id="message">
 		{% for message in messages %}
 		<h4> {{message}} </h4>
 		{% endfor %}
@@ -28,7 +28,8 @@
 		<div class="row border-bottom">
 			<div class="px-3 py-3 pt-md-4 pb-md-6 text-center">
 				<h1 class="col-12">Magic Market Update</h1>
-				<p class="col-12 large-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto
+				<p class="col-12 large-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut
+					iusto
 					rerum hic accusantium velit consequatur, eos ipsum quis natus sapiente iure explicabo
 					adipisci pariatur alias officia numquam. Consectetur, aspernatur?
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto rerum hic
@@ -37,7 +38,8 @@
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto rerum hic
 					accusantium velit consequatur, eos ipsum quis natus sapiente iure explicabo adipisci
 					pariatur alias officia numquam. Consectetur, aspernatur?</p>
-				<p class="col-12 large-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto
+				<p class="col-12 large-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut
+					iusto
 					rerum hic accusantium velit consequatur, eos ipsum quis natus sapiente iure explicabo
 					adipisci pariatur alias officia numquam. Consectetur, aspernatur?
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aut iusto rerum hic
@@ -52,149 +54,156 @@
 	<!---->
 
 	<!--Latest listings section-->
-			<div class="container-fluid cards-background border-bottom">
-				<div class="container">
-					<div class="row pt-3 pb-2">
-						<h1 class="col-12 center">Latest Cards</h1>
-					</div>
-					<div class="row">
-						{% for card in cards|dictsortreversed:"listing_published_date"|slice:"3" %}
-						<div class="col-sm-12 col-md-4 justify-center pt-3 pb-5">
-							<div class="row">
-								<div>
-                                    <a href="{% url 'card_detail' card.id %}">
-									    <img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Image #{{ forloop.counter }}">
-							        </a>
-                                </div>
-							</div>
-								<div class="row justify-center center pt-3">
-									<div>
-										<p class="border-bottom p-1">
-											<span class="boldtext">Price: </span>£{{ card.card_price }}
-										</p>
-										<p class="border-bottom p-1">Vendor: <a class="underline-link"
-												href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
-										</p>
-										<p class="p-1"><span class="boldtext">Condition:</span>
-											{{ card.card_condition }}</p>
-										<div class="row justify-center">
-											{% if user.is_authenticated and user != card.user %}
-											<form method="post" action="{% url 'add_to_cart' card.id %}">
-												{% csrf_token %}
-												<div class="input-group cart-form">
-													<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
-													<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-												</div>
-											</form>
-											{% elif user == card.user %}
-											<a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit
-												Listing</a>
-											{% endif %}
-										</div>
-									</div>
-								</div>
-							</div>
-							{% endfor %}
-						</div>
-					</div>
-				</div>
-				<!--End of SECTION-->
-
-			<!--Latest Most Popular section-->
-			<div class="container-fluid cards-background">
-				<div class="container">
-					<div class="row pt-5">
-						<h1 class="col-12 center">Most Popular Cards</h1>
-					</div>
-					<div class="row">
-						{% for card in cards|dictsortreversed:"listing_views"|slice:"3" %}
-						<div class="col-sm-12 col-md-4 justify-center pt-3 pb-5">
-							<div class="row">
-								<div>
-                                    <a href="{% url 'card_detail' card.id %}">
-									    <img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Image #{{ forloop.counter }}">
-							        </a>
-                                </div>
-								</div>
-								<div class="row justify-center center pt-3">
-									<div>
-										<p class="border-bottom p-1">
-											<span class="boldtext">Price: </span>£{{ card.card_price }}
-										</p>
-										<p class="border-bottom p-1">Vendor: <a class="underline-link"
-												href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
-										</p>
-										<p class="p-1"><span class="boldtext">Condition:</span>
-											{{ card.card_condition }}</p>
-										<div class="row justify-center">
-											{% if user.is_authenticated and user != card.user %}
-											<form method="post" action="{% url 'add_to_cart' card.id %}">
-												{% csrf_token %}
-												<div class="input-group cart-form">
-													<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
-													<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-												</div>
-											</form>
-											{% elif user == card.user %}
-											<a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit
-												Listing</a>
-											{% endif %}
-										</div>
-									</div>
-								</div>
-							</div>
-							{% endfor %}
-						</div>
-					</div>
-				</div>
-				<!--End of SECTION-->
-
-				<!--Deck Help Section-->
-				<div class="container">
-					<div class="row border-top">
-						<div class="px-3 py-3 pt-md-4 pb-md-6 margin-center">
-							<h3 class="display-4 center">Deck Help</h3>
-							<p class="lead">Not Sure where to start? Need help picking which cards are best in your
-								new deck? We're here to help!</p>
-							<p>Send us an email at <a class="underline-link" href="#">EMAIL HERE</a> and we'll be
-								happy to help! We can
-								help you with</p>
-							<ul>
-								<li>Deck Building</li>
-								<li>Finding specific cards</li>
-								<li>Budget alternatives</li>
-								<li>Finding out which format is right for you!</li>
-								<li>Rules questions</li>
-							</ul>
-							<p>You can also check out some of other resources below. The MTG community is booming
-								and are always looking to help newcomers!</p>
-
-						</div>
-					</div>
-					<div class="row pb-5">
-						<div class="col-sm-12 col-md-4 no-spacing">
-							<a class="underline-link" target="_blank" href="#">
-								<img class="resource_image" src="{% static 'img/4x4_1.jpg' %}" alt="">
-								<h4 class="pt-2 center">Test3</h4>
-							</a>
-						</div>
-						<div class="col-sm-12 col-md-4 no-spacing">
-							<a class="underline-link" target="_blank" href="#">
-								<img class="resource_image" src="{% static 'img/4x4_2.jpg' %}" alt="">
-								<h4 class="pt-2 center">Test3</h4>
-							</a>
-						</div>
-						<div class="col-sm-12 col-md-4 no-spacing">
-							<a class="underline-link" target="_blank" href="#">
-								<img class="resource_image" src="{% static 'img/4x4_3.jpg' %}" alt="">
-								<h4 class="pt-2 center">Test3</h4>
-							</a>
-						</div>
-					</div>
-				</div>
-				<!--End of deck help-->
+	<div class="container-fluid cards-background border-bottom">
+		<div class="container">
+			<div class="row pt-3 pb-2">
+				<h1 class="col-12 center">Latest Cards</h1>
 			</div>
-			{% endblock %}
-			{% block end_js %}
-			<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
-			{% endblock %}
+			<div class="row">
+				{% for card in cards|dictsortreversed:"listing_published_date"|slice:"3" %}
+				<div class="col-sm-12 col-md-4 justify-center pt-3 pb-5">
+					<div class="row">
+						<div>
+							<a href="{% url 'card_detail' card.id %}">
+								<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Image #{{ forloop.counter }}">
+							        </a>
+						</div>
+					</div>
+					<div class="row justify-center center pt-3">
+						<div>
+							<p class="border-bottom p-1">
+								<span class="boldtext">Price: </span>£{{ card.card_price }}
+							</p>
+							<p class="border-bottom p-1">Vendor: <a class="underline-link"
+									href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
+							</p>
+							<p class="p-1"><span class="boldtext">Condition:</span>
+								{{ card.card_condition }}</p>
+							<div class="row justify-center">
+								{% if user.is_authenticated and user != card.user %}
+								<form method="post" action="{% url 'add_to_cart' card.id %}">
+									{% csrf_token %}
+									<div class="input-group cart-form">
+										<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
+										<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+									</div>
+								</form>
+								{% elif user == card.user %}
+								<a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit
+									Listing</a>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<!--End of SECTION-->
+
+	<!--Latest Most Popular section-->
+	<div class="container-fluid cards-background">
+		<div class="container">
+			<div class="row pt-5">
+				<h1 class="col-12 center">Most Popular Cards</h1>
+			</div>
+			<div class="row">
+				{% for card in cards|dictsortreversed:"listing_views"|slice:"3" %}
+				<div class="col-sm-12 col-md-4 justify-center pt-3 pb-5">
+					<div class="row">
+						<div>
+							<a href="{% url 'card_detail' card.id %}">
+								<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Image #{{ forloop.counter }}">
+							        </a>
+						</div>
+					</div>
+					<div class="row justify-center center pt-3">
+						<div>
+							<p class="border-bottom p-1">
+								<span class="boldtext">Price: </span>£{{ card.card_price }}
+							</p>
+							<p class="border-bottom p-1">Vendor: <a class="underline-link"
+									href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
+							</p>
+							<p class="p-1"><span class="boldtext">Condition:</span>
+								{{ card.card_condition }}</p>
+							<div class="row justify-center">
+								{% if user.is_authenticated and user != card.user %}
+								<form method="post" action="{% url 'add_to_cart' card.id %}">
+									{% csrf_token %}
+									<div class="input-group cart-form">
+										<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
+										<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+									</div>
+								</form>
+								{% elif user == card.user %}
+								<a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit
+									Listing</a>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<!--End of SECTION-->
+
+	<!--Deck Help Section-->
+	<div class="container">
+		<div class="row border-top">
+			<div class="px-3 py-3 pt-md-4 pb-md-6 margin-center">
+				<h3 class="display-4 center">Deck Help</h3>
+				<p class="lead">Not Sure where to start? Need help picking which cards are best in your
+					new deck? We're here to help!</p>
+				<p><a class="underline-link" href="mailto:testemail@gmail.com">Send us an email</a> and we'll be
+					happy to help! We can
+					help you with</p>
+				<ul>
+					<li>Deck Building</li>
+					<li>Finding specific cards</li>
+					<li>Budget alternatives</li>
+					<li>Finding out which format is right for you!</li>
+					<li>Rules questions</li>
+				</ul>
+				<p>You can also check out some of other resources below. The MTG community is booming
+					and are always looking to help newcomers!</p>
+
+			</div>
+		</div>
+		<div class="row pb-5">
+			<div class="col-sm-12 col-md-4 no-spacing text-center">
+				<a class="underline-link pb-1" target="_blank" href="https://edhrec.com/">
+					<img class="resource_image" src="{% static 'img/4x4_1.jpg' %}" alt="edhrec link">
+					<h4 class="pt-2 center">EDH Rec</h4>
+
+				</a>
+				<p class="p-2">Learn about all things EDH!</p>
+			</div>
+			<div class="col-sm-12 col-md-4 no-spacing text-center">
+				<a class="underline-link pb-1" target="_blank" href="https://www.reddit.com/r/magicTCG/">
+					<img class="resource_image" src="{% static 'img/4x4_2.jpg' %}" alt="reddit link">
+					<h4 class="pt-2 center">Reddit</h4>
+				</a>
+				<p class="p-2 m-1">Browse the subreddit</p>
+                <p class="p-2 m-1">Talk to the community</p>
+                <p class="p-2 m-1">Ask questions!</p>
+			</div>
+			<div class="col-sm-12 col-md-4 no-spacing text-center">
+				<a class="underline-link pb-1" target="_blank" href="https://scryfall.com/">
+					<img class="resource_image" src="{% static 'img/4x4_3.jpg' %}" alt="scryfall">
+					<h4 class="pt-2 center">Scryfall</h4>
+				</a>
+				<p class="p-2">Look through the tens of thousands of cards in Magic: The Gathering!</p>
+
+			</div>
+		</div>
+	</div>
+	<!--End of deck help-->
+</div>
+{% endblock %}
+{% block end_js %}
+<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+{% endblock %}

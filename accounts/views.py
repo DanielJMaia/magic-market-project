@@ -13,6 +13,7 @@ def login(request):
     """
     This returns a login page
     """
+    cards = Card.objects.order_by('-listing_views')
     if request.user.is_authenticated:
         return redirect(reverse('home_page'))
 
@@ -25,7 +26,7 @@ def login(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully logged in!")
-                return redirect(reverse('home_page'))
+                return render(request, 'home.html', {'cards': cards})
             else:
                 login_form.add_error(
                     None, "Your username or password is incorrect")
