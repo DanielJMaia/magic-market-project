@@ -4,7 +4,8 @@ html, body{
     min-height: 100%!important;
     font-family: 'Karla', sans-serif;
     color: #2a3439;
-    
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 a:hover{
@@ -125,6 +126,12 @@ a:hover{
 }
 
 /*End of Django Messages*/
+
+/*Order History Page*/
+.order-info-header{
+    background-color: #f5f5f5;
+}
+/*End of order history*/
 
 /*Datatables Styling*/
 
@@ -402,7 +409,7 @@ textarea.form-control {
 #footer{
     position: relative;
     height: 650px;
-    margin-top: -330px;
+    margin-top: -275px;
     clear: both;
 }
 .site-footer hr
@@ -545,6 +552,7 @@ textarea.form-control {
       margin-right:0;
       font-weight:600
   }
+
 }
 
 @media (max-width:991px)
@@ -611,6 +619,9 @@ textarea.form-control {
     #footer{
         height: 350px;
     }
+    .checkout-cards{
+      justify-content: end!important;
+  }
 }
 
 /* Medium Devices, Desktops */
