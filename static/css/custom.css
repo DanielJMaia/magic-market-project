@@ -29,6 +29,10 @@ a:hover{
 ul{
     list-style-type: none;
 }
+
+label{
+    margin-bottom: 0px;
+}
 /*End of Document classes*/
 
 
@@ -231,14 +235,14 @@ table.dataTable thead th.sorting_desc {
 }
 .banner-child{
     position: absolute;
-    right: 4%;
-    bottom: 7%;
+    right: 7%;
+    bottom: 12%;
     color: #F5F5F5;
     padding: 10px 10px 5px 10px;
     display: none;
 }
 #cover-image{
-    max-height: 950px;
+    height: 950px;
     object-fit: cover;
 }
 .card-minimalistic{

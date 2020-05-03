@@ -2,6 +2,18 @@
 {% load static from staticfiles %}
 {% block content %}
 
+<!--This displays any messages such as "you have been logged out" etc.-->
+<div class="row relative">
+	{% if messages %}
+	<div class="django-message p-2" id="message">
+		{% for message in messages %}
+		<h4> {{message}} </h4>
+		{% endfor %}
+	</div>
+	{% endif %}
+</div>
+<!--End messages section-->
+
 <!--Page header-->
 <div class="container">
 	<div class="row">
