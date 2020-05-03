@@ -305,4 +305,4 @@ My Imgur gallery is currently private and therefore can only be viewed by me.
 
 Travis
 
-[![Build Status](https://travis-ci.org/DanielJMaia/magic-market-project.svg?branch=development)](https://travis-ci.org/DanielJMaia/magic-market-project)
+[![Build Status](https://travis-ci.org/DanielJMaia/magic-market-project.svg?branch=master)](https://travis-ci.org/DanielJMaia/magic-market-project)

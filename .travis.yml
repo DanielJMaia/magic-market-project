@@ -1,11 +1,7 @@
 language: python
 python:
-  - "3.7.2"
+  - "3.7.6"
 install: "pip install -r requirements.txt"
-env:
-  global:
-    - BUILD_ON_TRAVIS=true
+
 script:
-- python manage.py makemigrations
-- python manage.py migrate
-- python manage.py test
+- SECRET_KEY="whatever" ./manage.py test
