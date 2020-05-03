@@ -2,6 +2,17 @@
 {% load static from staticfiles %}
 {% block content %}
 <div class="container">
+<!--This displays any messages such as "you have been logged out" etc.-->
+<div class="row relative">
+	{% if messages %}
+	<div class="p-2">
+		{% for message in messages %}
+		<h4> {{message}} </h4>
+		{% endfor %}
+	</div>
+	{% endif %}
+</div>
+<!--End messages section-->
 {% if cards %}
 	<div class="row border-bottom">
 		<div class="max-width pt-5 pb-5 pl-5">
@@ -122,7 +133,6 @@
 		<table class="table table-hover">
 			<thead class="thead-dark pb-2 center">
 				<tr>
-					<th scope="col"></th>
 					<th scope="col">Card</th>
 					<th scope="col">Vendor Name</th>
 					<th scope="col">Condition</th>
@@ -151,7 +161,6 @@
 							<a class="underline-link" id="card-title" href="{% url 'view_specific_card' card.id %}">{{ card.card_title }}</a>		
 						</div>
 					</td>
-					<td>{{ card.card_title }}</td>
 					<td><a class="underline-link" href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a></td>
 					<td>{{ card.card_condition }}</td>
 					<td>£{{ card.card_price }}</td>

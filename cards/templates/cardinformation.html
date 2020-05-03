@@ -14,7 +14,7 @@
 			<p class="border-bottom"><span class="boldtext">Condition:</span> {{ card.card_condition }}</p>
 			<p class="border-bottom"><span class="boldtext">Price: </span>£{{ card.card_price }}</p>
 			<div class="row pt-4">
-				<a href="{% url 'get_cards' %}" class="button-effect nobreak">View All Listings</a>
+				<a href="{% url 'get_cards' %}" class="button-effect nobreak mr-2">View All Listings</a>
 				{% if user == card.user %}
 				    <a href="{% url 'edit_card' card.id %}" class="button-effect nobreak">Edit Listing</a>
 				{% endif %}
