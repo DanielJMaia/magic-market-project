@@ -1,1 +1,1 @@
-web: gunicorn magic-market.wsgi:application
+web: python3 manage.py runserver
