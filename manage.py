@@ -2,6 +2,13 @@
 import os
 import sys
 
+from dotenv import load_dotenv
+
+# OR, explicitly providing path to '.env'
+from pathlib import Path  # python3 only
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
+
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "magicmarket.settings")
     try:
@@ -19,4 +26,7 @@ if __name__ == "__main__":
                 "forget to activate a virtual environment?"
             )
         raise
+    from django.core.management.commands.runserver import Command as runserver
+    runserver.default_port = os.getenv('PORT')
+
     execute_from_command_line(sys.argv)
