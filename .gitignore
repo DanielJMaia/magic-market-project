@@ -3,6 +3,7 @@
 .~c9
 __pycache__/
 *.sqlite3
-env.py
+.env
+.env.sample
 static/
 media/

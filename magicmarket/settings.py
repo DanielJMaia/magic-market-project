@@ -11,8 +11,18 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-import env
+#import env
+
+# settings.py
+from dotenv import load_dotenv
+
+# OR, explicitly providing path to '.env'
+from pathlib import Path  # python3 only
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
+
 import dj_database_url
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -28,7 +38,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME'), '8000-a4163a0e-8e4e-49e4-8aca-e7a98fe1051c.ws-eu01.gitpod.io', 'magic-market.herokuapp.com/']
+ALLOWED_HOSTS = [os.getenv('C9_HOSTNAME'), '8000-a4163a0e-8e4e-49e4-8aca-e7a98fe1051c.ws-eu01.gitpod.io', 'magic-market.herokuapp.com/']
 
 
 # Application definition
@@ -87,7 +97,7 @@ WSGI_APPLICATION = 'magicmarket.wsgi.application'
 
 
 if "DATABASE_URL" in os.environ:
-    DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+    DATABASES = {'default': dj_database_url.parse(os.getenv('DATABASE_URL'))}
 else:
     print("Database URL not found. Using SQLite instead")
     DATABASES = {
@@ -140,8 +150,8 @@ AWS_S3_OBJECT_PARAMETERS = {
 
 AWS_STORAGE_BUCKET_NAME = 'magic-market'
 AWS_S3_REGION_NAME = 'eu-west-2'
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
