@@ -38,7 +38,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [os.getenv('C9_HOSTNAME'), '8000-a4163a0e-8e4e-49e4-8aca-e7a98fe1051c.ws-eu01.gitpod.io', 'magic-market.herokuapp.com', 'magic-market.herokuapp.com/', '*']
+ALLOWED_HOSTS = [os.getenv('C9_HOSTNAME'), '8000-a4163a0e-8e4e-49e4-8aca-e7a98fe1051c.ws-eu01.gitpod.io', 'magic-market.herokuapp.com', 'magic-market.herokuapp.com/', '8080-a4163a0e-8e4e-49e4-8aca-e7a98fe1051c.ws-eu01.gitpod.io']
 
 
 # Application definition
