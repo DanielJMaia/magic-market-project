@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row pt-5 pb-5">
 		{% if card.image %}
-		<img class="card-image margin-center" id="{{card.id}}" src="/media/{{ card.image }}">
+		<img class="card-image margin-center" id="{{card.id}}" src="{{ MEDIA_URL }}{{ card.image }}">
         {% endif %}
 		<div class="col-sm-12 col-md-6 p-5 center-small">
 			<h3>{{ card.card_title }}</h3>

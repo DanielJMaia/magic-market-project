@@ -68,7 +68,7 @@
 					<div class="row">
 						<div>
 							<a href="{% url 'card_detail' card.id %}">
-								<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Image #{{ forloop.counter }}">
+								<img class="d-block carousel-image margin-center" src="{{ MEDIA_URL }}{{ card.image }}" alt="Image #{{ forloop.counter }}">
 							        </a>
 						</div>
 					</div>
@@ -117,7 +117,7 @@
 					<div class="row">
 						<div>
 							<a href="{% url 'card_detail' card.id %}">
-								<img class="d-block carousel-image margin-center" src="/media/{{ card.image }}" alt="Image #{{ forloop.counter }}">
+								<img class="d-block carousel-image margin-center" src="{{ MEDIA_URL }}{{ card.image }}" alt="Image #{{ forloop.counter }}">
 							</a>
 						</div>
 					</div>
