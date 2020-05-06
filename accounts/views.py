@@ -27,7 +27,7 @@ def login(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully logged in!")
-                return render(request, 'home.html', {'cards': cards})
+                return redirect('/')
             else:
                 login_form.add_error(
                     None, "Your username or password is incorrect")
@@ -41,11 +41,9 @@ def logout(request):
     """
     logs out
     """
-    cards = Card.objects.order_by('-listing_views')
     auth.logout(request)
     messages.success(request, "You have been logged out")
-    # return redirect(reverse('home_page'))
-    return render(request, 'home.html', {'cards': cards})
+    return redirect('/')
 
 
 def register(request):
