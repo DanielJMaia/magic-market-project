@@ -16,7 +16,6 @@ def add_to_cart(request, id):
         cart[id] = int(cart[id]) + quantity
     else:
         cart[id] = cart.get(id, quantity)
-    """THE MESSAGES AREN'T WORKING"""
     request.session['cart'] = cart
     messages.success(request, "Successfully added to cart")
     return redirect(request.META['HTTP_REFERER'])

@@ -14,7 +14,6 @@ def login(request):
     """
     This returns a login page
     """
-    cards = Card.objects.order_by('-listing_views')
     if request.user.is_authenticated:
         return redirect(reverse('home_page'))
 

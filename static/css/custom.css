@@ -111,6 +111,11 @@ label{
     border-radius: 5px;
 }
 
+#message{
+    top: 40px;
+    text-align: center!important;
+}
+
 /*End of Django Messages*/
 
 /*Order History Page*/
@@ -129,32 +134,35 @@ label{
 
 .table td{
     vertical-align: middle;
-}
+    }
 .thead-dark{
     color: #fff;
     background-color: #2a3439;
-}
+    }
 #all_cards_length{
     padding-top: 15px;
     padding-bottom: 15px;
-}
+    }
 #all_cards_info{
     padding-top: 25px;
     padding-bottom: 10px;
-}
+    }
 #all_cards_paginate{
     padding-top: 25px;
     padding-bottom: 10px;
-}
+    }
 table.dataTable thead th.sorting,
 table.dataTable thead th.sorting_asc,
 table.dataTable thead th.sorting_desc {
     background: none;
     padding: 15px 5px;
-}
+    }
 #all_cards{
     text-align: center;
-}
+    }
+.table-overflow{
+        overflow-x:auto;
+    }
 
 /**/
 
@@ -635,6 +643,9 @@ textarea.form-control {
     .django-message{
         left: 50%;
         margin-left: -138px;
+    }
+    .table-overflow{
+        overflow-x: inherit;
     }
 }
 
