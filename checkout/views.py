@@ -23,7 +23,6 @@ def checkout(request):
             order = order_form.save(commit=False)
             order.date = timezone.now()
             order.user = request.user
-            """order.card = get_object_or_404(Card, pk=id)"""
             order.save()
 
             cart = request.session.get('cart', {})
@@ -36,6 +35,9 @@ def checkout(request):
                     card=card,
                     quantity=quantity
                 )
+                updated_card = Card.objects.get(pk=id)
+                updated_card.card_amount = updated_card.card_amount - quantity
+                updated_card.save()
                 order_line_item.save()
             try:
                 customer = stripe.Charge.create(

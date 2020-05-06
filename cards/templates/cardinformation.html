@@ -12,6 +12,7 @@
 			<p class="border-bottom">{{ card.card_description}}</p>
 			<p class="border-bottom"><span class="boldtext">Edition:</span> {{ card.card_edition }}</p>
 			<p class="border-bottom"><span class="boldtext">Condition:</span> {{ card.card_condition }}</p>
+            <p class="border-bottom"><span class="boldtext">Quantity:</span> {{ card.card_amount }}</p>
 			<p class="border-bottom"><span class="boldtext">Price: </span>£{{ card.card_price }}</p>
 			<div class="row pt-4">
 				<a href="{% url 'get_cards' %}" class="button-effect nobreak mr-2">View All Listings</a>
