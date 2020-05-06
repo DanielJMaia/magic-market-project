@@ -105,6 +105,7 @@ def view_profile(request, pk):
     cards = Card.objects.filter(user=profile)
     return render(request, 'user_profile.html', {"profile": profile, "cards": cards})
 
+
 @login_required
 def view_history(request):
     user = User.objects.get(email=request.user.email)

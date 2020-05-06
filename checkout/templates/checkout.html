@@ -12,26 +12,20 @@
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
 
-{% block content %}
-<div class="container">
-	<div class="row row-flex">
-		{% for item in cart_items %}
-
-		<div class="display panel panel-default">
-			<div class="panel-body">
-				<div class="caption">
-					<h3>{{item.card.name}}</h3>
-					<p class="card-description">{{ item.card.description }}</p>
-					<p>{{ item.card.quantity }}</p>
-					<p>{{ item.card.price }}</p>
-				</div>
-			</div>
-		</div>
+<!--This displays any messages such as "you have been logged out" etc.-->
+<div class="row relative">
+	{% if messages %}
+	<div class="django-message p-2" id="message">
+		{% for message in messages %}
+		<h4> {{message}} </h4>
 		{% endfor %}
-		<p>Total</p>
-		{{ total }}
 	</div>
+	{% endif %}
+</div>
+<!--End messages section-->
 
+{% block content %}
+<div class="container pt-4">
 	<form role="form" method="POST" id="payment-form" action="{% url 'checkout' %}">
 		<legend>Payment Details</legend>
 		<div class="credit-card-errors" style="display:none">
