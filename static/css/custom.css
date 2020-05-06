@@ -117,6 +117,11 @@ label{
 .order-info-header{
     background-color: #f5f5f5;
 }
+
+.history-item{
+    padding-bottom: 100px;
+}
+
 /*End of order history*/
 
 /*Datatables Styling*/
