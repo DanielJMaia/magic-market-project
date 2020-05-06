@@ -412,6 +412,7 @@ table.dataTable thead th.sorting_desc {
 .carousel-image {
     width: 60%;
     height: auto;
+    max-width: 228px;
 }
 .carousel-image:hover{
     transform: translateY(-10px);
