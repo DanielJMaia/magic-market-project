@@ -117,6 +117,12 @@ label{
 .order-info-header{
     background-color: #f5f5f5;
 }
+
+.history-item{
+    padding-bottom: 20px;
+    margin-bottom: 15px;
+}
+
 /*End of order history*/
 
 /*Datatables Styling*/
@@ -410,7 +416,7 @@ table.dataTable thead th.sorting_desc {
     height: 50px;
 }
 .carousel-image {
-    width: 60%;
+    width: 75%;
     height: auto;
     max-width: 228px;
 }
@@ -669,7 +675,7 @@ textarea.form-control {
         height: 350px;
     }
     .checkout-cards{
-      justify-content: end!important;
+      justify-content: inherit;
   }
 }
 

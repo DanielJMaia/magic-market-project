@@ -47,7 +47,7 @@
 								<img class="d-block carousel-image-profile margin-center pb-2" src="{{ MEDIA_URL }}{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                             </div>
 							<div class="col-sm-12 col-md-6 p-5 center-small">
-								<h3>{{ card.card_title }}</h3>
+								<h3>{{ card.card_title }} - {{ card.card_amount }}</h3>
 								<p class="border-bottom">Vendor: <a class="underline-link"
 										href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
 								</p>
@@ -67,7 +67,7 @@
 									<form method="post" action="{% url 'add_to_cart' card.id %}">
 										{% csrf_token %}
 										<div class="input-group cart-form">
-											<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
+											<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="{{ card.card_amount }}" placeholder="Quantity" value="1">
 											<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
 										</div>
 									</form>
@@ -86,7 +86,7 @@
 								<img class="d-block carousel-image-profile margin-center pb-2" src="{{ MEDIA_URL }}{{ card.image }}" alt="Slide #{{ forloop.counter }}">
                             </div>
 							<div class="col-sm-12 col-md-6 p-5 center-small">
-								<h3>{{ card.card_title }}</h3>
+								<h3>{{ card.card_title }} - {{ card.card_amount }}</h3>
 								<p>Vendor: <a class="underline-link"
 										href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
 								</p>
@@ -106,7 +106,7 @@
 									<form method="post" action="{% url 'add_to_cart' card.id %}">
 										{% csrf_token %}
 										<div class="input-group cart-form">
-											<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
+											<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="{{ card.card_amount }}" placeholder="Quantity" value="1">
 											<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
 										</div>
 									</form>
@@ -171,7 +171,7 @@
 								<form method="post" action="{% url 'add_to_cart' card.id %}">
 									{% csrf_token %}
 									<div class="input-group">
-										<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000" placeholder="Quantity" value="1">
+										<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="{{ card.card_amount }}" placeholder="Quantity" value="1">
 										<span class="input-group-btn">
                                             <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
                                         </span>

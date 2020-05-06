@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+
+<div class="container">
+{% if order %}	
+    <div class="row">
+	    <div class="text-center max-width pt-5 pb-5">
+	    	<h3 class="pb-2">Thank you for your purchase</h3>
+            <p>Your order number is #{{ order.id }}</p>
+	    </div>
+    </div>
+    <div class="row justify-center">
+        <p>Your order is now being processed and we'll notify you as soon as the items have been shipped.</p> 
+    </div>
+{% endif %}
+</div>
+
+{% endblock %}

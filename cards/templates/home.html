@@ -65,7 +65,7 @@
 			<div class="row">
 				{% for card in cards|dictsortreversed:"listing_published_date"|slice:"3" %}
 				<div class="col-sm-12 col-md-4 justify-center pt-3 pb-5">
-					<div class="row">
+					<div class="row justify-center">
 						<div>
 							<a href="{% url 'card_detail' card.id %}">
 								<img class="d-block carousel-image margin-center" src="{{ MEDIA_URL }}{{ card.image }}" alt="Image #{{ forloop.counter }}">
@@ -87,7 +87,7 @@
 								<form method="post" action="{% url 'add_to_cart' card.id %}">
 									{% csrf_token %}
 									<div class="input-group cart-form">
-										<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
+										<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="{{ card.card_amount }}" placeholder="Quantity" value="1">
 										<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
 									</div>
 								</form>
@@ -114,7 +114,7 @@
 			<div class="row">
 				{% for card in cards|dictsortreversed:"listing_views"|slice:"3" %}
 				<div class="col-sm-12 col-md-4 justify-center pt-3 pb-5">
-					<div class="row">
+					<div class="row justify-center">
 						<div>
 							<a href="{% url 'card_detail' card.id %}">
 								<img class="d-block carousel-image margin-center" src="{{ MEDIA_URL }}{{ card.image }}" alt="Image #{{ forloop.counter }}">
@@ -136,7 +136,7 @@
 								<form method="post" action="{% url 'add_to_cart' card.id %}">
 									{% csrf_token %}
 									<div class="input-group cart-form">
-										<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="10000"  placeholder="Quantity" value="1">
+										<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="{{ card.card_amount }}" placeholder="Quantity" value="1">
 										<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
 									</div>
 								</form>
@@ -158,7 +158,9 @@
 	<div class="container">
 		<div class="row border-top">
 			<div class="px-3 py-3 pt-md-4 pb-md-6 margin-center">
-				<h3 class="display-4 center">Deck Help</h3>
+				<div class="row pt-5">
+				    <h1 class="col-12 center">Deckbuilders Toolkit</h1>
+			    </div>
 				<p class="lead">Not Sure where to start? Need help picking which cards are best in your
 					new deck? We're here to help!</p>
 				<p><a class="underline-link" href="mailto:testemail@gmail.com">Send us an email</a> and we'll be
