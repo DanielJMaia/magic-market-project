@@ -674,7 +674,7 @@ textarea.form-control {
         height: 350px;
     }
     .checkout-cards{
-      justify-content: end!important;
+      justify-content: inherit;
   }
 }
 
