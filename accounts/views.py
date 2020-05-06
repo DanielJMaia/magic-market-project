@@ -109,7 +109,7 @@ def view_profile(request, pk):
 @login_required
 def view_history(request):
     user = User.objects.get(email=request.user.email)
-    order_list = Order.objects.filter(user=user)
+    order_list = Order.objects.filter(user=user).order_by("id").reverse()
     order_line = OrderLineItem.objects.all()
     page = request.GET.get('page', 1)
 
