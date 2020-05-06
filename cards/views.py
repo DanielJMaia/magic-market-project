@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib import auth, messages
+from django.db.models import Q
 from .models import Card
 from .forms import CardDescForm
 
 
 def home_page(request):
-    cards = Card.objects.order_by('-listing_views')
+    cards = Card.objects.filter(~Q(card_amount__icontains=0))
     return render(request, 'home.html', {'cards': cards})
 
 
@@ -15,7 +16,7 @@ def get_cards(request):
     Create a view that will return a list of cards that have been
     uploaded to the website by users
     """
-    cards = Card.objects.all()
+    cards = Card.objects.filter(~Q(card_amount__icontains=0))
     return render(request, "cards.html", {'cards': cards})
 
 
@@ -26,7 +27,7 @@ def view_specific_card(request, pk):
     """
     card_id = get_object_or_404(Card, pk=pk)
     card_name = card_id.card_title
-    cards = Card.objects.filter(card_title__icontains=card_name)
+    cards = Card.objects.filter(~Q(card_amount__icontains=0), card_title__icontains=card_name)
     return render(request, "cards.html", {'cards': cards})
 
 
@@ -56,4 +57,3 @@ def create_or_edit_card(request, pk=None):
     else:
         form = CardDescForm(instance=card)
     return render(request, 'addcards.html', {'form': form})
-
