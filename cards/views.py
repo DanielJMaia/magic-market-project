@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib import auth, messages
 from django.db.models import Q
+from django.http import HttpResponseForbidden, HttpResponse
 from .models import Card
 from .forms import CardDescForm
 
@@ -57,3 +58,19 @@ def create_or_edit_card(request, pk=None):
     else:
         form = CardDescForm(instance=card)
     return render(request, 'addcards.html', {'form': form})
+
+
+def delete_listing(request, pk):
+    """
+    This deletes a card after showing a warning message
+    """
+    card = get_object_or_404(Card, pk=pk)
+    if (request.user.is_authenticated):
+        try:
+            card.delete()
+            messages.success(request, "You've successfully deleted the listing")
+        except Card.DoesNotExist:
+            messages.warning(request, 'This listing could not be deleted. Please try again later.')
+    else:
+        return HttpResponseForbidden()
+    return redirect('/')

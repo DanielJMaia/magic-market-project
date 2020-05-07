@@ -97,6 +97,9 @@ label{
 .white-text:hover{
     color: #fff;
 }
+.red{
+    background-color: #af0d1c!important;
+}
 /*End of Utility Classes*/
 
 
