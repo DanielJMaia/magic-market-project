@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from .views import login, logout, register, view_user, view_profile, view_all_user_cards, view_history
 
 urlpatterns = [
@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^user/$', view_user, name="view_user"),
     url(r'^user/history/$', view_history, name="view_history"),
     url(r'^profile/(?P<pk>\d+)/$', view_profile, name="view_profile"),
-    url(r'^(?P<pk>\d+)/all/$', view_all_user_cards, name="view_all_user_cards"),
+    url(r'^(?P<pk>\d+)/all/$', view_all_user_cards, name="view_all_user_cards")
 ]

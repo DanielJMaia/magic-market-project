@@ -71,6 +71,7 @@ def register(request):
     return render(request, 'register.html', {
         "registration_form": RegistrationForm})
 
+
 @login_required
 def view_user(request):
     """This retrieves the user from the database and redirects to their profile page"""
