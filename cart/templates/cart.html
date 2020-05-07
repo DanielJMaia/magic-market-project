@@ -39,24 +39,23 @@
 
 		</div>
 		<div class="col-sm-12 col-md-5">
-        <div class="row justify-content-center pb-2">
+			<div class="row justify-content-center pb-2">
 				<h4>Shipping Address</h4>
 			</div>
 			<div class="card address-card">
 				<div class="card-body">
 					<p class="card-text">56 Roady Road</p>
 					<p class="card-text">London, United Kingdom</p>
-                    <p class="card-text">SE12 3AD</p>
+					<p class="card-text">SE12 3AD</p>
 				</div>
 			</div>
-			<div class="row">
-				<p>{{ card_count }} items</p>
-			</div>
-			<div class="row">
-				<p>Total: £{{ total }}</p>
-			</div>
-			<div class="row">
-				<a href="{% url 'checkout' %}" class="button-effect" role="button">Checkout</a>
+			<div class="p-3">
+				<div class="row">
+					<p>{{ card_count }} items. Total: £{{ total }}</p>
+				</div>
+				<div class="row">
+					<a href="{% url 'checkout' %}" class="button-effect" role="button">Checkout</a>
+				</div>
 			</div>
 		</div>
 	</div>

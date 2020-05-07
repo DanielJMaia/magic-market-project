@@ -272,6 +272,8 @@ git push origin master
 ```
 Make sure that the project is building off the master branch in heroku, and that you've gone into resources and enabled your free dynos. 
 8. Redeploy the branch in the deploy section of the heroku dashboard.
+
+
 ---
 
 
