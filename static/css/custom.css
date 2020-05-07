@@ -424,9 +424,8 @@ table.dataTable thead th.sorting_desc {
     height: 50px;
 }
 .carousel-image {
-    width: 90%;
-    height: auto;
-    max-width: 228px;
+    width: 228px;
+    height: 317px;
 }
 .carousel-image:hover{
     transform: translateY(-10px);
