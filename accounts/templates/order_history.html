@@ -82,7 +82,7 @@
 			{% for order_l in order_line %}
 			{% if order_l.order.id == order.id %}
 			<div class="row justify-center checkout-cards">
-				<span class="pt-2 pl-4 ">{{ order_l.quantity }} x {{ order_l.card.card_title }} - £{{ order_l.card.card_price }} each</span>
+				<span class="pt-2 pl-5 ">{{ order_l.quantity }} x {{ order_l.card.card_title }} - £{{ order_l.card.card_price }} each</span>
 			</div>
 			{% endif %}
 			{% endfor %}
