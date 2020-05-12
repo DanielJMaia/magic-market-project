@@ -34,13 +34,8 @@ The website can be found [here](https://magic-market.herokuapp.com/)
     - [**Deployment Online**](#deployment-online)
 
 6. [**Bugs, Problems and Difficulties**](#bugs-problems-and-difficulties)
-    - [**Content**](#content)
-    - [**Media**](#media)
-    - [**Code**](#code)
-    - [**Acknowledgements**](#acknowledgements)
 
 7. [**Credits**](#credits)
-    - [**Content**](#content)
     - [**Media**](#media)
     - [**Acknowledgements**](#acknowledgements)
 
