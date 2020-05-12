@@ -161,41 +161,53 @@ This includes frameworks, libraries and services.
 
 
 ## Testing
-Testing was done in the Chrome Browser, and due to time constraints there was no automatic unit-testing. 
+Testing was done in several browsers, and no automated tests were done for this project due to time constraints.
 ### Debugging in Chrome Dev Tools
-The Chrome Dev Tools were the single most useful debugging resource throughout the creation of this website. The most important features were
-- Console logging. This allowed me to view the value of variables and data from the DB in the console. If incorrect values, or no values, were being returned, I could pinpoint the exact issue.
-- Network logs were useful when I was creating all my routes. They allowed me to check that all my external files were loading.
+The chrome dev tools were very useful for debugging CSS and any network related issues with S3. For example, I was only able to detect that my media files weren't being retrieved correctly due to looking at their URL in the network tab.
+- Console logging. This allowed me to view the value of variables in the console. If incorrect values, or no values, were being returned, I could pinpoint the exact issue. I was also able to view Django objects in the console using JavaScript, which proved extremely useful. The syntax for doing that is as such:
+```
+<html>
+    <script>
+        console.log("The name of the card is {{ card.card_title }} and it belongs to {{ card.user.username }}")
+    </script>
+</html>
+```
+- Network logs were useful when working with S3 and heroku. For example, I was only able to detect that my media files weren't being retrieved correctly due to looking at their URL in the network tab.
 - Responsive Layout. This project was created using a mobile first mentality. Viewing the page on a large amount of sizes and screen ratio ensured that at no point the project wasn't accessible on all devices.
 #### Other Browsers Used For Testing
-I do not have any devices that can run Safari. In a professional environment I assume I'd have colleagues who own Macs. If not, I'd have to run Macintosh (or perhaps just Safari) in a virtual environment on Windows or Linux.
 - Firefox Developer Edition
 - Microsoft Edge
 
 ### Manual Testing
 On all browsers:
-- The mobile version scales as intended, and provides 100% of the functionality of the desktop one.
-- Each navigation item was pressed from the index, category, recipe, edit recipe and add recipe pages. This includes the title which redirects to the home page. 
-- The searchbar was used on each of these pages.
-- An incorrect entry was typed in i.e. "asdasd" to make sure that the error message appeared. 
+- The mobile version scales as intended and provides almost exactly the same functionality as the desktop version (the tables contain slightly less information)
+- Each navigation item was pressed including the home page, Browse, Advanced Search, Login, Register, Account - My Profile, Sell Cards, Order History, Logout and the Cart.
+- A full card name was typed into the search bar. I clicked the search bar and pressed enter without typing anything.
+- An incorrect entry was typed in i.e. "asdasd" to make sure that the message saying no cards with those parameters appeared. 
 - Partial words were types in to make sure they still returned results. 
-    - chicken - This returns all the recipes with chicken in their title.
-    - thie - This returns the banana and blueberry smoothie.
-    - OATS - This returns the berries, oats and yoghurt cereal recipe. 
-    - a - This returns all recipes with the letter a in their title.
-- The view recipe page displays the ingredients and method arrays on new lines for each array item.
-- On the add recipe page, I ensured that a recipe couldn't be submitted without the required field.
-- An error message correctly displays if there wasn't a picture associated with the URL the user typed in for the recipe image.
-- The image preview displays instantly  in the image preview box when the user types in a valid URL.
-- Deleting a recipe actually deletes it, and adding one adds it to the correct category.
-- The edit recipe button displays the edit page with each input autofilled with the correct values.
-- The delete button properly displays a functioning alert.
-- Each category displays the appropriate recipes, and clicking a recipe displays the appropriate page.
-- The social media links open in a new tab and direct to the correct github and LinkedIN profiles
+    - sol - This returns all cards with the letters "sol" in them.
+    - SOL RING - This returns the sol ring card. 
+    - a - This returns all cards with the letter a in their name.
+- Browse correctly displays the cards in a datatable. The default is 10, all the header link can be clicked to sort the table, and pagination works as intented. Hovering over the camera icon correctly displays the card image right below the cursor. Clicking the name of the card displays all cards with the same name, and clicking the name of the vendor renders that users page. View listing shows that specific card, and the number and cart icon correctly add the cards to the cart.
+- Advanced search underwent the same testing as the regular search bar. The necessary fields such as min and max price can't be empty when the form is submitted, the dropdown for "card condition" has all the necessary fields, and the edition/name fields work just like the search bar in the navbar.
+- Account registration works, and displays the expected error messages if the username or email already exist. If a user enters two different passwords it also shows a error warning.
+- Logout functionality correctly logs the user out, and login logs them in. If any fields are incorrect the user sees an error message.
+- Account
+    - My profile correctly displays the extra fields such as edit listing/delete listing. If another user views this profile, instead of those fields they'll have the option to add the card to their cart.
+    - The carousel works properly, both arrows were clicked to ensure you could go forwards and backwards.
+    - Popular cards correctly sorts the cards by listing views, and the links were clicked to ensure they work as described above for the card name, vendor name, and view listing button.
+    - View all button was clicked and was found to correctly redirects the user to a list of all cards on sale by that vendor. 
+    - The sell cards form works as intended. Certain fields that have to be filled out were left empty and a message appears that says the field has to be filled out.
+    - Order history correctly displays all previous orders, in order of latest to newest. The correct order, quantity and user information is displayed.
+    - Checking out works as expected, and all the Stripe payment forms work correctly.
+- Cards with a quantity of 0 are no longer displayed in the front end. Still accessible in the back end for admin moderation reasons.
+- Messages were tested by adding cards to the cart, logging out, logging in.
+- The footer were clicked and work properly. The linkedin and Github all correctly redirect to the my profiles and open in a different tab.
+
 
 ### Validators
-HTML, CSS, JS and Python validators were used to ensure that the code was syntactically correct. For CSS, everything came back 100% correct. However, for the HTML files that wasn't the case, and this is due to Jinja. The W3 Validator returned all instances of {{}} as errors. The solution was to simply go through each error carefully and confirm that each one was directly related to instances of Jinja templating. I checked that my JS code was syntactically correct using [esprima](https://esprima.org/demo/validate.html) by pasting the contents of one JS file at a time.
-- HTML Validator - [W3] (https://validator.w3.org/) - This only displayed errors with Jinja, and by going through the code carefully I ensured there were no other syntax mistakes.
+HTML, CSS, JS and Python validators were used to ensure that the code was syntactically correct.
+- HTML Validator - [W3] (https://validator.w3.org/) - This only displayed errors with the django temlating {{}} and {%%}, as well as the fact that it was part of the block content and didn't start with the regular HTML syntax. I went through the code carefully I ensured there were no other syntax mistakes.
 - CSS Validator - [W3] (https://jigsaw.w3.org/css-validator/) - No syntax errors were detected.
 - Python Validator - [extendsclass.com](https://extendsclass.com/python-tester.html) - No syntax errors were detected. I also was able to run the code successfully without any console errors.
 - JS Validator - [JSLint](https://www.jslint.com/) - No syntax errors were  detected.
@@ -288,25 +300,12 @@ Make sure that the project is building off the master branch in heroku, and that
 
 
 ## Credits
-### Content
-Some recipes were taken from [Gousto](https://www.gousto.co.uk/) recipe pamphlets, and the chocolate cake was [Jamie Oliver's Gluten Free Chocolate Cake](https://www.jamieoliver.com/recipes/chocolate-recipes/gluten-free-chocolate-cake/). Some others were personal recipes, such as the smoothie.
 ### Media
-Images retrieved from [Pexels.com](https://www.pexels.com/) unless states otherwise.
+Card images retrieved from [scryfall.com](https://scryfall.com/).
 
-Smoothie Category Image found [here](https://beamingbaker.com/triple-berry-smoothie-5-ingredient-paleo-vegan-gluten-free-dairy-free/).
+Home page golem image found [here](https://www.google.com/search?tbs=simg:CAQSoQIJDwgwBKcTM1salQILELCMpwgaYgpgCAMSKJAXjReXC4UM9xaRF_1oWiR7pFZYX4yHwI-oo8iOFIOQo8SPzI5M40SwaMEwDSirX9FBrPIfwq-IPMR7JRLMBmGSkotvAvGKxDol8YPaDeECD4h_14uTuRxLbiMiAEDAsQjq7-CBoKCggIARIEYM10FAwLEJ3twQkajQEKGAoGZHJhZ29u2qWI9gMKCggvbS8wMmNwNQofCgxpbGx1c3RyYXRpb27apYj2AwsKCS9tLzAxa3I4ZgoaCghwYWludGluZ9qliPYDCgoIL20vMDVxZGgKFwoFZGVtb27apYj2AwoKCC9tLzAyOW04ChsKCW15dGhvbG9nedqliPYDCgoIL20vMDR6aGQM&sxsrf=ALeKk01DRSx2rSGNJUpyjToaMBLrxnBNeA:1589275143438&q=mtg+best+colorless+cards&tbm=isch&sa=X&ved=2ahUKEwj7t_-i_63pAhWFUhUIHY3wAyQQwg4oAHoECAkQKA&biw=1920&bih=937#imgrc=yWX4Rj3nM6I-ZM).
 
-Quote Background Image found [here](https://www.pexels.com/photo/burger-and-vegetables-placed-on-brown-wood-surface-1565982/).
-
-Spicy Chicken Rice Recipe Image found [here](https://www.tablespoon.com/recipes/mexican-chicken-and-rice-skillet/eda0017c-42a8-404b-bc47-22eebcd0586c).
-
-Chorizo Risotto Image found [here](https://www.taste.com.au/recipes/chorizo-pasta/6871b2f9-5686-4354-974d-d7aca8e94388).
-
-Sticky soy chicken recipe image found [here](https://www.bbc.co.uk/food/recipes/asian-style_sticky_23400).
-
-Placeholder upload image found [here](https://woodworkersbelfast.com/placeholder-png/).
-
-My Imgur gallery is currently private and therefore can only be viewed by me.
-
+Deck help section images found [here](http://cynthia-sheppard.squarespace.com/)
 
 ### Acknowledgements
 

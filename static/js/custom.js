@@ -17,19 +17,6 @@ $(document).ready(function() {
   jQuery.fn.carousel.Constructor.TRANSITION_DURATION = 500  // 500ms
 });
 
-//DataTables function
-
-$(document).ready( function () {
-    $('#all_cards').dataTable( {
-    "order": [],
-    "columnDefs": [ {
-      "targets"  : 'no-sort',
-      "orderable": false,
-    }],
-    "bFilter": false,
-    lengthMenu: [10, 20, 50],
-});
-});
 
 // django message fade-out
 $(document).ready( function (){

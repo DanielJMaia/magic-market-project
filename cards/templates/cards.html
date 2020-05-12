@@ -29,6 +29,7 @@
 <!--End of page header-->
 
 <!-- New Table -->
+{% if cards %}
 <div class="container pt-5 pb-5">
 	<div class="table-overflow">
 		<table id="all_cards" class="stripe hover" style="width:100%">
@@ -52,15 +53,16 @@
 						<div>
 							<div onmouseenter="imageToggleShow({{ card.id }})"
 								onmouseleave="imageToggleHide({{ card.id }})">
-								    <img class="camera-icon left" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
+								<img class="camera-icon left" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
 		                    </div>
-						    <div class="relative">
-								<img class="card-image-hidden" id="{{card.id}}" src="{{ MEDIA_URL }}{{ card.image }}">
+								<div class="relative">
+									<img class="card-image-hidden" id="{{card.id}}" src="{{ MEDIA_URL }}{{ card.image }}">
                            </div>
-                        </div>
-						<div class="pt-3">
-							<a class="underline-link" id="card-title" href="{% url 'view_specific_card' card.id %}">{{ card.card_title }}</a>		
-						</div>
+								</div>
+								<div class="pt-3">
+									<a class="underline-link" id="card-title"
+										href="{% url 'view_specific_card' card.id %}">{{ card.card_title }}</a>
+								</div>
 					</td>
 					<td>
 						<a class="underline-link"
@@ -93,10 +95,21 @@
 		</table>
 	</div>
 </div>
+{% else %}
+<div class="container">
+	<div class="row no-content relative">
+		<div class="text-center max-width no-listings">
+			<h4> There are no cards with those search parameters</h4>
+		</div>
+	</div>
+</div>
+{% endif %}
+
 <!---->
 {% endblock %}
 
 {% block end_js %}
 <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/datatables.js' %}"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 {% endblock %}
