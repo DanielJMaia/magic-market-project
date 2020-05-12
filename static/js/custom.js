@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 
 // django message fade-out
-$(document).ready( function (){
-    console.log("page loaded")
-    $( "#message" ).fadeOut()
-});
+//$(document).ready( function (){
+//    console.log("page loaded")
+//    $( "#message" ).fadeOut()
+//});

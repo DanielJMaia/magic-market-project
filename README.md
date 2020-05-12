@@ -303,6 +303,8 @@ Home page golem image found [here](https://www.google.com/search?tbs=simg:CAQSoQ
 Deck help section images found [here](http://cynthia-sheppard.squarespace.com/)
 
 ### Acknowledgements
+I'd like to thank my personal mentor, Owonikoko Oluwaseun for her tremendous help and patience during my project. I'd also like to thank the team of tutors that helped me throughout this project, especially Xavier, Anna and Stephen, for helping me with some of the trickier problems I faced.
+
 
 Travis
 
