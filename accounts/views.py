@@ -68,8 +68,7 @@ def register(request):
                 messages.error(request, "Unable to register your account at this time")
     else:
         registration_form = RegistrationForm()
-    return render(request, 'register.html', {
-        "registration_form": RegistrationForm})
+    return render(request, 'register.html', {"registration_form": RegistrationForm})
 
 
 @login_required
