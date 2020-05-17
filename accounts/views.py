@@ -1,10 +1,11 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
-from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.contrib import auth, messages
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
 from .forms import UserLoginForm, RegistrationForm
 from cards.models import Card
 from checkout.models import Order, OrderLineItem
@@ -62,13 +63,33 @@ def register(request):
                                      password=request.POST['password1'])
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You have been successfully registered")
-                return render(request, 'user_profile.html', {"profile": user})
+                messages.success(
+                    request, "You have been successfully registered")
+                return render(
+                    request, 'user_profile.html', {"profile": user})
             else:
-                messages.error(request, "Unable to register your account at this time")
+                messages.error(
+                    request, "Unable to register your account at this time")
     else:
         registration_form = RegistrationForm()
-    return render(request, 'register.html', {"registration_form": RegistrationForm})
+    return render(request, 'register.html',
+                  {"registration_form": RegistrationForm})
+
+
+def change_password(request):
+    """This shows the password edit form"""
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, "Password successfully reset")
+            return redirect('/')
+    else:
+        form = PasswordChangeForm(user=request.user)
+        return render(
+                request, 'edit_password.html', {'form': form})
 
 
 @login_required
@@ -76,7 +97,8 @@ def view_user(request):
     """This retrieves the user from the database and redirects to their profile page"""
     user = User.objects.get(email=request.user.email)
     cards = Card.objects.filter(~Q(card_amount__icontains=0), user=user)
-    return render(request, 'user_profile.html', {"profile": user, "cards": cards})
+    return render(request, 'user_profile.html',
+                  {"profile": user, "cards": cards})
 
 
 def view_all_user_cards(request, pk):
@@ -98,10 +120,12 @@ def view_all_user_cards(request, pk):
 
 
 def view_profile(request, pk):
-    """This allows users to view vendor profiles by retrieving the vendor id and redirecting it to their profile page"""
+    """This allows users to view vendor profiles by retrieving
+    the vendor id and redirecting it to their profile page"""
     profile = get_object_or_404(User, pk=pk)
     cards = Card.objects.filter(~Q(card_amount__icontains=0), user=profile)
-    return render(request, 'user_profile.html', {"profile": profile, "cards": cards})
+    return render(request, 'user_profile.html',
+                  {"profile": profile, "cards": cards})
 
 
 @login_required
@@ -119,4 +143,5 @@ def view_history(request):
     except EmptyPage:
         orders = paginator.page(paginator.num_pages)
 
-    return render(request, 'order_history.html', {"user": user, "orders": orders, "order_line": order_line})
+    return render(request, 'order_history.html',
+                  {"user": user, "orders": orders, "order_line": order_line})
