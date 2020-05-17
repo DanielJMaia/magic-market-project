@@ -25,8 +25,8 @@
 		<div class="col-sm-12 col-lg-6 pb-5 margin-center">
 			<form method="POST">
 				{%csrf_token%}
-				{{ registration_form.as_p }}
-				<button type="submit">Register</button>
+				{{ registration_form | as_bootstrap }}
+				<button class="button-effect" type="submit">Register</button>
 			</form>
 		</div>
 	</div>

@@ -13,10 +13,13 @@ class RegistrationForm(UserCreationForm):
     """This is the form used to register new users"""
     password1 = forms.CharField(
         label="Password",
-        widget=forms.PasswordInput)
+        widget=forms.PasswordInput(
+            attrs={'class': 'form-control'})
+        )
     password2 = forms.CharField(
         label="Password Confirmation",
-        widget=forms.PasswordInput)
+        widget=forms.PasswordInput(
+            attrs={'class': 'form-control'}))
 
     class Meta:
         model = User

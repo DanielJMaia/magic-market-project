@@ -249,6 +249,10 @@ table.dataTable thead th.sorting_desc {
 
 /*Misc Document Classes*/
 
+.help-block{
+  display: none;
+}
+
 .navbar-background{
     background-color: #2a3439;
     padding: 0;
