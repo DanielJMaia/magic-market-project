@@ -235,11 +235,11 @@ pip3 install django-storages && pip3 install boto3
 ```
 python3 manage.py createsuperuser
 ```
-4. In order to run this project you need to access the database, and there's two ways to do that. You can access the S3 database, or use the django database which you run locally. I'm going to cover the S3 storage since #1 This works with the HTML code without having to modify anything and #2 It's better to set up the bucket now so that later down the line you don't have to go and re-do all the databases. Just remember to collectstatic when you make changes to your CSS or you won't see them.
-5. Set up S3 buckets. I'm not going to do into depth on how to do this, you can read up on it [here](https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/) This page helped me quite a bit in going throught he process step by step.
+4. In order to run this project you need to access the database, and there's two ways to do that. You can access the S3 database, or use the django database which you run locally. I'm going to cover the S3 storage since #1 This works with the HTML code without having to modify anything and #2 It's better to set up the bucket now so that later down the line you don't have to go and re-do all the databases. Just remember to collect static files when you make changes to your CSS or you won't see them.
+5. Set up S3 buckets. I'm not going to do into depth on how to do this, you can read up on it [here](https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/) and follow the process step-by-step. This page helped me quite a bit.
 6. Change the AWS_STORAGE_BUCKET_NAME and the region to your bucket and region in settings.py.
 7. Set up Stripe in order to get payment working. 
-8. Set your environment variables. These are the two STRIPE keys, your Django SECRET_KEY, postgres DATABASE_URL, your AWS_ACCES_KEY_ID and your AWS_SECRET_ACCESS_KEY.
+8. Set your environment variables. These are the two STRIPE keys, your Django SECRET_KEY, postgres DATABASE_URL, your AWS_ACCESS_KEY_ID and your AWS_SECRET_ACCESS_KEY.
 Also set PORT=8000.
 9. Run collectstatic to migrate all the static and media files on to the S3 bucket.
 10. You're going to need to add your local machine the the list of allowed hosts. Go ahead into settings, set 

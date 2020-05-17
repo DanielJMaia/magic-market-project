@@ -108,9 +108,9 @@ label{
 .django-message{
     width: auto;
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     background-color: white;
-    top: 15px;
+    top: 5px;
     border-radius: 5px;
 }
 
@@ -172,9 +172,16 @@ table.dataTable thead th.sorting_desc {
 
 /*Navbar*/
 
+#navbar-height{
+    min-height: 56px;
+    height: 56px;
+}
+
 .navbar-background{
     background-color: #212529;
     padding: 0;
+    position: fixed;
+    z-index: 2;
 }
 .dropdown-menu{
     background-color: #2a3439;
