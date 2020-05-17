@@ -68,6 +68,12 @@ label{
     text-decoration: underline;
     color: #2a3439c7;
 }
+.underline{
+    text-decoration:underline;
+}
+.bold{
+    font-weight: bold;
+}
 .hidden-when-small{
         display: none;
 }
