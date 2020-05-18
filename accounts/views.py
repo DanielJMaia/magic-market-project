@@ -79,17 +79,18 @@ def register(request):
 def change_password(request):
     """This shows the password edit form"""
     if request.method == 'POST':
-        form = PasswordChangeForm(user=request.user, data=request.POST)
+        form = PasswordChangeForm(request.user, request.POST)
 
         if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
+            user = form.save()
+            update_session_auth_hash(request, user)
             messages.success(request, "Password successfully reset")
             return redirect('/')
     else:
-        form = PasswordChangeForm(user=request.user)
-        return render(
-                request, 'edit_password.html', {'form': form})
+        form = PasswordChangeForm(request.user)
+    return render(request, 'edit_password.html', {
+        'form': form
+        })
 
 
 @login_required
