@@ -296,6 +296,8 @@ Make sure that the project is building off the master branch in heroku, and that
 
 
 ## Credits
+### Footer
+A footer template was used - https://codepen.io/scanfcode/pen/MEZPNd. This was a nice looking template and I really liked the social media icons. I confirmed that this was ok with my personal tutor, and closely reviewed the code to ensure that there wasn't anything in it that I didn't know how to to myself. I believe it is ok to use a template for something like this, and in professional projects moving forwards it's going to be important to know when to take time saving measures such as these, and focus on the more challenging and custom aspects of a website.
 ### Media
 Card images retrieved from [scryfall.com](https://scryfall.com/).
 
