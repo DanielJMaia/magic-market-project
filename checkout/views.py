@@ -1,13 +1,11 @@
-from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import MakePaymentForm, OrderForm
 from .models import OrderLineItem
 from django.conf import settings
 from django.utils import timezone
-from django.contrib.auth.models import User
 from cards.models import Card
-from checkout.models import Order
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET
@@ -51,14 +49,21 @@ def checkout(request):
 
             if customer.paid:
                 request.session['cart'] = {}
-                return render(request, "checkout_success.html", {'order': order})
+                return render(
+                    request, "checkout_success.html", {'order': order})
             else:
                 messages.error(request, "Unable to take payment")
         else:
             print(payment_form.errors)
-            messages.error(request, "We were unable to take payment with that card")
+            messages.error(
+                request, "We were unable to take payment with that card")
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
 
-    return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+    return render(
+        request,
+        "checkout.html",
+        {'order_form': order_form,
+            'payment_form': payment_form,
+            'publishable': settings.STRIPE_PUBLISHABLE})

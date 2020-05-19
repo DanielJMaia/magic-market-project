@@ -19,9 +19,9 @@
 	<div class="row">
 		<div class="text-center max-width pt-5">
 			{% if profile %}
-			<h3>{{ profile.username }}'s Cards</h3>
+			    <h3>{{ profile.username }}'s Cards</h3>
 			{% else %}
-			<h3>All listings</h3>
+			    <h3>All listings</h3>
 			{% endif %}
 		</div>
 	</div>
@@ -35,7 +35,6 @@
 		<table id="all_cards" class="stripe hover" style="width:100%">
 			<thead class="thead-dark">
 				<tr>
-
 					<th id="table-title">Title</th>
 					<th>Vendor Name</th>
 					<th>Condition</th>
@@ -47,7 +46,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for card in cards %}
+			{% for card in cards %}
 				<tr class="pb-2 pt-2">
 					<td>
 						<div>
@@ -55,15 +54,16 @@
 								onmouseleave="imageToggleHide({{ card.id }})">
 								<img class="camera-icon left" src="{% static 'img/camera_icon.png' %}" alt="Camera Icon">
 		                    </div>
-								<div class="relative">
-									<img class="card-image-hidden" id="{{card.id}}" src="{{ MEDIA_URL }}{{ card.image }}">
+						    <div class="relative">
+								<img class="card-image-hidden" id="{{card.id}}" src="{{ MEDIA_URL }}{{ card.image }}">
                            </div>
-								</div>
-								<div class="pt-3">
-									<a class="underline-link" id="card-title"
-										href="{% url 'view_specific_card' card.id %}">{{ card.card_title }}</a>
-								</div>
+						</div>
+						<div class="pt-3">
+							<a class="underline-link" id="card-title"
+							    href="{% url 'view_specific_card' card.id %}">{{ card.card_title }}</a>
+						</div>
 					</td>
+
 					<td>
 						<a class="underline-link"
 							href="{% url 'view_profile' card.user.id %}">{{ card.user.username }}</a>
@@ -72,37 +72,36 @@
 					<td>£{{ card.card_price }}</td>
 					<td><a href="{% url 'card_detail' card.id %}" class="button-effect nobreak">View Listing</a></td>
 					{% if user.is_authenticated and user != card.user %}
-					<td>
-						<div>
-							<form method="post" action="{% url 'add_to_cart' card.id %}">
-								{% csrf_token %}
-								<div class="input-group no-flex">
-									<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="{{ card.card_amount }}" placeholder="Quantity" value="1">
-									<span class="input-group-btn">
-                                    <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-                                </span>
-								</div>
-							</form>
-						</div>
-					</td>
+					    <td>
+					    	<div>
+					    		<form method="post" action="{% url 'add_to_cart' card.id %}">
+					    			{% csrf_token %}
+					    			<div class="input-group no-flex">
+					    				<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="{{ card.card_amount }}" placeholder="Quantity" value="1">
+					    				<span class="input-group-btn">
+                                        <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+                                    </span>
+								    </div>
+							    </form>
+						    </div>
+					    </td>
 					{% else %}
-					<td></td>
+					    <td></td>
 					{% endif %}
-
 				</tr>
-				{% endfor %}
+			{% endfor %}
 			</tbody>
 		</table>
 	</div>
 </div>
 {% else %}
-<div class="container">
-	<div class="row no-content relative">
-		<div class="text-center max-width no-listings">
-			<h4> There are no cards with those search parameters</h4>
-		</div>
-	</div>
-</div>
+    <div class="container">
+	    <div class="row no-content relative">
+		    <div class="text-center max-width no-listings">
+			    <h4> There are no cards with those search parameters</h4>
+		    </div>
+	    </div>
+    </div>
 {% endif %}
 
 <!---->

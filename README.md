@@ -130,6 +130,7 @@ Another example of a more minimalistic but functional approach is that the table
     - As mentioned above, a website like this in production would take the user through several checkout steps, such as asking for the user shipping and billing address. It would send a confirmation email containing tracking information.
 - Vendor Features
     - Once checkout has been processed, it would be nice to have the vendor informed that their orders have been bought and then have them receive buyer information. The buyer should also receive an email confirmation with a transaction ID.
+- Users have the choice to save their address, and if they do, the next time they checkout they will have their address saved on the right side of the page instead of the placeholder address.
 - The final step would be using the Scryfall API to set up a database with all 20 000+ cards. This would then serve to provide autocomplete functions when searching cards, as well as significantly more filtering options. 
 
 
@@ -285,9 +286,9 @@ Make sure that the project is building off the master branch in heroku, and that
 
 
 ## Bugs, Problems and Difficulties
-- Hiding/showing images in the browse section using JS. Removing the flickering on those images. Also, positioning those elements above the content while also using overflow on the table.
-- Redirecting users to a specific profile and a specific card based. I was trying to go to a profile using a username in the frontend but the eventual fix was going to the backend using the ID, then looking at the user model and going to the profile linked to that ID through the backend. 
-- Django messages. Rendering logout page is a bad idea. Also, no fade :(
+- The browse section hides/shows images using JS. Figuring out how to display/hide those images was challenging and once I figured out how to do that, I was dealing with severe flickering for the images. The solution to this was to move the images down below the camera icon, since as soon as the image appeared below the cursor, it triggered the mouseleave function and hid the image. It was immediately shown again because the mouse was hovering over the camera icon the entire time, and as soon as the image disappears the mouseenter function triggers. Also, positioning those elements above the content while also using overflow on the table was a problem since the image appearing made the table overflow instead of hovering above the table as you'd expect absolutely positioned elements to.
+- Redirecting users to a specific user profile took multiple different approaches. I was trying to go to a profile using a username in the frontend but the eventual fix was going to the backend using the ID, then looking at the user model and going to the profile linked to that ID through the backend. 
+- Django messages. Rendering home page after logging out is a bad idea because the URL is still the logout URL, so if you refresh it it's a form resubmission problem. 
 - Secondary key referencing. It's double underscores, not single.
 - Greater than/less than filtering. It really doesn't like null fields, and trying to replace null values with 0 or 999999 in the backend was very difficult. This is the only bug I gave up on fixing and just added default values. Same result, ever so slightly less clean. 
 - Viewing previous orders. Very annoying. This caused hours and hours of issues. The eventual fix was to clear all my previous migrations because my objects were missing certain fields that I later added, and then coded into the views. Basically I was trying to view order history by accessing the user object tied to the order, but 90% of the orders didn't have a user object. I couldn't even get into the admin panel so I had to delete all my objects. Basically user column didn't exist. AAAA. THis one sucked. 

@@ -15,29 +15,29 @@
 				<h4>Cart Summary</h4>
 			</div>
 			{% for item in cart_items %}
-			<div class="row justify-content-center">
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">{{ item.quantity }}x {{ item.card.card_title }}</h5>
-						<p class="card-text">Price: £{{ item.card.card_price }}</p>
-						<p class="card-text">Vendor: {{ item.card.user.username }}</p>
-						<p>
-							<form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
-								{% csrf_token %}
-								<div class="form-group">
-									<div class="input-group">
-										<input name="quantity" type="number" min="0" max="999" value="{{item.quantity}}" class="form-control">
-									</div>
+			    <div class="row justify-content-center">
+				    <div class="card">
+					    <div class="card-body">
+						    <h5 class="card-title">{{ item.quantity }}x {{ item.card.card_title }}</h5>
+						    <p class="card-text">Price: £{{ item.card.card_price }}</p>
+						    <p class="card-text">Vendor: {{ item.card.user.username }}</p>
+						    <p>
+							    <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
+								    {% csrf_token %}
+								    <div class="form-group">
+									    <div class="input-group">
+										    <input name="quantity" type="number" min="0" max="999" value="{{item.quantity}}" class="form-control">
+									    </div>
 									</div>
 									<button type="submit" class="button-effect"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
-							</form>
-						</p>
-					</div>
-				</div>
-			</div>
+							    </form>
+						    </p>
+					    </div>
+				    </div>
+			    </div>
 			{% endfor %}
-
 		</div>
+
 		<div class="col-sm-12 col-md-5">
 			<div class="row justify-content-center pb-2">
 				<h4>Shipping Address</h4>

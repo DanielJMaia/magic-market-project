@@ -258,6 +258,9 @@ table.dataTable thead th.sorting_desc {
 .help-block{
   display: none;
 }
+.error-msg{
+    color:#ff0000;
+}
 
 .navbar-background{
     background-color: #2a3439;
@@ -660,7 +663,7 @@ textarea.form-control {
         width: 80%;
     }
     .django-message{
-        left: 50%;
+        left: 45%;
         margin-left: -138px;
     }
     .table-overflow{

@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from cards.models import Card
-from decimal import Decimal, DecimalException
 from django.db.models import Q
 
 
 def basic_search(request):
-    cards = Card.objects.filter(~Q(card_amount__icontains=0), card_title__icontains=request.GET['search_title'])
+    cards = Card.objects.filter(
+        ~Q(card_amount__icontains=0),
+        card_title__icontains=request.GET['search_title'])
     return render(request, 'cards.html', {'cards': cards})
 
 

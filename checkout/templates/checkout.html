@@ -15,11 +15,11 @@
 <!--This displays any messages such as "you have been logged out" etc.-->
 <div class="row relative">
 	{% if messages %}
-	<div class="django-message p-2" id="message">
-		{% for message in messages %}
-		<h4> {{message}} </h4>
-		{% endfor %}
-	</div>
+	    <div class="django-message p-2" id="message">
+		    {% for message in messages %}
+		        <h4> {{message}} </h4>
+		    {% endfor %}
+	    </div>
 	{% endif %}
 </div>
 <!--End messages section-->
@@ -43,7 +43,7 @@
 		{% csrf_token %}
 		<div class="form-group">
 			<input class="button-effect" id="submit_payment_button" name="commit" type="submit" value="Submit Payment">
-    </div>
+        </div>
 	</form>
 </div>
 {% endblock %}

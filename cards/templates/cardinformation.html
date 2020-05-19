@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row pt-5 pb-5">
 		{% if card.image %}
-		<img class="card-image margin-center" id="{{card.id}}" src="{{ MEDIA_URL }}{{ card.image }}">
+		    <img class="card-image margin-center" id="{{card.id}}" src="{{ MEDIA_URL }}{{ card.image }}">
         {% endif %}
 		<div class="col-sm-12 col-md-6 p-5 center-small">
 			<h3>{{ card.card_title }}</h3>
@@ -21,13 +21,13 @@
                     <a href="{% url 'delete_listing' card.id %}" class="button-effect red nobreak" onclick="return confirm('Are you sure you want to delete this item?');">Delete Listing</a>
 				{% endif %}
 				{% if user.is_authenticated and user != card.user %}
-				<form method="post" action="{% url 'add_to_cart' card.id %}">
-					{% csrf_token %}
-					<div class="input-group cart-form">
-						<input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="{{ card.card_amount }}" placeholder="Quantity" value="1">
-						<button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
-					</div>
-				</form>
+				    <form method="post" action="{% url 'add_to_cart' card.id %}">
+					    {% csrf_token %}
+					    <div class="input-group cart-form">
+						    <input class="add-to-cart-quantity" name="quantity" type="number" min="1" max="{{ card.card_amount }}" placeholder="Quantity" value="1">
+						    <button class="btn" type="submit"><i class="fas fa-cart-plus fa-lg"></i></button>
+					    </div>
+				    </form>
 				{% endif %}
 			</div>
 		</div>

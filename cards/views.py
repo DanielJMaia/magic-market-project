@@ -1,8 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.utils import timezone
-from django.contrib import auth, messages
+from django.contrib import messages
 from django.db.models import Q
-from django.http import HttpResponseForbidden, HttpResponse
+from django.http import HttpResponseForbidden
 from .models import Card
 from .forms import CardDescForm
 
@@ -28,7 +27,8 @@ def view_specific_card(request, pk):
     """
     card_id = get_object_or_404(Card, pk=pk)
     card_name = card_id.card_title
-    cards = Card.objects.filter(~Q(card_amount__icontains=0), card_title__icontains=card_name)
+    cards = Card.objects.filter(~Q(card_amount__icontains=0),
+                                card_title__icontains=card_name)
     return render(request, "cards.html", {'cards': cards})
 
 
@@ -68,9 +68,11 @@ def delete_listing(request, pk):
     if (request.user.is_authenticated):
         try:
             card.delete()
-            messages.success(request, "You've successfully deleted the listing")
+            messages.success(request,
+                             "You've successfully deleted the listing")
         except Card.DoesNotExist:
-            messages.warning(request, 'This listing could not be deleted. Please try again later.')
+            messages.warning(request,
+                             'This listing could not be deleted. Please try again later.')
     else:
         return HttpResponseForbidden()
     return redirect('/')
